@@ -21,7 +21,7 @@ defaults:
       type: "posts"
     values:
       layout: "post"
-      author: "Natanael Mota"
+      author: "Natanael"
 
 # Plugins
 plugins:
