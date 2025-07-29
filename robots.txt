@@ -1,0 +1,8 @@
+# robots.txt for qvxx.ai
+# Allow all crawlers
+
+User-agent: *
+Allow: /
+
+# Sitemap location (optional - update when you have a sitemap)
+# Sitemap: https://qvxx.ai/sitemap.xml
