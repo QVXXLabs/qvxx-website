@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Why Your £2K/Month AI Experiment is Failing (And How to Fix It)"
-date: 2025-01-29 12:30:00 +0000
+date: 2025-01-30 12:30:00 +0000
 category: Strategy
 description: "Three months ago, I decided to test whether local AI models could actually help with product management work. The results were... educational."
 ---
