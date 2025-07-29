@@ -6,11 +6,11 @@ category: Strategy
 description: "Three months ago, I helped my mum solve a problem that perfectly illustrates how AI is quietly changing small business operations."
 ---
 
-Three months ago, I helped my mum solve a problem that perfectly illustrates how AI is quietly changing small business operations. As a childminder in London, she was spending hours each week writing observation reports for parents—time that could have been spent with the children or growing her business.
+Three months ago, I helped my mum solve a problem that perfectly illustrates how AI is quietly changing small business operations. As a childminder in London, she was spending hours each week writing observation reports for parents - time that could have been spent with the children or growing her business.
 
 Using AI development tools like Cursor, I built her a simple app that turns photos and quick taps into professional reports. What used to take 30 minutes per child now takes 3 minutes.
 
-That's not just convenience—it's competitive advantage. And it's happening right here in London's business districts.
+That's not just convenience - it's competitive advantage. And it's happening right here in London's business districts.
 
 ## The London Reality
 
@@ -44,7 +44,7 @@ The companies winning aren't those with the best AI strategy. They're the ones w
 
 Large corporations move slowly on AI because of compliance and committee decision-making. London SMBs can implement and iterate within weeks.
 
-You don't need perfect AI solutions—you need AI solutions that work better than manual processes. Small improvements compound quickly when you're competing against larger, slower organisations.
+You don't need perfect AI solutions - you need AI solutions that work better than manual processes. Small improvements compound quickly when you're competing against larger, slower organisations.
 
 ## The Cost of Manual Processes
 
