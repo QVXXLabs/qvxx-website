@@ -35,4 +35,4 @@ exclude:
   - CNAME
 
 # Future posts
-future: true
+future: false
