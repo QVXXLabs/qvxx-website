@@ -424,6 +424,18 @@
                     Serving London businesses in Pimlico, Westminster, and Central London
                 </div>
             </section>
+            
+            <section style="background: #f8f9fa; padding: 3rem 0; margin-top: 3rem;">
+                <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
+                    <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 2rem; color: #1a1a1a;">Latest Insights</h2>
+                    <div id="blog-posts" style="display: grid; gap: 2rem;">
+                        <p style="color: #666; font-style: italic;">Loading latest posts...</p>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a href="/blog" style="color: #2563eb; text-decoration: none; font-weight: 500;">View all posts →</a>
+                    </div>
+                </div>
+            </section>
         </main>
 
         <footer>
@@ -443,5 +455,38 @@
     </div>
     
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8067b9176d8540d4acf12007444be941"}'></script><!-- End Cloudflare Web Analytics -->
+    
+    <script>
+        // Fetch and display latest blog posts
+        fetch('/blog')
+            .then(response => response.text())
+            .then(html => {
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const posts = doc.querySelectorAll('.blog-preview');
+                const container = document.getElementById('blog-posts');
+                
+                if (posts.length > 0) {
+                    container.innerHTML = '';
+                    // Show only first 2 posts
+                    for (let i = 0; i < Math.min(2, posts.length); i++) {
+                        const post = posts[i].cloneNode(true);
+                        // Add some inline styles to match the landing page
+                        post.style.marginBottom = '2rem';
+                        post.style.paddingBottom = '2rem';
+                        post.style.borderBottom = '1px solid #e5e5e5';
+                        if (i === Math.min(2, posts.length) - 1) {
+                            post.style.borderBottom = 'none';
+                        }
+                        container.appendChild(post);
+                    }
+                } else {
+                    container.innerHTML = '<p style="color: #666; font-style: italic;">No posts published yet. Check back soon!</p>';
+                }
+            })
+            .catch(error => {
+                document.getElementById('blog-posts').innerHTML = '<p style="color: #666; font-style: italic;">Unable to load posts.</p>';
+            });
+    </script>
 </body>
 </html>
