@@ -1,0 +1,81 @@
+<!-- Cookie Consent Banner -->
+<div class="cookie-banner" id="cookieBanner">
+    <div class="cookie-content">
+        <div class="cookie-text">
+            <p>We use cookies to improve your experience and analyze site usage. By clicking "Accept", you agree to our use of cookies. Learn more in our <a href="/cookies">Cookie Policy</a>.</p>
+        </div>
+        <div class="cookie-buttons">
+            <button class="cookie-button reject" onclick="rejectCookies()">Reject All</button>
+            <button class="cookie-button accept" onclick="acceptCookies()">Accept All</button>
+        </div>
+    </div>
+</div>
+
+<!-- Cookie Consent Script -->
+<script>
+    // Check if user has already made a cookie choice
+    function checkCookieConsent() {
+        const consent = localStorage.getItem('cookieConsent');
+        if (!consent) {
+            // Show banner if no choice has been made
+            document.getElementById('cookieBanner').classList.add('show');
+        } else if (consent === 'accepted') {
+            // Enable analytics if previously accepted
+            enableAnalytics();
+        }
+    }
+    
+    // Accept cookies
+    function acceptCookies() {
+        localStorage.setItem('cookieConsent', 'accepted');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        document.getElementById('cookieBanner').classList.remove('show');
+        enableAnalytics();
+    }
+    
+    // Reject cookies
+    function rejectCookies() {
+        localStorage.setItem('cookieConsent', 'rejected');
+        localStorage.setItem('cookieConsentDate', new Date().toISOString());
+        document.getElementById('cookieBanner').classList.remove('show');
+        disableAnalytics();
+    }
+    
+    // Enable analytics
+    function enableAnalytics() {
+        // Google Analytics is already loaded, just enable it
+        window['ga-disable-G-6JWP8EQYNW'] = false;
+        
+        // Send consent update to GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'cookieConsent',
+            'consentStatus': 'accepted'
+        });
+    }
+    
+    // Disable analytics
+    function disableAnalytics() {
+        // Disable Google Analytics
+        window['ga-disable-G-6JWP8EQYNW'] = true;
+        
+        // Clear GA cookies
+        document.cookie = '_ga=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = '_ga_6JWP8EQYNW=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        
+        // Send consent update to GTM
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'cookieConsent',
+            'consentStatus': 'rejected'
+        });
+    }
+    
+    // Check consent on page load
+    document.addEventListener('DOMContentLoaded', checkCookieConsent);
+    
+    // Initially disable GA until consent is given
+    if (!localStorage.getItem('cookieConsent') || localStorage.getItem('cookieConsent') === 'rejected') {
+        window['ga-disable-G-6JWP8EQYNW'] = true;
+    }
+</script>

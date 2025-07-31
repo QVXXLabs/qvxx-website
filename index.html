@@ -332,6 +332,94 @@
                 padding: 1.5rem;
             }
         }
+        
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #1a1a1a;
+            color: #fff;
+            padding: 1.5rem;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: none;
+        }
+        
+        .cookie-banner.show {
+            display: block;
+        }
+        
+        .cookie-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .cookie-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .cookie-text p {
+            margin: 0;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        
+        .cookie-text a {
+            color: #60a5fa;
+            text-decoration: underline;
+        }
+        
+        .cookie-buttons {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .cookie-button {
+            padding: 0.6rem 1.2rem;
+            border: none;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        
+        .cookie-button:hover {
+            opacity: 0.9;
+        }
+        
+        .cookie-button.accept {
+            background: #2563eb;
+            color: #fff;
+        }
+        
+        .cookie-button.reject {
+            background: transparent;
+            color: #fff;
+            border: 1px solid #666;
+        }
+        
+        @media (max-width: 768px) {
+            .cookie-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .cookie-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
     </style>
 </head>
 <body>
@@ -468,6 +556,27 @@
         </footer>
     </div>
     
+    <!-- Cookie Consent Banner -->
+    <div class="cookie-banner" id="cookieBanner">
+        <div class="cookie-content">
+            <div class="cookie-text">
+                <p>We use cookies to improve your experience and analyze site usage. By clicking "Accept", you agree to our use of cookies. Learn more in our <a href="/cookies">Cookie Policy</a>.</p>
+            </div>
+            <div class="cookie-buttons">
+                <button class="cookie-button reject" onclick="rejectCookies()">Reject All</button>
+                <button class="cookie-button accept" onclick="acceptCookies()">Accept All</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Cookie Consent Check (Must be before GA) -->
+    <script>
+      // Disable GA by default if no consent
+      if (!localStorage.getItem('cookieConsent') || localStorage.getItem('cookieConsent') === 'rejected') {
+          window['ga-disable-G-6JWP8EQYNW'] = true;
+      }
+    </script>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JWP8EQYNW"></script>
     <script>
@@ -515,6 +624,75 @@
             .catch(error => {
                 document.getElementById('blog-posts').innerHTML = '<p style="color: #666; font-style: italic;">Unable to load posts.</p>';
             });
+    </script>
+    
+    <!-- Cookie Consent Script -->
+    <script>
+        // Check if user has already made a cookie choice
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('cookieConsent');
+            if (!consent) {
+                // Show banner if no choice has been made
+                document.getElementById('cookieBanner').classList.add('show');
+            } else if (consent === 'accepted') {
+                // Enable analytics if previously accepted
+                enableAnalytics();
+            }
+        }
+        
+        // Accept cookies
+        function acceptCookies() {
+            localStorage.setItem('cookieConsent', 'accepted');
+            localStorage.setItem('cookieConsentDate', new Date().toISOString());
+            document.getElementById('cookieBanner').classList.remove('show');
+            enableAnalytics();
+        }
+        
+        // Reject cookies
+        function rejectCookies() {
+            localStorage.setItem('cookieConsent', 'rejected');
+            localStorage.setItem('cookieConsentDate', new Date().toISOString());
+            document.getElementById('cookieBanner').classList.remove('show');
+            disableAnalytics();
+        }
+        
+        // Enable analytics
+        function enableAnalytics() {
+            // Google Analytics is already loaded, just enable it
+            window['ga-disable-G-6JWP8EQYNW'] = false;
+            
+            // Send consent update to GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'cookieConsent',
+                'consentStatus': 'accepted'
+            });
+        }
+        
+        // Disable analytics
+        function disableAnalytics() {
+            // Disable Google Analytics
+            window['ga-disable-G-6JWP8EQYNW'] = true;
+            
+            // Clear GA cookies
+            document.cookie = '_ga=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            document.cookie = '_ga_6JWP8EQYNW=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            
+            // Send consent update to GTM
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'cookieConsent',
+                'consentStatus': 'rejected'
+            });
+        }
+        
+        // Check consent on page load
+        document.addEventListener('DOMContentLoaded', checkCookieConsent);
+        
+        // Initially disable GA until consent is given
+        if (!localStorage.getItem('cookieConsent') || localStorage.getItem('cookieConsent') === 'rejected') {
+            window['ga-disable-G-6JWP8EQYNW'] = true;
+        }
     </script>
 </body>
 </html>
