@@ -43,48 +43,48 @@
     
     // Enable analytics
     function enableAnalytics() {
-        // Enable Google Analytics
-        window['ga-disable-G-6JWP8EQYNW'] = false;
+        // Update consent state
+        gtag('consent', 'update', {
+            'analytics_storage': 'granted',
+            'ad_storage': 'granted',
+            'ad_user_data': 'granted',
+            'ad_personalization': 'granted'
+        });
         
-        // Load GTM if not already loaded
-        if (!window.google_tag_manager) {
-            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-            })(window,document,'script','dataLayer','GTM-TT935KM3');
-        }
-        
-        // Send consent update to GTM
+        // Send custom event for tracking
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-            'event': 'cookieConsent',
+            'event': 'cookieConsentUpdate',
             'consentStatus': 'accepted'
         });
     }
     
     // Disable analytics
     function disableAnalytics() {
-        // Disable Google Analytics
-        window['ga-disable-G-6JWP8EQYNW'] = true;
+        // Update consent state
+        gtag('consent', 'update', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
         
         // Clear GA cookies
         document.cookie = '_ga=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         document.cookie = '_ga_6JWP8EQYNW=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
         
-        // Send consent update to GTM
+        // Send custom event for tracking
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
-            'event': 'cookieConsent',
+            'event': 'cookieConsentUpdate',
             'consentStatus': 'rejected'
         });
     }
     
+    // Define gtag function if not already defined
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    
     // Check consent on page load
     document.addEventListener('DOMContentLoaded', checkCookieConsent);
-    
-    // Initially disable GA until consent is given
-    if (!localStorage.getItem('cookieConsent') || localStorage.getItem('cookieConsent') === 'rejected') {
-        window['ga-disable-G-6JWP8EQYNW'] = true;
-    }
 </script>
