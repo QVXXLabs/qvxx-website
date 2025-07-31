@@ -69,9 +69,16 @@
             'ad_personalization': 'denied'
         });
         
-        // Clear GA cookies
-        document.cookie = '_ga=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-        document.cookie = '_ga_6JWP8EQYNW=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        // Clear all Google Analytics and GTM cookies
+        const cookiesToClear = ['_ga', '_gid', '_gat', '_ga_6JWP8EQYNW', '_gcl_au', '_gcl_aw', '_gcl_dc'];
+        cookiesToClear.forEach(cookieName => {
+            // Clear for current domain
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            // Clear for current domain with dot prefix
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
+            // Clear for parent domain
+            document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + window.location.hostname + ';';
+        });
         
         // Send custom event for tracking
         window.dataLayer = window.dataLayer || [];
