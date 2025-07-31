@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TT935KM3');</script>
+    <!-- Google Tag Manager - Modified for Cookie Consent -->
+    <script>
+    // Initialize dataLayer
+    window.dataLayer = window.dataLayer || [];
+    
+    // Only load GTM if consent was previously given
+    if (localStorage.getItem('cookieConsent') === 'accepted') {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TT935KM3');
+    }
+    </script>
     <!-- End Google Tag Manager -->
     
     <meta charset="UTF-8">
@@ -294,6 +302,8 @@
             }
         }
     </style>
+    
+    {% include cookie-consent-styles.html %}
 </head>
 <body>
     <!-- Google Tag Manager (noscript) -->
@@ -335,6 +345,14 @@
         </footer>
     </div>
     
+    <!-- Cookie Consent Check (Must be before GA) -->
+    <script>
+      // Disable GA by default if no consent
+      if (!localStorage.getItem('cookieConsent') || localStorage.getItem('cookieConsent') === 'rejected') {
+          window['ga-disable-G-6JWP8EQYNW'] = true;
+      }
+    </script>
+    
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6JWP8EQYNW"></script>
     <script>
@@ -346,5 +364,7 @@
     </script>
     
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8067b9176d8540d4acf12007444be941"}'></script><!-- End Cloudflare Web Analytics -->
+    
+    {% include cookie-consent.html %}
 </body>
 </html>

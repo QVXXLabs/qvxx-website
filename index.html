@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-TT935KM3');</script>
+    <!-- Google Tag Manager - Modified for Cookie Consent -->
+    <script>
+    // Initialize dataLayer
+    window.dataLayer = window.dataLayer || [];
+    
+    // Only load GTM if consent was previously given
+    if (localStorage.getItem('cookieConsent') === 'accepted') {
+        (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-TT935KM3');
+    }
+    </script>
     <!-- End Google Tag Manager -->
     
     <meta charset="UTF-8">
@@ -658,8 +666,17 @@
         
         // Enable analytics
         function enableAnalytics() {
-            // Google Analytics is already loaded, just enable it
+            // Enable Google Analytics
             window['ga-disable-G-6JWP8EQYNW'] = false;
+            
+            // Load GTM if not already loaded
+            if (!window.google_tag_manager) {
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+                new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+                j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','GTM-TT935KM3');
+            }
             
             // Send consent update to GTM
             window.dataLayer = window.dataLayer || [];
