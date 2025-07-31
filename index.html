@@ -7,21 +7,25 @@
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     
-    // Set default consent state
+    // Set default consent state - MUST be denied by default for GDPR
     const savedConsent = localStorage.getItem('cookieConsent');
+    
+    // Always start with denied state
+    gtag('consent', 'default', {
+        'analytics_storage': 'denied',
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied',
+        'ad_personalization': 'denied',
+        'wait_for_update': 500 // Wait up to 500ms for user consent
+    });
+    
+    // If user previously accepted, update immediately
     if (savedConsent === 'accepted') {
-        gtag('consent', 'default', {
+        gtag('consent', 'update', {
             'analytics_storage': 'granted',
             'ad_storage': 'granted',
             'ad_user_data': 'granted',
             'ad_personalization': 'granted'
-        });
-    } else {
-        gtag('consent', 'default', {
-            'analytics_storage': 'denied',
-            'ad_storage': 'denied',
-            'ad_user_data': 'denied',
-            'ad_personalization': 'denied'
         });
     }
     </script>
@@ -693,6 +697,12 @@
         
         // Disable analytics
         function disableAnalytics() {
+            // Ensure gtag is available
+            if (typeof gtag !== 'function') {
+                console.error('gtag not available');
+                return;
+            }
+            
             // Update consent state
             gtag('consent', 'update', {
                 'analytics_storage': 'denied',
@@ -700,6 +710,9 @@
                 'ad_user_data': 'denied',
                 'ad_personalization': 'denied'
             });
+            
+            // Log for debugging
+            console.log('Consent updated to denied');
             
             // Clear all Google Analytics and GTM cookies
             const cookiesToClear = ['_ga', '_gid', '_gat', '_ga_6JWP8EQYNW', '_gcl_au', '_gcl_aw', '_gcl_dc'];

@@ -61,6 +61,12 @@
     
     // Disable analytics
     function disableAnalytics() {
+        // Ensure gtag is available
+        if (typeof gtag !== 'function') {
+            console.error('gtag not available');
+            return;
+        }
+        
         // Update consent state
         gtag('consent', 'update', {
             'analytics_storage': 'denied',
@@ -68,6 +74,9 @@
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'
         });
+        
+        // Log for debugging
+        console.log('Consent updated to denied');
         
         // Clear all Google Analytics and GTM cookies
         const cookiesToClear = ['_ga', '_gid', '_gat', '_ga_6JWP8EQYNW', '_gcl_au', '_gcl_aw', '_gcl_dc'];
