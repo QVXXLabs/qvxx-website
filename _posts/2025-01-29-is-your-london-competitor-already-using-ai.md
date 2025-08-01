@@ -63,7 +63,7 @@ Your competitors aren't waiting for perfect AI solutions. They're implementing p
 
 Ready to see where AI could impact your business?
 
-I'm offering free 30-minute AI opportunity assessments for London businesses. We'll identify:
+I'm offering free 20-minute AI opportunity assessments for London businesses. We'll identify:
 
 * Which of your current processes AI could optimise within 30 days
 * What practical tools might fit your specific situation
