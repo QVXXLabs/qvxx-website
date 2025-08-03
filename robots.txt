@@ -4,5 +4,5 @@
 User-agent: *
 Allow: /
 
-# Sitemap location (optional - update when you have a sitemap)
-# Sitemap: https://qvxx.ai/sitemap.xml
+# Sitemap location
+Sitemap: https://qvxx.ai/sitemap.xml
