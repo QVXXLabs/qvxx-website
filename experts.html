@@ -3,22 +3,107 @@ layout: default
 title: Expert Network
 ---
 
+<style>
+    .expert-card {
+        background: var(--bg-secondary);
+        padding: 2rem;
+        border-radius: 8px;
+        margin-bottom: 2rem;
+        border: 1px solid var(--border-color);
+    }
+    
+    .expert-name {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+    }
+    
+    .expert-name a {
+        color: var(--text-primary);
+        text-decoration: none;
+    }
+    
+    .expert-name a:hover {
+        text-decoration: underline;
+    }
+    
+    .expert-title {
+        font-weight: 600;
+        color: var(--link-color);
+        margin-bottom: 1rem;
+    }
+    
+    .expert-links {
+        margin-bottom: 0;
+    }
+    
+    .expert-links span {
+        color: var(--text-muted);
+        margin: 0 0.5rem;
+    }
+    
+    .cta-section {
+        margin-top: 3rem;
+        padding: 2rem;
+        background: var(--cta-bg);
+        color: #fff;
+        border-radius: 8px;
+    }
+    
+    .cta-section h2 {
+        color: #fff;
+        margin-top: 0;
+    }
+    
+    .cta-section p {
+        color: #ccc;
+    }
+    
+    .page-intro {
+        font-size: 1.2rem;
+        color: var(--text-tertiary);
+        margin-bottom: 3rem;
+    }
+    
+    .cta-button {
+        display: inline-block;
+        background: var(--link-color);
+        color: #fff;
+        padding: 12px 24px;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: 1rem;
+        transition: background-color 0.2s;
+    }
+    
+    .cta-button:hover {
+        background: var(--link-hover);
+        color: #fff;
+        text-decoration: none;
+    }
+    
+    .cta-button.primary {
+        font-size: 1.1rem;
+        padding: 14px 28px;
+    }
+</style>
+
 <div style="max-width: 800px; margin: 0 auto;">
     <h1>Expert Network</h1>
-    <p style="font-size: 1.2rem; color: #666; margin-bottom: 3rem;">When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.</p>
+    <p class="page-intro">When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.</p>
 
 
     <section>
         <h2>Featured Experts</h2>
         
         <!-- Nikita Sarychev -->
-        <div style="background: #f8f9fa; padding: 2rem; border-radius: 8px; margin-bottom: 2rem;">
-            <h3 style="margin-top: 0; margin-bottom: 0.5rem;">
-                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener" style="color: #1a1a1a; text-decoration: none;">
+        <div class="expert-card">
+            <h3 class="expert-name">
+                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener">
                     Nikita Sarychev
                 </a>
             </h3>
-            <p style="font-weight: 600; color: #2563eb; margin-bottom: 1rem;">Technical Leadership Specialist</p>
+            <p class="expert-title">Technical Leadership Specialist</p>
             
             <div style="margin-bottom: 1rem;">
                 <strong>Areas of Expertise:</strong>
@@ -32,23 +117,23 @@ title: Expert Network
                 </ul>
             </div>
             
-            <p style="margin-bottom: 0;">
-                <a href="https://www.linkedin.com/in/nik-sarychev/" target="_blank" rel="noopener" style="color: #2563eb;">
+            <p class="expert-links">
+                <a href="https://www.linkedin.com/in/nik-sarychev/" target="_blank" rel="noopener">
                     LinkedIn
                 </a>
-                <span style="color: #999; margin: 0 0.5rem;">|</span>
-                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener" style="color: #2563eb;">
+                <span>|</span>
+                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener">
                     Website
                 </a>
             </p>
         </div>
     </section>
 
-    <section style="margin-top: 3rem; padding: 2rem; background: #1a1a1a; color: #fff; border-radius: 8px;">
-        <h2 style="color: #fff; margin-top: 0;">Work with Our Network</h2>
+    <section class="cta-section">
+        <h2>Work with Our Network</h2>
         <p>When your project requires specialized expertise beyond AI integration, I can connect you with the right expert from our network. We'll work together to ensure seamless delivery and consistent quality.</p>
         <p style="margin-bottom: 0;">
-            <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" style="display: inline-block; background: #2563eb; color: #fff; padding: 12px 24px; border-radius: 6px; text-decoration: none; font-weight: 600; margin-top: 1rem;">
+            <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="cta-button primary">
                 Discuss Your Project Needs
             </a>
         </p>
