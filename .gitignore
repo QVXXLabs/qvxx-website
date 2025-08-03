@@ -1,0 +1,30 @@
+# Jekyll
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+
+# Google Sheets API credentials
+credentials.json
+*-credentials.json
+service-account-*.json
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log

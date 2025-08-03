@@ -1,6 +1,6 @@
 # Google Sheets Blog Sync
 
-This system automatically syncs blog posts from Google Sheets to your Jekyll site every hour.
+This system automatically syncs blog posts from Google Sheets to your Jekyll site every hour using the Google Sheets API.
 
 ## Setup Instructions
 
@@ -13,20 +13,21 @@ Your Google Sheet should have the following structure:
 - **Column A**: Can be used for labels/notes (ignored by script)
 - **Columns B, C, D, etc.**: Each column represents one blog post
 
-### 2. Make Your Sheet Public
+### 2. Set Up Google Sheets API Access
 
-1. Open your Google Sheet
-2. Click the "Share" button (top right)
-3. Click "Change to anyone with the link"
-4. Set permission to "Viewer"
-5. Click "Done"
+Follow the detailed instructions in [GOOGLE_SHEETS_API_SETUP.md](GOOGLE_SHEETS_API_SETUP.md) to:
+1. Create a Google Cloud project
+2. Enable Google Sheets API
+3. Create service account credentials
+4. Share your sheet with the service account
+5. Set up credentials for local development and GitHub Actions
 
 ### 3. Update the Script Configuration
 
-Edit `scripts/sync_google_sheets.py` and update these values:
+Edit `scripts/sync_google_sheets_api.py` and update these values:
 ```python
-SHEET_ID = "your-sheet-id-here"  # The ID from your sheet URL
-GID = "your-gid-here"  # The GID from your sheet URL (after #gid=)
+SPREADSHEET_ID = "your-spreadsheet-id"  # The ID from your sheet URL
+SHEET_NAME = "Sheet1"  # The name of your sheet tab
 ```
 
 ### 4. Test Locally
