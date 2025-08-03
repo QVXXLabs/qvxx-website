@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Is Your London Competitor Already Using AI? - Get free assessment"
+title: "How I Built an AI App for My Mum's Childminding Business (And What It Taught Me)"
 date: 2025-01-29 10:00:00 +0000
 category: Strategy
 description: "Three months ago, I helped my mum solve a problem that perfectly illustrates how AI is quietly changing small business operations."
