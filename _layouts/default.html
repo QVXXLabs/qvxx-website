@@ -43,6 +43,7 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <link rel="canonical" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
+    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ site.url }}/feed.xml">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -161,6 +162,22 @@
 
         .theme-toggle:hover {
             color: var(--text-primary);
+        }
+
+        /* RSS feed button */
+        .rss-button {
+            display: inline-flex;
+            align-items: center;
+            color: var(--text-tertiary);
+            text-decoration: none;
+            padding: 0.5rem;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .rss-button:hover {
+            color: var(--text-primary);
+            text-decoration: none;
         }
 
         /* Main Content */
@@ -393,6 +410,13 @@
                     <li><a href="/experts">Expert Network</a></li>
                     <li><a href="/#projects">Projects</a></li>
                 </ul>
+                <a href="/feed.xml" class="rss-button" aria-label="RSS Feed" title="Subscribe to RSS Feed">
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M3.75 6.25a6.25 6.25 0 0 1 6.25 6.25c0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25a3.75 3.75 0 0 0-3.75-3.75c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25Z"/>
+                        <path d="M3.75 2.5c5.66 0 10 4.34 10 10 0 .69-.56 1.25-1.25 1.25s-1.25-.56-1.25-1.25a7.5 7.5 0 0 0-7.5-7.5c-.69 0-1.25-.56-1.25-1.25s.56-1.25 1.25-1.25Z"/>
+                        <circle cx="3.75" cy="16.25" r="1.25"/>
+                    </svg>
+                </a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <span class="theme-icon">🌙</span>
                 </button>
