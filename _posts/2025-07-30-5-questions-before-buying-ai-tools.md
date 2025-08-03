@@ -86,7 +86,7 @@ The most successful AI implementation I completed was the childminder app - it f
 
 If your honest answers to these questions reveal gaps - unclear problems, missing expertise, underestimated complexity - you're probably not ready for AI tools yet. That's actually good news, because it means you can avoid costly mistakes.
 
-The businesses succeeding with AI aren't using the most sophisticated tools. They're using appropriate tools effectively, with realistic expectations and proper preparation. And yes, [your competitors might already be doing this](/blog/2025/08/03/is-your-london-competitor-already-using-ai/) - but that doesn't mean you should rush into poor decisions.
+The businesses succeeding with AI aren't using the most sophisticated tools. They're using appropriate tools effectively, with realistic expectations and proper preparation. And yes, [your competitors might already be doing this](/blog/2025/08/03/the-ai-adoption-race-why-london-smbs-cant-afford-to-wait/) - but that doesn't mean you should rush into poor decisions.
 
 ## Your Next Move
 

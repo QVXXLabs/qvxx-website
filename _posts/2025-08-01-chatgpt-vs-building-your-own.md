@@ -119,7 +119,7 @@ For most London SMBs, the choice is straightforward:
 
 ## Your Next Move
 
-The businesses succeeding with AI aren't those building the most sophisticated custom solutions. They're the ones implementing practical AI tools that solve real problems quickly and cost-effectively. And yes, [your competitors are probably already doing this](/blog/2025/08/03/is-your-london-competitor-already-using-ai/).
+The businesses succeeding with AI aren't those building the most sophisticated custom solutions. They're the ones implementing practical AI tools that solve real problems quickly and cost-effectively. And yes, [your competitors are probably already doing this](/blog/2025/08/03/the-ai-adoption-race-why-london-smbs-cant-afford-to-wait/).
 
 Before considering building your own AI infrastructure, ask yourself: would this time and money be better spent on core business activities that actually generate revenue?
 

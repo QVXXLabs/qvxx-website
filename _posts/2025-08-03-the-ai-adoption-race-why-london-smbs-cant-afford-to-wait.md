@@ -1,10 +1,9 @@
 ---
 category: Strategy
 date: 2025-08-03 00:00:00 +0000
-description: The question isn't whether artificial intelligence will transform London's
-  business landscape—it's whether your business will be leading or following...
+description: "Over 40% of UK businesses are already using AI. In London's competitive market, standing still means falling behind. Here's what you need to know."
 layout: post
-title: Is Your London Competitor Already Using AI?
+title: "The AI Adoption Race: Why London SMBs Can't Afford to Wait"
 ---
 
 The question isn't whether artificial intelligence will transform London's business landscape—it's whether your business will be leading or following that transformation. As you read this, somewhere in your industry, a competitor is likely evaluating, testing, or implementing AI tools that could give them a significant edge.
