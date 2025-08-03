@@ -17,7 +17,7 @@ from googleapiclient.errors import HttpError
 # Configuration
 SPREADSHEET_ID = "16CADq4P1SatT2NsEPy79cRZIOiPgrl9lxhuhMMMnd10"
 SHEET_NAME = "Sheet1"  # Update this to your sheet name
-RANGE_NAME = f"{SHEET_NAME}!A1:Z3"  # First 3 rows, columns A-Z
+RANGE_NAME = "A1:Z3"  # First 3 rows, columns A-Z
 POSTS_DIR = Path("_posts")
 
 # Google Sheets API scope
@@ -106,12 +106,26 @@ def parse_date(date_str):
 
 def create_blog_post(date, title, content):
     """Create a Jekyll blog post file"""
+    # Validate inputs - skip if they look like headers or metadata
+    skip_values = ['updated at', 'name', 'description', 'primary industry', 'size', 'type', 
+                   'location', 'country', 'domain', 'job openings', 'linkedin', 'email', 
+                   'github', 'funding', 'score', 'date', 'title', 'content']
+    
+    if any(skip in date.lower() for skip in skip_values):
+        print(f"Skipping header/metadata row: {date}")
+        return False
+        
     # Parse the date
     post_date = parse_date(date)
     
     # Create filename
     date_str = post_date.strftime("%Y-%m-%d")
     filename_title = sanitize_filename(title)
+    
+    # Limit filename length
+    if len(filename_title) > 50:
+        filename_title = filename_title[:50]
+    
     filename = f"{date_str}-{filename_title}.md"
     filepath = POSTS_DIR / filename
     
