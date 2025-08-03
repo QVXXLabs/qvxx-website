@@ -50,6 +50,36 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #fafafa;
+            --bg-code: #f5f5f5;
+            --text-primary: #1a1a1a;
+            --text-secondary: #333333;
+            --text-tertiary: #666666;
+            --text-muted: #999999;
+            --border-color: #e5e5e5;
+            --link-color: #2563eb;
+            --link-hover: #1d4ed8;
+            --cta-bg: #1a1a1a;
+            --cta-hover: #333333;
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-code: #2a2a2a;
+            --text-primary: #f5f5f5;
+            --text-secondary: #e5e5e5;
+            --text-tertiary: #a0a0a0;
+            --text-muted: #666666;
+            --border-color: #333333;
+            --link-color: #60a5fa;
+            --link-hover: #93bbfc;
+            --cta-bg: #2a2a2a;
+            --cta-hover: #3a3a3a;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -59,8 +89,9 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background-color: #fff;
+            color: var(--text-secondary);
+            background-color: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
@@ -72,7 +103,7 @@
         /* Header */
         header {
             padding: 2rem 0;
-            border-bottom: 1px solid #e5e5e5;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -86,17 +117,23 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             font-size: 2.5rem;
             font-weight: 700;
-            color: #1a1a1a;
+            color: var(--text-primary);
             text-decoration: none;
         }
 
         .tagline {
-            color: #666;
+            color: var(--text-tertiary);
             font-size: 1.3rem;
             margin-top: 0.5rem;
         }
 
         /* Navigation */
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
         nav ul {
             list-style: none;
             display: flex;
@@ -106,13 +143,28 @@
         }
 
         nav a {
-            color: #666;
+            color: var(--text-tertiary);
             text-decoration: none;
             font-weight: 500;
         }
 
         nav a:hover {
-            color: #1a1a1a;
+            color: var(--text-primary);
+        }
+
+        /* Dark mode toggle */
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            color: var(--text-tertiary);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            color: var(--text-primary);
         }
 
         /* Main Content */
@@ -124,7 +176,7 @@
             font-size: 1.8rem;
             font-weight: 600;
             margin-bottom: 1.5rem;
-            color: #1a1a1a;
+            color: var(--text-primary);
             line-height: 1.3;
         }
 
@@ -133,7 +185,7 @@
             font-weight: 600;
             margin-top: 3rem;
             margin-bottom: 1.5rem;
-            color: #1a1a1a;
+            color: var(--text-primary);
         }
 
         h3 {
@@ -141,18 +193,18 @@
             font-weight: 600;
             margin-top: 2rem;
             margin-bottom: 1rem;
-            color: #1a1a1a;
+            color: var(--text-primary);
         }
 
         p {
             font-size: 1.1rem;
             margin-bottom: 1.5rem;
-            color: #444;
+            color: var(--text-secondary);
         }
 
         /* Intro Section */
         .intro {
-            background: #f8f9fa;
+            background: var(--bg-secondary);
             padding: 2rem;
             border-radius: 8px;
             margin-bottom: 3rem;
@@ -169,13 +221,13 @@
         }
 
         .intro-list strong {
-            color: #1a1a1a;
+            color: var(--text-primary);
             font-weight: 600;
         }
 
         .background {
             font-size: 1rem;
-            color: #666;
+            color: var(--text-tertiary);
             font-style: italic;
             margin-top: 1.5rem;
         }
@@ -186,8 +238,8 @@
         }
 
         .problem-card {
-            background: #fff;
-            border: 1px solid #e5e5e5;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
@@ -205,15 +257,15 @@
         }
 
         .service-card {
-            background: #fff;
-            border: 1px solid #e5e5e5;
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 1.5rem;
             margin-bottom: 1.5rem;
         }
 
         .service-card h3 {
-            color: #2563eb;
+            color: var(--link-color);
             margin-top: 0;
             margin-bottom: 1rem;
         }
@@ -221,7 +273,7 @@
         /* Call to Action Button */
         .cta-button {
             display: inline-block;
-            background: #1a1a1a;
+            background: var(--cta-bg);
             color: #fff;
             padding: 12px 24px;
             border-radius: 6px;
@@ -232,22 +284,22 @@
         }
 
         .cta-button:hover {
-            background: #333;
+            background: var(--cta-hover);
             color: #fff;
             text-decoration: none;
         }
 
         .cta-button.primary {
-            background: #2563eb;
+            background: var(--link-color);
             font-size: 1.1rem;
             padding: 14px 28px;
         }
 
         .cta-button.primary:hover {
-            background: #1d4ed8;
+            background: var(--link-hover);
         }
         .cta {
-            background: #1a1a1a;
+            background: var(--cta-bg);
             color: #fff;
             padding: 2.5rem;
             border-radius: 8px;
@@ -282,7 +334,7 @@
 
         .location {
             font-size: 0.95rem;
-            color: #999;
+            color: var(--text-muted);
             margin-top: 1rem;
         }
 
@@ -290,10 +342,10 @@
         footer {
             text-align: center;
             padding: 2rem 0;
-            border-top: 1px solid #e5e5e5;
-            color: #666;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-tertiary);
             font-size: 0.9rem;
-            background: #fafafa;
+            background: var(--bg-secondary);
         }
         
         .company-info {
@@ -310,23 +362,23 @@
         }
         
         .legal-links a {
-            color: #666;
+            color: var(--text-tertiary);
             margin: 0 0.5rem;
         }
         
         .legal-links a:hover {
-            color: #1a1a1a;
+            color: var(--text-primary);
         }
         
         .copyright {
             margin-top: 1rem;
             font-size: 0.85rem;
-            color: #999;
+            color: var(--text-muted);
         }
 
         /* Links */
         a {
-            color: #2563eb;
+            color: var(--link-color);
             text-decoration: none;
         }
 
@@ -469,6 +521,9 @@
                     <li><a href="/experts">Expert Network</a></li>
                     <li><a href="#projects">Projects</a></li>
                 </ul>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
+                    <span class="theme-icon">🌙</span>
+                </button>
             </nav>
         </header>
 
@@ -741,6 +796,34 @@
         
         // Check consent on page load
         document.addEventListener('DOMContentLoaded', checkCookieConsent);
+    </script>
+    
+    <script>
+        // Dark mode toggle functionality
+        (function() {
+            const toggle = document.getElementById('theme-toggle');
+            const icon = toggle.querySelector('.theme-icon');
+            const html = document.documentElement;
+            
+            // Check for saved theme preference or default to light mode
+            const currentTheme = localStorage.getItem('theme') || 'light';
+            html.setAttribute('data-theme', currentTheme);
+            updateIcon(currentTheme);
+            
+            // Toggle theme on button click
+            toggle.addEventListener('click', function() {
+                const currentTheme = html.getAttribute('data-theme');
+                const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+                
+                html.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateIcon(newTheme);
+            });
+            
+            function updateIcon(theme) {
+                icon.textContent = theme === 'light' ? '🌙' : '☀️';
+            }
+        })();
     </script>
 </body>
 </html>
