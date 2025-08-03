@@ -31,7 +31,7 @@ jobs:
     - name: Run sync script
       env:
         GOOGLE_SHEETS_CREDENTIALS: ${{ secrets.GOOGLE_SHEETS_CREDENTIALS }}
-      run: python scripts/sync_google_sheets_api.py
+      run: python scripts/sync_google_sheets_rows.py
     
     - name: Check for changes
       id: check_changes

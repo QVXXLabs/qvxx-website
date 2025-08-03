@@ -6,12 +6,18 @@ This system automatically syncs blog posts from Google Sheets to your Jekyll sit
 
 ### 1. Prepare Your Google Sheet
 
-Your Google Sheet should have the following structure:
-- **Row 1**: Publication dates (e.g., "2025-08-04", "August 4, 2025")
-- **Row 2**: Post titles
-- **Row 3**: Post content (full blog post text)
-- **Column A**: Can be used for labels/notes (ignored by script)
-- **Columns B, C, D, etc.**: Each column represents one blog post
+Your Google Sheet should be in the "Content" tab with the following row-based structure:
+- **Column A**: Labels (Date, Title, Body - Final, etc.)
+- **Column B**: Values for the blog post
+
+Example:
+| A | B |
+|---|---|
+| Date | 8/3/2025 |
+| Title | Is Your London Competitor Already Using AI? |
+| Body - Final | (full blog post content) |
+
+Each blog post should have at least these three rows (Date, Title, and Body - Final)
 
 ### 2. Set Up Google Sheets API Access
 
