@@ -8,7 +8,7 @@ description: "Sometimes the best 'automation' solution is just organizing your w
 
 Last week, a London agency owner told me he was evaluating "RPA solutions" to automate his client onboarding process. When I asked what that meant, he admitted he wasn't entirely sure—but a consultant had convinced him it was essential for staying competitive.
 
-After spending months experimenting with various automation approaches, from AI development tools to simple workflow improvements, I can give you the honest breakdown most consultants won't: sometimes the best "automation" solution is just organizing your work better.
+After spending months experimenting with various automation approaches, from AI development tools to simple workflow improvements, I can give you the honest breakdown most consultants won't: sometimes the best "automation" solution is just organizing your work better. This is especially true if you're already [spending thousands on failing AI experiments](/blog/2025/01/30/why-your-2k-month-ai-experiment-is-failing/).
 
 Here's what these terms actually mean and when each approach makes sense for London SMBs.
 
@@ -16,7 +16,7 @@ Here's what these terms actually mean and when each approach makes sense for Lon
 
 **RPA (Robotic Process Automation):** Software that mimics human actions on computer interfaces. Think of it as a robot clicking buttons and filling forms exactly like a person would, but faster and without breaks.
 
-**AI Automation:** Using artificial intelligence to make decisions and handle tasks that require understanding context, like analyzing emails or generating responses.
+**AI Automation:** Using artificial intelligence to make decisions and handle tasks that require understanding context, like analyzing emails or generating responses. But before jumping in, consider whether you should [use ChatGPT or build your own solution](/blog/2025/08/01/chatgpt-vs-building-your-own/).
 
 **Actually Getting Work Done:** Improving your processes through better organization, clear communication frameworks, and simple tools—often more effective than either RPA or AI.
 
@@ -104,7 +104,9 @@ Before investing in RPA or AI automation, ask yourself:
 3. Do I have enough volume to justify the complexity?
 4. What happens when the automation breaks?
 
-Most London SMBs get better results from improving their processes first, then selectively adding technology where it genuinely helps.
+These are part of the [essential questions you should ask before buying any AI tool](/blog/2025/07/30/5-questions-before-buying-ai-tools/).
+
+Most London SMBs get better results from improving their processes first, then selectively adding technology where it genuinely helps. Meanwhile, [your competitors might be getting this balance right](/blog/2025/08/03/is-your-london-competitor-already-using-ai/) - but that doesn't mean you should rush into the wrong solution.
 
 If you're unsure whether your business needs RPA, AI, or just better organization, **[book a practical automation assessment](https://calendar.app.google/FEpevxQTJxqaTzTPA)**. We'll cut through the buzzwords and focus on what actually improves your operations.
 

@@ -42,7 +42,7 @@ Based on direct experience with various AI tools, here are the real reasons your
 
 **Prompt Engineering Reality:** Effective AI use requires understanding how to communicate with the tools. This isn't intuitive - it's a skill that takes practice. Most teams expect immediate results without investing time in learning effective prompting.
 
-**Model Limitations:** Different AI models have different strengths. The local model I tested had severe limitations for general productivity tasks. Using the wrong tool for your specific needs guarantees poor results.
+**Model Limitations:** Different AI models have different strengths. The local model I tested had severe limitations for general productivity tasks. Using the wrong tool for your specific needs guarantees poor results. This is why understanding [whether to use ChatGPT or build your own solution](/blog/2025/08/01/chatgpt-vs-building-your-own/) is crucial.
 
 ## What Actually Works (Lessons from Real Implementation)
 
@@ -64,13 +64,13 @@ If your AI experiment isn't delivering results, here's how to get back on track:
 
 **Define Success Clearly:** What specific outcome would make your AI investment worthwhile? Time saved? Quality improved? Process simplified?
 
-**Start Fresh with One Use Case:** Pick the simplest possible task where AI could add value. Perfect that before expanding.
+**Start Fresh with One Use Case:** Pick the simplest possible task where AI could add value. Perfect that before expanding. And before you invest, make sure you've asked [the right questions about any AI tool](/blog/2025/07/30/5-questions-before-buying-ai-tools/).
 
 Most importantly, stop throwing money at AI tools hoping something will stick. Successful AI implementation requires the same disciplined approach as any business investment.
 
 ## Your Next Move
 
-The businesses succeeding with AI aren't using more sophisticated tools - they're using appropriate tools effectively.
+The businesses succeeding with AI aren't using more sophisticated tools - they're using appropriate tools effectively. While [your competitors might already be using AI](/blog/2025/08/03/is-your-london-competitor-already-using-ai/), success comes from strategic implementation, not rushed adoption.
 
 If you're spending significant money on AI tools without clear results, you need an honest assessment of what's working, what isn't, and why.
 

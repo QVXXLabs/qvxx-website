@@ -35,14 +35,14 @@ Consider a boutique marketing agency in Clerkenwell that recently implemented AI
 
 ## Starting Your AI Journey
 
-If you're feeling behind, here's the good news: AI adoption isn't a winner-takes-all race. The key is to start with clear business objectives rather than chasing technology for its own sake. Ask yourself:
+If you're feeling behind, here's the good news: AI adoption isn't a winner-takes-all race. The key is to start with clear business objectives rather than chasing technology for its own sake. Before diving in, consider reading our guide on [5 essential questions to ask before buying AI tools](/blog/2025/07/30/5-questions-before-buying-ai-tools/). Ask yourself:
 
 - What repetitive tasks consume the most time in your business?
 - Where do customer frustrations typically arise?
 - Which decisions would benefit from better data analysis?
 - What processes could scale without proportionally scaling costs?
 
-These questions will guide you toward AI applications that deliver real value rather than impressive-sounding features that gather dust.
+These questions will guide you toward AI applications that deliver real value rather than impressive-sounding features that gather dust. Many businesses fall into the trap of [spending thousands on AI experiments that fail](/blog/2025/01/30/why-your-2k-month-ai-experiment-is-failing/) - learn from their mistakes.
 
 ## The London Advantage
 

@@ -10,7 +10,7 @@ description: "After months experimenting with local AI models, here's the honest
 
 I hear this from London business owners almost weekly. The logic seems sound: why pay monthly subscriptions when you could host your own AI model?
 
-After spending months experimenting with local AI models, I can give you the honest answer most consultants won't: for SMBs, building your own is almost always a expensive mistake.
+After spending months experimenting with local AI models, I can give you the honest answer most consultants won't: for SMBs, building your own is almost always a expensive mistake. This is one of the key reasons why [many AI experiments fail](/blog/2025/01/30/why-your-2k-month-ai-experiment-is-failing/).
 
 Here's what I learned from actually trying both approaches.
 
@@ -26,7 +26,7 @@ The reasons SMBs consider hosting their own AI models make perfect sense:
 
 **Independence:** No reliance on external services that could change pricing or disappear.
 
-These benefits are real—in theory. The question is whether they're achievable in practice for most London SMBs.
+These benefits are real—in theory. The question is whether they're achievable in practice for most London SMBs. Before even considering this path, you should ask yourself [the right questions about AI implementation](/blog/2025/07/30/5-questions-before-buying-ai-tools/).
 
 ## What Actually Happens When You Try
 
@@ -87,7 +87,7 @@ There are still legitimate scenarios where local AI models make business sense, 
 
 **Technical Expertise Available:** If you already have a team capable of managing AI infrastructure, the overhead is less significant.
 
-Notice what's not on this list: saving money, getting better results, or having more control over day-to-day operations.
+Notice what's not on this list: saving money, getting better results, or having more control over day-to-day operations. This aligns with our broader framework for understanding [when to use RPA, AI, or just better processes](/blog/2025/08/02/rpa-vs-ai-vs-getting-work-done/).
 
 ## The Hidden Costs of "Building Your Own"
 
@@ -119,7 +119,7 @@ For most London SMBs, the choice is straightforward:
 
 ## Your Next Move
 
-The businesses succeeding with AI aren't those building the most sophisticated custom solutions. They're the ones implementing practical AI tools that solve real problems quickly and cost-effectively.
+The businesses succeeding with AI aren't those building the most sophisticated custom solutions. They're the ones implementing practical AI tools that solve real problems quickly and cost-effectively. And yes, [your competitors are probably already doing this](/blog/2025/08/03/is-your-london-competitor-already-using-ai/).
 
 Before considering building your own AI infrastructure, ask yourself: would this time and money be better spent on core business activities that actually generate revenue?
 

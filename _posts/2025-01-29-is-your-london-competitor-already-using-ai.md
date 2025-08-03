@@ -22,7 +22,7 @@ The question isn't whether AI will disrupt your industry. It's whether you'll be
 
 After experimenting with various AI tools and helping implement solutions, here's what's delivering immediate impact for small businesses:
 
-**Development Speed:** AI coding tools like Cursor can dramatically reduce development time, though they require understanding how the underlying systems work. The productivity gain is real, but not automatic.
+**Development Speed:** AI coding tools like Cursor can dramatically reduce development time, though they require understanding how the underlying systems work. The productivity gain is real, but not automatic. For a deeper dive into build vs. buy decisions, see our analysis on [ChatGPT vs. building your own AI solution](/blog/2025/08/01/chatgpt-vs-building-your-own/).
 
 **Communication Efficiency:** Remote collaboration fails when teams lack shared context and clear communication frameworks. AI-assisted project management tools help structure these interactions, reducing the miscommunication that typically derails distributed teams.
 
@@ -55,7 +55,7 @@ Every manual process in your business is a place where AI tools might offer imme
 * Routine customer service inquiries
 * Content creation and project coordination
 
-The businesses that will dominate their markets over the next two years are making these tactical AI decisions now.
+The businesses that will dominate their markets over the next two years are making these tactical AI decisions now. Understanding the difference between [RPA, AI, and simply getting work done](/blog/2025/08/02/rpa-vs-ai-vs-getting-work-done/) is crucial for making the right choice.
 
 ## Your Next Move
 

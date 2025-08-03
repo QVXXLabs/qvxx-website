@@ -8,7 +8,7 @@ description: "After months of experimenting with various AI tools, I've learned 
 
 After months of experimenting with various AI tools - from local models that produced endless repetitive text to development tools that created more problems than they solved - I've learned that the wrong AI tool can waste more time and money than doing things manually.
 
-Most London SMBs I meet are asking "Which AI tool should we buy?" when they should be asking "Should we buy an AI tool at all?"
+Most London SMBs I meet are asking "Which AI tool should we buy?" when they should be asking "Should we buy an AI tool at all?" Many are already [spending thousands on failing AI experiments](/blog/2025/01/30/why-your-2k-month-ai-experiment-is-failing/) without understanding why.
 
 Here are the five questions that could save you from expensive AI mistakes, based on real implementation experience.
 
@@ -16,7 +16,7 @@ Here are the five questions that could save you from expensive AI mistakes, base
 
 **Why This Matters:** When I started experimenting with AI for product management work, I thought I wanted "better document generation." What I actually needed was a way to overcome writer's block and create structured first drafts.
 
-The local LLM I tested failed because I hadn't clearly defined what "success" looked like. Was it speed? Quality? Consistency? Without clear criteria, I couldn't tell if any solution was genuinely useful.
+The local LLM I tested failed because I hadn't clearly defined what "success" looked like. Was it speed? Quality? Consistency? Without clear criteria, I couldn't tell if any solution was genuinely useful. This experience taught me why [building your own AI solution is rarely the answer](/blog/2025/08/01/chatgpt-vs-building-your-own/) for most SMBs.
 
 **Before buying any AI tool, write down:**
 - The specific task you want to improve
@@ -70,7 +70,7 @@ Many businesses choose AI tools based on impressive demos, then discover the too
 
 ## Question 5: "Can I Start Smaller and Prove Value First?"
 
-**The Biggest Mistake:** Most businesses try to automate entire workflows immediately, then get overwhelmed when nothing works as expected.
+**The Biggest Mistake:** Most businesses try to automate entire workflows immediately, then get overwhelmed when nothing works as expected. This is particularly true when companies confuse [RPA, AI, and simple process improvement](/blog/2025/08/02/rpa-vs-ai-vs-getting-work-done/).
 
 The most successful AI implementation I completed was the childminder app - it focused on one specific task (converting photos and simple inputs into reports) rather than trying to solve every communication challenge.
 
@@ -86,7 +86,7 @@ The most successful AI implementation I completed was the childminder app - it f
 
 If your honest answers to these questions reveal gaps - unclear problems, missing expertise, underestimated complexity - you're probably not ready for AI tools yet. That's actually good news, because it means you can avoid costly mistakes.
 
-The businesses succeeding with AI aren't using the most sophisticated tools. They're using appropriate tools effectively, with realistic expectations and proper preparation.
+The businesses succeeding with AI aren't using the most sophisticated tools. They're using appropriate tools effectively, with realistic expectations and proper preparation. And yes, [your competitors might already be doing this](/blog/2025/08/03/is-your-london-competitor-already-using-ai/) - but that doesn't mean you should rush into poor decisions.
 
 ## Your Next Move
 
