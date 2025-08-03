@@ -56,6 +56,12 @@ The question "Is your London competitor already using AI?" shouldn't paralyse yo
 
 Remember, in London's competitive market, standing still is moving backward. But with careful planning and strategic implementation, AI can be your accelerator rather than your Achilles' heel. The race is on, but it's a marathon, not a sprint—and there's still plenty of time to find your pace.
 
+## Take the First Step Today
+
+Ready to explore how AI can give your business a competitive edge? Don't let another day pass while your competitors pull ahead. 
+
+**[Book a free 20-minute consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA)** to discuss your specific challenges and opportunities. We'll cut through the hype and focus on practical AI solutions that can deliver real results for your London business.
+
 ---
 
 *QVXX helps London SMBs make practical AI decisions. We focus on what actually works for your business.*
