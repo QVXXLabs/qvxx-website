@@ -1,0 +1,374 @@
+<script>
+// Modern Analytics Implementation - Inspired by Simo Ahava's Best Practices
+(function() {
+    'use strict';
+
+    // Utility Functions
+    function throttle(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+
+    function getElementSelector(element) {
+        if (element.id) return '#' + element.id;
+        if (element.className) return element.tagName.toLowerCase() + '.' + element.className.split(' ')[0];
+        return element.tagName.toLowerCase();
+    }
+
+    // 1. Enhanced Rage Click Detection
+    (function initRageClickTracking() {
+        let clickData = new Map();
+        let debounceTimer;
+
+        document.addEventListener('click', function(e) {
+            const target = e.target;
+            const targetKey = getElementSelector(target);
+            const now = Date.now();
+
+            if (!clickData.has(targetKey)) {
+                clickData.set(targetKey, []);
+            }
+
+            const clicks = clickData.get(targetKey);
+            clicks.push(now);
+            
+            // Keep only clicks within last 2 seconds
+            const recentClicks = clicks.filter(timestamp => now - timestamp < 2000);
+            clickData.set(targetKey, recentClicks);
+
+            if (recentClicks.length >= 3) {
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'rage_click', {
+                            'event_category': 'UX',
+                            'element_selector': targetKey,
+                            'click_count': recentClicks.length,
+                            'page_path': window.location.pathname,
+                            'viewport_size': window.innerWidth + 'x' + window.innerHeight
+                        });
+                    }
+                    clickData.delete(targetKey);
+                }, 100);
+            }
+        });
+    })();
+
+    // 2. Advanced Form Abandonment with Field Progression
+    (function initFormTracking() {
+        let formInteractions = new Map();
+        let formSubmitted = new Set();
+
+        // Track form field interactions with progression
+        document.addEventListener('input', function(e) {
+            const target = e.target;
+            if (!target.matches('input, textarea, select')) return;
+
+            const form = target.closest('form');
+            if (!form) return;
+
+            const formId = form.id || form.action || 'unknown_form';
+            const fieldName = target.name || target.id || target.type;
+
+            if (!formInteractions.has(formId)) {
+                formInteractions.set(formId, {
+                    fields: new Set(),
+                    startTime: Date.now(),
+                    lastInteraction: Date.now(),
+                    firstField: fieldName
+                });
+
+                // Track form start
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'form_start', {
+                        'event_category': 'Form',
+                        'form_id': formId,
+                        'first_field': fieldName
+                    });
+                }
+            }
+
+            const interaction = formInteractions.get(formId);
+            interaction.fields.add(fieldName);
+            interaction.lastInteraction = Date.now();
+        });
+
+        // Track form submissions
+        document.addEventListener('submit', function(e) {
+            const form = e.target;
+            const formId = form.id || form.action || 'unknown_form';
+            formSubmitted.add(formId);
+
+            const interaction = formInteractions.get(formId);
+            if (interaction && typeof gtag !== 'undefined') {
+                const timeSpent = Date.now() - interaction.startTime;
+                gtag('event', 'form_submit', {
+                    'event_category': 'Form',
+                    'form_id': formId,
+                    'fields_completed': interaction.fields.size,
+                    'time_spent': Math.round(timeSpent / 1000)
+                });
+            }
+        });
+
+        // Enhanced abandonment tracking
+        window.addEventListener('beforeunload', function() {
+            formInteractions.forEach((interaction, formId) => {
+                if (!formSubmitted.has(formId) && interaction.fields.size > 0) {
+                    const timeSpent = Date.now() - interaction.startTime;
+                    
+                    // Use sendBeacon for reliability
+                    if (navigator.sendBeacon && typeof gtag !== 'undefined') {
+                        const data = {
+                            event: 'form_abandon',
+                            form_id: formId,
+                            fields_completed: interaction.fields.size,
+                            time_spent: Math.round(timeSpent / 1000),
+                            last_field: Array.from(interaction.fields).pop()
+                        };
+                        
+                        // Send via measurement protocol
+                        const payload = new FormData();
+                        payload.append('data', JSON.stringify(data));
+                        navigator.sendBeacon('/api/analytics', payload);
+                    }
+                }
+            });
+        });
+    })();
+
+    // 3. Core Web Vitals Tracking
+    (function initWebVitalsTracking() {
+        // Load web-vitals library
+        const script = document.createElement('script');
+        script.src = 'https://unpkg.com/web-vitals@3/dist/web-vitals.iife.js';
+        script.onload = function() {
+            if (window.webVitals) {
+                function sendToAnalytics({name, value, rating, delta}) {
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'web_vitals', {
+                            'event_category': 'Web Vitals',
+                            'event_label': name,
+                            'value': Math.round(name === 'CLS' ? value * 1000 : value),
+                            'metric_rating': rating,
+                            'metric_delta': delta,
+                            'non_interaction': true
+                        });
+                    }
+                }
+
+                webVitals.onCLS(sendToAnalytics);
+                webVitals.onFID(sendToAnalytics);
+                webVitals.onFCP(sendToAnalytics);
+                webVitals.onLCP(sendToAnalytics);
+                webVitals.onTTFB(sendToAnalytics);
+                webVitals.onINP(sendToAnalytics); // Interaction to Next Paint
+            }
+        };
+        document.head.appendChild(script);
+    })();
+
+    // 4. Content-Aware Scroll Tracking
+    (function initContentEngagementTracking() {
+        let maxScroll = 0;
+        let contentSections = document.querySelectorAll('h2, h3, [data-content-section]');
+        let sectionViews = new Map();
+        let sectionEngagement = new Map();
+
+        function checkSectionVisibility() {
+            const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+            
+            if (scrollPercent > maxScroll) {
+                maxScroll = scrollPercent;
+            }
+
+            contentSections.forEach(section => {
+                const rect = section.getBoundingClientRect();
+                const sectionId = section.id || section.dataset.contentSection || section.textContent.slice(0, 50);
+                
+                // Check if section is in viewport (80% visible)
+                if (rect.top < window.innerHeight * 0.8 && rect.bottom > window.innerHeight * 0.2) {
+                    const now = Date.now();
+                    
+                    if (!sectionViews.has(sectionId)) {
+                        sectionViews.set(sectionId, now);
+                        
+                        if (typeof gtag !== 'undefined') {
+                            gtag('event', 'content_section_view', {
+                                'event_category': 'Content Engagement',
+                                'section_id': sectionId,
+                                'section_type': section.tagName,
+                                'scroll_percent': Math.round(scrollPercent)
+                            });
+                        }
+                    }
+                    
+                    // Track engagement time
+                    sectionEngagement.set(sectionId, now);
+                } else if (sectionEngagement.has(sectionId)) {
+                    // Section left viewport, calculate time spent
+                    const timeSpent = Date.now() - sectionEngagement.get(sectionId);
+                    sectionEngagement.delete(sectionId);
+                    
+                    if (timeSpent > 1000 && typeof gtag !== 'undefined') {
+                        gtag('event', 'content_section_engagement', {
+                            'event_category': 'Content Engagement',
+                            'section_id': sectionId,
+                            'time_spent': Math.round(timeSpent / 1000),
+                            'non_interaction': true
+                        });
+                    }
+                }
+            });
+        }
+
+        // Use Intersection Observer for better performance
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        checkSectionVisibility();
+                    }
+                });
+            }, { threshold: [0.2, 0.8] });
+
+            contentSections.forEach(section => observer.observe(section));
+        } else {
+            // Fallback for older browsers
+            window.addEventListener('scroll', throttle(checkSectionVisibility, 250));
+        }
+    })();
+
+    // 5. Enhanced Dead Click Detection
+    (function initDeadClickTracking() {
+        document.addEventListener('click', function(e) {
+            const element = e.target;
+            const isInteractive = element.matches('a, button, input, select, textarea, [onclick], [role="button"]');
+            const hasHref = element.getAttribute('href');
+            const hasPointer = window.getComputedStyle(element).cursor === 'pointer';
+            
+            // Check if click resulted in no action
+            if ((!isInteractive && hasPointer) || (element.tagName === 'A' && (!hasHref || hasHref === '#'))) {
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'dead_click', {
+                        'event_category': 'UX',
+                        'element': getElementSelector(element),
+                        'text': element.innerText?.substring(0, 50),
+                        'has_pointer': hasPointer,
+                        'page_path': window.location.pathname
+                    });
+                }
+            }
+        });
+    })();
+
+    // 6. Advanced Error Tracking
+    (function initErrorTracking() {
+        // JavaScript errors
+        window.addEventListener('error', function(e) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'javascript_error', {
+                    'event_category': 'Technical',
+                    'error_message': e.message,
+                    'error_source': e.filename + ':' + e.lineno + ':' + e.colno,
+                    'error_object': e.error?.stack?.substring(0, 500),
+                    'non_interaction': true
+                });
+            }
+        });
+
+        // Promise rejections
+        window.addEventListener('unhandledrejection', function(e) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'promise_rejection', {
+                    'event_category': 'Technical',
+                    'error_reason': e.reason?.toString().substring(0, 500),
+                    'non_interaction': true
+                });
+            }
+        });
+
+        // Resource loading errors
+        window.addEventListener('error', function(e) {
+            if (e.target !== window && typeof gtag !== 'undefined') {
+                gtag('event', 'resource_error', {
+                    'event_category': 'Technical',
+                    'resource_type': e.target.tagName,
+                    'resource_src': e.target.src || e.target.href,
+                    'non_interaction': true
+                });
+            }
+        }, true);
+    })();
+
+    // 7. Enhanced Consent Mode V2 Implementation
+    (function initConsentModeV2() {
+        // Check if gtag is available
+        if (typeof gtag === 'undefined') return;
+
+        // Get current consent state
+        const savedConsent = localStorage.getItem('cookieConsent');
+        const consentState = savedConsent === 'accepted' ? 'granted' : 'denied';
+
+        // Enhanced consent tracking
+        function trackConsentChange(consentTypes) {
+            Object.entries(consentTypes).forEach(([type, value]) => {
+                gtag('event', 'consent_change', {
+                    'event_category': 'Privacy',
+                    'consent_type': type,
+                    'consent_value': value,
+                    'user_agent': navigator.userAgent,
+                    'timestamp': new Date().toISOString()
+                });
+            });
+        }
+
+        // Listen for consent changes
+        window.addEventListener('consentUpdate', function(e) {
+            const consentTypes = e.detail;
+            gtag('consent', 'update', consentTypes);
+            trackConsentChange(consentTypes);
+        });
+    })();
+
+    // 8. Performance Monitoring
+    (function initPerformanceMonitoring() {
+        // Wait for page load
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                
+                if (perfData && typeof gtag !== 'undefined') {
+                    // Key performance metrics
+                    const metrics = {
+                        'dns_time': Math.round(perfData.domainLookupEnd - perfData.domainLookupStart),
+                        'connect_time': Math.round(perfData.connectEnd - perfData.connectStart),
+                        'ttfb': Math.round(perfData.responseStart - perfData.requestStart),
+                        'response_time': Math.round(perfData.responseEnd - perfData.responseStart),
+                        'dom_interactive': Math.round(perfData.domInteractive),
+                        'dom_complete': Math.round(perfData.domComplete),
+                        'load_complete': Math.round(perfData.loadEventEnd - perfData.loadEventStart),
+                        'total_time': Math.round(perfData.loadEventEnd - perfData.fetchStart)
+                    };
+
+                    gtag('event', 'performance_metrics', {
+                        'event_category': 'Performance',
+                        'dns_time': metrics.dns_time,
+                        'ttfb': metrics.ttfb,
+                        'total_time': metrics.total_time,
+                        'non_interaction': true
+                    });
+                }
+            }, 1000);
+        });
+    })();
+
+})();
+</script>

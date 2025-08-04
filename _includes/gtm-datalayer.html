@@ -1,0 +1,162 @@
+<script>
+// GTM Data Layer Implementation - Ready for Container Import
+// This script pushes structured data to dataLayer for GTM to consume
+
+(function() {
+    'use strict';
+    
+    // Initialize dataLayer if not exists
+    window.dataLayer = window.dataLayer || [];
+    
+    // Helper function for safe dataLayer pushes
+    function pushToDataLayer(data) {
+        if (window.dataLayer) {
+            window.dataLayer.push(data);
+        }
+    }
+    
+    // 1. Page View Enhanced Data
+    pushToDataLayer({
+        'event': 'page_data',
+        'page': {
+            'type': getPageType(),
+            'category': getPageCategory(),
+            'author': 'QVXX',
+            'publicationDate': getPublicationDate(),
+            'lastModified': document.lastModified,
+            'wordCount': getWordCount(),
+            'readTime': getEstimatedReadTime()
+        },
+        'user': {
+            'type': getUserType(),
+            'engagementLevel': getEngagementLevel()
+        }
+    });
+    
+    // 2. Content Grouping for GA4
+    pushToDataLayer({
+        'content_group': getContentGroup(),
+        'content_type': getContentType(),
+        'content_depth': getContentDepth()
+    });
+    
+    // 3. Custom Dimensions Setup
+    pushToDataLayer({
+        'custom_dimensions': {
+            'dimension1': getPageType(),           // Page Type
+            'dimension2': getContentGroup(),       // Content Group
+            'dimension3': getUserEngagement(),     // User Engagement Level
+            'dimension4': getTrafficQuality(),     // Traffic Quality Score
+            'dimension5': getContentInteraction()  // Content Interaction Score
+        }
+    });
+    
+    // Helper Functions
+    function getPageType() {
+        const path = window.location.pathname;
+        if (path === '/') return 'homepage';
+        if (path.includes('/blog/')) return 'blog_post';
+        if (path.includes('/experts')) return 'expert_network';
+        return 'other';
+    }
+    
+    function getPageCategory() {
+        const categoryElement = document.querySelector('[data-category]');
+        return categoryElement ? categoryElement.dataset.category : 'uncategorized';
+    }
+    
+    function getPublicationDate() {
+        const dateElement = document.querySelector('time[datetime]');
+        return dateElement ? dateElement.getAttribute('datetime') : null;
+    }
+    
+    function getWordCount() {
+        const content = document.querySelector('main');
+        if (!content) return 0;
+        return content.innerText.split(/\s+/).filter(word => word.length > 0).length;
+    }
+    
+    function getEstimatedReadTime() {
+        const wordCount = getWordCount();
+        return Math.ceil(wordCount / 200); // 200 words per minute
+    }
+    
+    function getUserType() {
+        const visitCount = parseInt(localStorage.getItem('visitCount') || '0');
+        if (visitCount === 0) return 'new';
+        if (visitCount < 5) return 'returning';
+        return 'loyal';
+    }
+    
+    function getEngagementLevel() {
+        const totalEngagementTime = parseInt(localStorage.getItem('totalEngagementTime') || '0');
+        if (totalEngagementTime < 60) return 'low';
+        if (totalEngagementTime < 300) return 'medium';
+        return 'high';
+    }
+    
+    function getContentGroup() {
+        const path = window.location.pathname;
+        if (path.includes('/blog/')) {
+            if (path.includes('ai')) return 'ai_content';
+            if (path.includes('business')) return 'business_content';
+            return 'general_content';
+        }
+        return 'non_content';
+    }
+    
+    function getContentType() {
+        const pageType = getPageType();
+        if (pageType === 'blog_post') {
+            const wordCount = getWordCount();
+            if (wordCount < 500) return 'short_form';
+            if (wordCount < 1500) return 'medium_form';
+            return 'long_form';
+        }
+        return pageType;
+    }
+    
+    function getContentDepth() {
+        const headings = document.querySelectorAll('h2, h3').length;
+        if (headings < 3) return 'shallow';
+        if (headings < 7) return 'moderate';
+        return 'deep';
+    }
+    
+    function getUserEngagement() {
+        const scrollDepth = parseInt(sessionStorage.getItem('maxScrollDepth') || '0');
+        const timeOnSite = parseInt(sessionStorage.getItem('timeOnSite') || '0');
+        
+        if (scrollDepth > 75 && timeOnSite > 120) return 'highly_engaged';
+        if (scrollDepth > 50 && timeOnSite > 60) return 'engaged';
+        return 'low_engagement';
+    }
+    
+    function getTrafficQuality() {
+        const bounceIndicator = sessionStorage.getItem('bounceIndicator');
+        const pagesViewed = parseInt(sessionStorage.getItem('pagesViewed') || '1');
+        
+        if (pagesViewed > 3 && !bounceIndicator) return 'high_quality';
+        if (pagesViewed > 1) return 'medium_quality';
+        return 'evaluation_needed';
+    }
+    
+    function getContentInteraction() {
+        const clicks = parseInt(sessionStorage.getItem('contentClicks') || '0');
+        const scrolls = parseInt(sessionStorage.getItem('scrollEvents') || '0');
+        
+        const score = clicks * 2 + scrolls;
+        if (score > 20) return 'high_interaction';
+        if (score > 10) return 'medium_interaction';
+        return 'low_interaction';
+    }
+    
+    // Update session data
+    let visitCount = parseInt(localStorage.getItem('visitCount') || '0');
+    localStorage.setItem('visitCount', (visitCount + 1).toString());
+    
+    let pagesViewed = parseInt(sessionStorage.getItem('pagesViewed') || '0');
+    sessionStorage.setItem('pagesViewed', (pagesViewed + 1).toString());
+    
+})();
+</script>
