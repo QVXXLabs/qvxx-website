@@ -483,6 +483,25 @@
                 icon.textContent = theme === 'light' ? '🌙' : '☀️';
             }
         })();
+        
+        // Track calendar booking clicks
+        document.addEventListener('DOMContentLoaded', function() {
+            // Find all calendar booking links
+            const calendarLinks = document.querySelectorAll('a[href*="calendar.app.google"]');
+            
+            calendarLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    // Send GA4 event
+                    if (typeof gtag !== 'undefined') {
+                        gtag('event', 'book_consultation', {
+                            'event_category': 'engagement',
+                            'event_label': link.textContent || 'Calendar Link',
+                            'page_path': window.location.pathname
+                        });
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
