@@ -17,7 +17,7 @@ from googleapiclient.errors import HttpError
 # Configuration
 SPREADSHEET_ID = "16CADq4P1SatT2NsEPy79cRZIOiPgrl9lxhuhMMMnd10"
 SHEET_NAME = "Content"  # Content tab
-RANGE_NAME = f"{SHEET_NAME}!A:B"  # Read all of columns A and B from Content tab
+RANGE_NAME = f"{SHEET_NAME}!A:C"  # Read all of columns A, B, and C from Content tab
 POSTS_DIR = Path("_posts")
 
 # Google Sheets API scope
@@ -163,37 +163,44 @@ def create_blog_post(date, title, content):
 def process_row_based_data(values):
     """Process sheet data in row-based format"""
     posts_created = 0
-    current_post = {}
     
     # Debug: Look for blog data
     print(f"Looking for blog posts in {len(values)} rows...")
     for i, row in enumerate(values[:20]):
-        print(f"Row {i}: {row[:2] if len(row) > 1 else row}")
+        print(f"Row {i}: {row}")
     
-    for row in values:
-        if len(row) < 2:
-            continue
-            
-        label = row[0].lower().strip()
-        value = row[1] if len(row) > 1 else ""
+    # Process each column (B and C) separately for blog posts
+    for col_idx in range(1, 3):  # Column B is index 1, Column C is index 2
+        current_post = {}
         
-        # Collect data for a blog post
-        if 'date' in label:
-            if current_post and all(k in current_post for k in ['date', 'title', 'body']):
-                # Create the previous post before starting a new one
-                if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
-                    posts_created += 1
-            # Start new post
-            current_post = {'date': value}
-        elif 'title' in label:
-            current_post['title'] = value
-        elif ('body' in label or 'content' in label) and 'final' in label:
-            current_post['body'] = value
-    
-    # Don't forget the last post
-    if current_post and all(k in current_post for k in ['date', 'title', 'body']):
-        if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
-            posts_created += 1
+        for row in values:
+            if len(row) <= col_idx:
+                continue
+                
+            label = row[0].lower().strip() if len(row) > 0 else ""
+            value = row[col_idx] if len(row) > col_idx else ""
+            
+            # Skip empty values
+            if not value:
+                continue
+            
+            # Collect data for a blog post
+            if 'date' in label:
+                if current_post and all(k in current_post for k in ['date', 'title', 'body']):
+                    # Create the previous post before starting a new one
+                    if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
+                        posts_created += 1
+                # Start new post
+                current_post = {'date': value}
+            elif 'title' in label:
+                current_post['title'] = value
+            elif ('body' in label or 'content' in label) and 'final' in label:
+                current_post['body'] = value
+        
+        # Don't forget the last post in this column
+        if current_post and all(k in current_post for k in ['date', 'title', 'body']):
+            if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
+                posts_created += 1
     
     return posts_created
 
