@@ -1,0 +1,160 @@
+<script>
+// Advanced tracking implementation inspired by analytics best practices
+(function() {
+    // Only run if gtag is available and consent is given
+    function isTrackingAllowed() {
+        return typeof gtag !== 'undefined' && localStorage.getItem('cookieConsent') === 'accepted';
+    }
+
+    // 1. Scroll Depth Tracking
+    let scrollPoints = [25, 50, 75, 90, 100];
+    let scrolledPoints = [];
+    
+    function trackScrollDepth() {
+        if (!isTrackingAllowed()) return;
+        
+        const scrollPercent = Math.round((window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100);
+        
+        scrollPoints.forEach(point => {
+            if (scrollPercent >= point && !scrolledPoints.includes(point)) {
+                scrolledPoints.push(point);
+                gtag('event', 'scroll', {
+                    'percent_scrolled': point,
+                    'page_path': window.location.pathname,
+                    'page_title': document.title
+                });
+            }
+        });
+    }
+    
+    // Debounce scroll tracking
+    let scrollTimer;
+    window.addEventListener('scroll', function() {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(trackScrollDepth, 100);
+    });
+
+    // 2. Engagement Time Tracking
+    let startTime = Date.now();
+    let timeEngaged = 0;
+    let isEngaged = true;
+    let engagementTimer;
+    
+    function trackEngagement() {
+        if (!isTrackingAllowed() || !isEngaged) return;
+        
+        timeEngaged += 1;
+        
+        // Send event every 30 seconds of engaged time
+        if (timeEngaged % 30 === 0) {
+            gtag('event', 'user_engagement', {
+                'engagement_time_msec': timeEngaged * 1000,
+                'page_path': window.location.pathname,
+                'page_title': document.title
+            });
+        }
+    }
+    
+    // Track when user is engaged (not idle)
+    let idleTimer;
+    function resetIdleTimer() {
+        isEngaged = true;
+        clearTimeout(idleTimer);
+        idleTimer = setTimeout(() => { isEngaged = false; }, 30000); // 30 seconds idle time
+    }
+    
+    ['mousedown', 'keydown', 'scroll', 'touchstart'].forEach(event => {
+        document.addEventListener(event, resetIdleTimer, true);
+    });
+    
+    engagementTimer = setInterval(trackEngagement, 1000);
+    
+    // 3. Outbound Link Tracking
+    document.addEventListener('click', function(e) {
+        if (!isTrackingAllowed()) return;
+        
+        let link = e.target.closest('a');
+        if (!link) return;
+        
+        const href = link.getAttribute('href');
+        if (!href) return;
+        
+        // Check if it's an outbound link
+        const isOutbound = href.startsWith('http') && !href.includes(window.location.hostname);
+        
+        if (isOutbound) {
+            gtag('event', 'click', {
+                'link_url': href,
+                'link_domain': new URL(href).hostname,
+                'link_text': link.textContent || 'No text',
+                'outbound': true,
+                'page_path': window.location.pathname
+            });
+        }
+    });
+
+    // 4. Enhanced Error Tracking
+    window.addEventListener('error', function(e) {
+        if (!isTrackingAllowed()) return;
+        
+        gtag('event', 'exception', {
+            'description': e.message,
+            'fatal': false,
+            'error_source': e.filename + ':' + e.lineno
+        });
+    });
+
+    // 5. Page Visibility Tracking
+    let hiddenTime = 0;
+    let lastHiddenTime = 0;
+    
+    document.addEventListener('visibilitychange', function() {
+        if (!isTrackingAllowed()) return;
+        
+        if (document.hidden) {
+            lastHiddenTime = Date.now();
+        } else if (lastHiddenTime) {
+            hiddenTime += Date.now() - lastHiddenTime;
+            
+            gtag('event', 'page_visibility', {
+                'hidden_time': hiddenTime,
+                'page_path': window.location.pathname
+            });
+        }
+    });
+
+    // 6. Content Copying Tracking (for blog posts)
+    if (window.location.pathname.includes('/blog/')) {
+        document.addEventListener('copy', function(e) {
+            if (!isTrackingAllowed()) return;
+            
+            const selection = window.getSelection().toString();
+            if (selection.length > 10) { // Only track meaningful copies
+                gtag('event', 'content_copy', {
+                    'content_length': selection.length,
+                    'page_path': window.location.pathname,
+                    'page_title': document.title
+                });
+            }
+        });
+    }
+
+    // 7. 404 Error Tracking
+    if (document.title.includes('404') || document.body.textContent.includes('Page not found')) {
+        if (isTrackingAllowed()) {
+            gtag('event', 'page_view', {
+                'page_path': window.location.pathname,
+                'page_title': '404 Error',
+                'page_referrer': document.referrer
+            });
+        }
+    }
+
+    // Clean up on page unload
+    window.addEventListener('beforeunload', function() {
+        if (engagementTimer) clearInterval(engagementTimer);
+        if (scrollTimer) clearTimeout(scrollTimer);
+        if (idleTimer) clearTimeout(idleTimer);
+    });
+})();
+</script>
