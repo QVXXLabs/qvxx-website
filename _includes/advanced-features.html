@@ -1,0 +1,471 @@
+<script>
+// Advanced Analytics Features - Automated Implementation
+(function() {
+    'use strict';
+
+    // 1. ENGAGEMENT SCORING SYSTEM
+    const EngagementScoring = {
+        factors: {
+            scrollDepth: { weight: 0.25, max: 100 },
+            timeEngaged: { weight: 0.30, max: 300 }, // seconds
+            contentInteractions: { weight: 0.20, max: 20 },
+            sectionsViewed: { weight: 0.15, max: 10 },
+            returningVisit: { weight: 0.10, max: 1 }
+        },
+
+        init() {
+            this.trackFactors();
+            this.calculateScore();
+            
+            // Recalculate every 30 seconds
+            setInterval(() => this.calculateScore(), 30000);
+            
+            // Final calculation on page unload
+            window.addEventListener('beforeunload', () => {
+                this.calculateScore(true);
+            });
+        },
+
+        trackFactors() {
+            // Track scroll depth
+            let maxScroll = 0;
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+                maxScroll = Math.max(maxScroll, scrollPercent);
+                sessionStorage.setItem('maxScrollDepth', maxScroll.toString());
+            });
+
+            // Track content interactions
+            let interactions = parseInt(sessionStorage.getItem('contentInteractions') || '0');
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('a, button, [data-track-click]')) {
+                    interactions++;
+                    sessionStorage.setItem('contentInteractions', interactions.toString());
+                }
+            });
+
+            // Track sections viewed (set by content tracking)
+            // Track returning visit
+            const isReturning = localStorage.getItem('hasVisited') === 'true';
+            sessionStorage.setItem('returningVisit', isReturning ? '1' : '0');
+            localStorage.setItem('hasVisited', 'true');
+        },
+
+        calculateScore(isFinal = false) {
+            let totalScore = 0;
+            let breakdown = {};
+
+            Object.entries(this.factors).forEach(([factor, config]) => {
+                const value = parseFloat(sessionStorage.getItem(factor) || '0');
+                const normalized = Math.min(value / config.max, 1) * 100;
+                const weighted = normalized * config.weight;
+                
+                totalScore += weighted;
+                breakdown[factor] = {
+                    raw: value,
+                    normalized: Math.round(normalized),
+                    weighted: Math.round(weighted)
+                };
+            });
+
+            const category = this.categorizeScore(totalScore);
+
+            // Push to dataLayer
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'engagement_score', {
+                    'event_category': 'Engagement',
+                    'engagement_score': Math.round(totalScore),
+                    'engagement_category': category,
+                    'score_breakdown': JSON.stringify(breakdown),
+                    'is_final': isFinal
+                });
+            }
+
+            // Store for other features
+            sessionStorage.setItem('engagementScore', totalScore.toString());
+            sessionStorage.setItem('engagementCategory', category);
+
+            return { score: totalScore, category, breakdown };
+        },
+
+        categorizeScore(score) {
+            if (score >= 70) return 'highly_engaged';
+            if (score >= 40) return 'engaged';
+            if (score >= 20) return 'somewhat_engaged';
+            return 'low_engagement';
+        }
+    };
+
+    // 2. FUNNEL ANALYSIS TRACKING
+    const FunnelTracking = {
+        funnels: {
+            main_conversion: {
+                steps: [
+                    { name: 'page_view', selector: 'body' },
+                    { name: 'content_engagement', selector: '[data-track-section]' },
+                    { name: 'cta_view', selector: '.cta-button' },
+                    { name: 'cta_click', selector: '.cta-button', event: 'click' },
+                    { name: 'calendar_click', selector: 'a[href*="calendar.app.google"]', event: 'click' }
+                ]
+            },
+            content_consumption: {
+                steps: [
+                    { name: 'article_start', selector: '.blog-post' },
+                    { name: 'article_25_percent', trigger: 'scroll', value: 25 },
+                    { name: 'article_50_percent', trigger: 'scroll', value: 50 },
+                    { name: 'article_75_percent', trigger: 'scroll', value: 75 },
+                    { name: 'article_complete', trigger: 'scroll', value: 90 }
+                ]
+            }
+        },
+
+        init() {
+            Object.entries(this.funnels).forEach(([funnelName, config]) => {
+                this.trackFunnel(funnelName, config);
+            });
+        },
+
+        trackFunnel(funnelName, config) {
+            const funnelProgress = JSON.parse(sessionStorage.getItem(`funnel_${funnelName}`) || '{}');
+            let currentStep = funnelProgress.currentStep || 0;
+
+            config.steps.forEach((step, index) => {
+                if (index < currentStep) return; // Already completed
+
+                if (step.trigger === 'scroll') {
+                    this.trackScrollStep(funnelName, step, index);
+                } else if (step.event === 'click') {
+                    this.trackClickStep(funnelName, step, index);
+                } else {
+                    this.trackViewStep(funnelName, step, index);
+                }
+            });
+        },
+
+        trackScrollStep(funnelName, step, stepIndex) {
+            window.addEventListener('scroll', () => {
+                const scrollPercent = (window.scrollY + window.innerHeight) / document.documentElement.scrollHeight * 100;
+                
+                if (scrollPercent >= step.value) {
+                    this.completeStep(funnelName, step.name, stepIndex);
+                }
+            });
+        },
+
+        trackClickStep(funnelName, step, stepIndex) {
+            document.addEventListener('click', (e) => {
+                if (e.target.matches(step.selector)) {
+                    this.completeStep(funnelName, step.name, stepIndex);
+                }
+            });
+        },
+
+        trackViewStep(funnelName, step, stepIndex) {
+            const element = document.querySelector(step.selector);
+            if (!element) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        this.completeStep(funnelName, step.name, stepIndex);
+                        observer.disconnect();
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            observer.observe(element);
+        },
+
+        completeStep(funnelName, stepName, stepIndex) {
+            const funnelProgress = JSON.parse(sessionStorage.getItem(`funnel_${funnelName}`) || '{}');
+            
+            if (funnelProgress.currentStep >= stepIndex) return; // Already completed
+
+            funnelProgress.currentStep = stepIndex;
+            funnelProgress.completedSteps = funnelProgress.completedSteps || [];
+            funnelProgress.completedSteps.push({
+                step: stepName,
+                timestamp: Date.now(),
+                engagementScore: sessionStorage.getItem('engagementScore')
+            });
+
+            sessionStorage.setItem(`funnel_${funnelName}`, JSON.stringify(funnelProgress));
+
+            // Track in analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'funnel_step', {
+                    'event_category': 'Funnel',
+                    'funnel_name': funnelName,
+                    'funnel_step': stepName,
+                    'funnel_step_number': stepIndex + 1,
+                    'engagement_score': sessionStorage.getItem('engagementScore')
+                });
+            }
+        }
+    };
+
+    // 3. ATTRIBUTION MODELING
+    const AttributionTracking = {
+        touchpoints: [],
+        
+        init() {
+            this.loadTouchpoints();
+            this.trackTouchpoint();
+            this.setupConversionTracking();
+        },
+
+        loadTouchpoints() {
+            const stored = localStorage.getItem('attribution_touchpoints');
+            if (stored) {
+                this.touchpoints = JSON.parse(stored);
+                // Keep only last 30 days
+                const thirtyDaysAgo = Date.now() - (30 * 24 * 60 * 60 * 1000);
+                this.touchpoints = this.touchpoints.filter(tp => tp.timestamp > thirtyDaysAgo);
+            }
+        },
+
+        trackTouchpoint() {
+            const touchpoint = {
+                timestamp: Date.now(),
+                source: this.getSource(),
+                medium: this.getMedium(),
+                campaign: this.getCampaign(),
+                page: window.location.pathname,
+                engagement_score: sessionStorage.getItem('engagementScore') || '0'
+            };
+
+            this.touchpoints.push(touchpoint);
+            localStorage.setItem('attribution_touchpoints', JSON.stringify(this.touchpoints));
+
+            // Track in analytics
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'touchpoint', {
+                    'event_category': 'Attribution',
+                    'touchpoint_source': touchpoint.source,
+                    'touchpoint_medium': touchpoint.medium,
+                    'touchpoint_number': this.touchpoints.length
+                });
+            }
+        },
+
+        getSource() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmSource = urlParams.get('utm_source');
+            if (utmSource) return utmSource;
+
+            const referrer = document.referrer;
+            if (!referrer) return 'direct';
+            
+            const referrerDomain = new URL(referrer).hostname;
+            if (referrerDomain.includes('google')) return 'google';
+            if (referrerDomain.includes('facebook')) return 'facebook';
+            if (referrerDomain.includes('linkedin')) return 'linkedin';
+            
+            return referrerDomain;
+        },
+
+        getMedium() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const utmMedium = urlParams.get('utm_medium');
+            if (utmMedium) return utmMedium;
+
+            const referrer = document.referrer;
+            if (!referrer) return 'none';
+            
+            const referrerDomain = new URL(referrer).hostname;
+            if (referrerDomain.includes('google')) return 'organic';
+            if (referrerDomain.includes('facebook') || referrerDomain.includes('linkedin')) return 'social';
+            
+            return 'referral';
+        },
+
+        getCampaign() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('utm_campaign') || 'none';
+        },
+
+        setupConversionTracking() {
+            // Track conversions
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('a[href*="calendar.app.google"]')) {
+                    this.trackConversion('calendar_booking');
+                }
+            });
+        },
+
+        trackConversion(conversionType) {
+            const attribution = this.calculateAttribution();
+            
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion_with_attribution', {
+                    'event_category': 'Attribution',
+                    'conversion_type': conversionType,
+                    'first_touch_source': attribution.firstTouch.source,
+                    'first_touch_medium': attribution.firstTouch.medium,
+                    'last_touch_source': attribution.lastTouch.source,
+                    'last_touch_medium': attribution.lastTouch.medium,
+                    'touchpoint_count': this.touchpoints.length,
+                    'days_to_conversion': attribution.daysToConversion
+                });
+            }
+        },
+
+        calculateAttribution() {
+            const firstTouch = this.touchpoints[0] || {};
+            const lastTouch = this.touchpoints[this.touchpoints.length - 1] || {};
+            const daysToConversion = firstTouch.timestamp ? 
+                Math.floor((Date.now() - firstTouch.timestamp) / (1000 * 60 * 60 * 24)) : 0;
+
+            return {
+                firstTouch,
+                lastTouch,
+                daysToConversion,
+                touchpointCount: this.touchpoints.length
+            };
+        }
+    };
+
+    // 4. BEHAVIORAL COHORTS
+    const BehavioralCohorts = {
+        cohorts: {
+            content_bingers: {
+                criteria: { pagesViewed: 5, timeOnSite: 300 }
+            },
+            quick_scanners: {
+                criteria: { scrollSpeed: 'fast', timePerPage: 30 }
+            },
+            researchers: {
+                criteria: { contentCopied: true, externalLinksClicked: 2 }
+            },
+            high_intent: {
+                criteria: { ctaViews: 3, formInteractions: 1 }
+            }
+        },
+
+        userBehavior: {
+            pagesViewed: 0,
+            timeOnSite: 0,
+            scrollSpeed: 'normal',
+            timePerPage: 0,
+            contentCopied: false,
+            externalLinksClicked: 0,
+            ctaViews: 0,
+            formInteractions: 0
+        },
+
+        init() {
+            this.loadBehavior();
+            this.trackBehavior();
+            
+            // Analyze cohorts every 30 seconds
+            setInterval(() => this.analyzeCohorts(), 30000);
+        },
+
+        loadBehavior() {
+            const stored = sessionStorage.getItem('userBehavior');
+            if (stored) {
+                this.userBehavior = { ...this.userBehavior, ...JSON.parse(stored) };
+            }
+        },
+
+        trackBehavior() {
+            // Pages viewed
+            this.userBehavior.pagesViewed++;
+
+            // Time tracking
+            const startTime = Date.now();
+            window.addEventListener('beforeunload', () => {
+                const timeSpent = (Date.now() - startTime) / 1000;
+                this.userBehavior.timeOnSite += timeSpent;
+                this.userBehavior.timePerPage = this.userBehavior.timeOnSite / this.userBehavior.pagesViewed;
+                this.saveBehavior();
+            });
+
+            // Scroll speed
+            let lastScrollTime = Date.now();
+            let lastScrollPosition = 0;
+            window.addEventListener('scroll', () => {
+                const currentTime = Date.now();
+                const currentPosition = window.scrollY;
+                const speed = Math.abs(currentPosition - lastScrollPosition) / (currentTime - lastScrollTime);
+                
+                if (speed > 5) this.userBehavior.scrollSpeed = 'fast';
+                else if (speed < 1) this.userBehavior.scrollSpeed = 'slow';
+                
+                lastScrollTime = currentTime;
+                lastScrollPosition = currentPosition;
+            });
+
+            // Content copying
+            document.addEventListener('copy', () => {
+                this.userBehavior.contentCopied = true;
+            });
+
+            // External links
+            document.addEventListener('click', (e) => {
+                if (e.target.matches('a[href^="http"]:not([href*="' + window.location.hostname + '"])')) {
+                    this.userBehavior.externalLinksClicked++;
+                }
+                if (e.target.matches('.cta-button, [data-cta]')) {
+                    this.userBehavior.ctaViews++;
+                }
+            });
+
+            // Form interactions
+            document.addEventListener('focus', (e) => {
+                if (e.target.matches('input, textarea, select')) {
+                    this.userBehavior.formInteractions++;
+                }
+            }, true);
+        },
+
+        saveBehavior() {
+            sessionStorage.setItem('userBehavior', JSON.stringify(this.userBehavior));
+        },
+
+        analyzeCohorts() {
+            const userCohorts = [];
+
+            Object.entries(this.cohorts).forEach(([cohortName, config]) => {
+                if (this.matchesCriteria(config.criteria)) {
+                    userCohorts.push(cohortName);
+                }
+            });
+
+            if (userCohorts.length > 0 && typeof gtag !== 'undefined') {
+                gtag('event', 'cohort_assignment', {
+                    'event_category': 'Behavioral',
+                    'user_cohorts': userCohorts.join(','),
+                    'cohort_count': userCohorts.length,
+                    'primary_cohort': userCohorts[0]
+                });
+            }
+
+            this.saveBehavior();
+            return userCohorts;
+        },
+
+        matchesCriteria(criteria) {
+            return Object.entries(criteria).every(([key, value]) => {
+                const userValue = this.userBehavior[key];
+                if (typeof value === 'number') {
+                    return userValue >= value;
+                }
+                return userValue === value;
+            });
+        }
+    };
+
+    // Initialize all features
+    window.addEventListener('load', () => {
+        // Wait a bit for other scripts to initialize
+        setTimeout(() => {
+            EngagementScoring.init();
+            FunnelTracking.init();
+            AttributionTracking.init();
+            BehavioralCohorts.init();
+        }, 1000);
+    });
+
+})();
+</script>
