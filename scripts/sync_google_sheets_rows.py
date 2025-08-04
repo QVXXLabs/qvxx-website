@@ -17,7 +17,7 @@ from googleapiclient.errors import HttpError
 # Configuration
 SPREADSHEET_ID = "16CADq4P1SatT2NsEPy79cRZIOiPgrl9lxhuhMMMnd10"
 SHEET_NAME = "Content"  # Content tab
-RANGE_NAME = f"{SHEET_NAME}!A:C"  # Read all of columns A, B, and C from Content tab
+RANGE_NAME = f"{SHEET_NAME}!A:KN"  # Read columns A through KN (300 columns) from Content tab
 POSTS_DIR = Path("_posts")
 
 # Google Sheets API scope
@@ -163,15 +163,41 @@ def create_blog_post(date, title, content):
 def process_row_based_data(values):
     """Process sheet data in row-based format"""
     posts_created = 0
+    today = datetime.now().strftime("%-m/%-d/%Y")  # Format: 8/4/2025
+    today_alt = datetime.now().strftime("%m/%d/%Y")  # Format: 08/04/2025
     
     # Debug: Look for blog data
-    print(f"Looking for blog posts in {len(values)} rows...")
-    for i, row in enumerate(values[:20]):
-        print(f"Row {i}: {row}")
+    print(f"Looking for blog posts dated {today} or {today_alt} in {len(values)} rows...")
     
-    # Process each column (B and C) separately for blog posts
-    for col_idx in range(1, 3):  # Column B is index 1, Column C is index 2
-        current_post = {}
+    # Find which row contains the dates
+    date_row_idx = None
+    for i, row in enumerate(values):
+        if len(row) > 0 and 'date' in row[0].lower():
+            date_row_idx = i
+            print(f"Found date row at index {i}: {row[:5]}...")  # Show first 5 columns
+            break
+    
+    if date_row_idx is None:
+        print("Could not find date row!")
+        return 0
+    
+    # Process columns starting from B (index 1) up to column 300
+    for col_idx in range(1, min(len(values[date_row_idx]), 301)):
+        # Check if this column has today's date
+        date_value = values[date_row_idx][col_idx] if len(values[date_row_idx]) > col_idx else ""
+        
+        if not date_value:
+            continue
+            
+        # Check if this date matches today
+        parsed_date = parse_date(date_value)
+        if parsed_date.strftime("%-m/%-d/%Y") != today and parsed_date.strftime("%m/%d/%Y") != today_alt:
+            continue
+            
+        print(f"Found today's post in column {col_idx} (column {chr(65 + col_idx)})")
+        
+        # Collect the post data for this column
+        current_post = {'date': date_value}
         
         for row in values:
             if len(row) <= col_idx:
@@ -180,27 +206,21 @@ def process_row_based_data(values):
             label = row[0].lower().strip() if len(row) > 0 else ""
             value = row[col_idx] if len(row) > col_idx else ""
             
-            # Skip empty values
             if not value:
                 continue
-            
-            # Collect data for a blog post
-            if 'date' in label:
-                if current_post and all(k in current_post for k in ['date', 'title', 'body']):
-                    # Create the previous post before starting a new one
-                    if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
-                        posts_created += 1
-                # Start new post
-                current_post = {'date': value}
-            elif 'title' in label:
+                
+            if 'title' in label:
                 current_post['title'] = value
             elif ('body' in label or 'content' in label) and 'final' in label:
                 current_post['body'] = value
         
-        # Don't forget the last post in this column
-        if current_post and all(k in current_post for k in ['date', 'title', 'body']):
+        # Create the post if we have all required fields
+        if all(k in current_post for k in ['date', 'title', 'body']):
             if create_blog_post(current_post['date'], current_post['title'], current_post['body']):
                 posts_created += 1
+                print(f"Created post: {current_post['title']}")
+            else:
+                print(f"Post already exists or failed to create: {current_post['title']}")
     
     return posts_created
 
