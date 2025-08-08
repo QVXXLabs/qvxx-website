@@ -8,7 +8,7 @@
     function gtag(){dataLayer.push(arguments);}
     
     // Set default consent state - MUST be denied by default for GDPR
-    const savedConsent = localStorage.getItem('cookieConsent');
+    const savedPreferences = localStorage.getItem('cookiePreferences');
     
     // Always start with denied state
     gtag('consent', 'default', {
@@ -19,13 +19,14 @@
         'wait_for_update': 500 // Wait up to 500ms for user consent
     });
     
-    // If user previously accepted, update immediately
-    if (savedConsent === 'accepted') {
+    // If user has saved preferences, apply them immediately
+    if (savedPreferences) {
+        const prefs = JSON.parse(savedPreferences);
         gtag('consent', 'update', {
-            'analytics_storage': 'granted',
-            'ad_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted'
+            'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+            'ad_storage': prefs.marketing ? 'granted' : 'denied',
+            'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+            'ad_personalization': prefs.marketing ? 'granted' : 'denied'
         });
     }
     </script>
@@ -474,7 +475,7 @@
     
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8067b9176d8540d4acf12007444be941"}'></script><!-- End Cloudflare Web Analytics -->
     
-    {% include cookie-consent.html %}
+    {% include cookie-consent-enhanced.html %}
     {% include gtm-datalayer.html %}
     {% include modern-analytics.html %}
     {% include advanced-features.html %}

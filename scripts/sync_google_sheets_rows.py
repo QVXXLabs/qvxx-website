@@ -163,11 +163,18 @@ def create_blog_post(date, title, content):
 def process_row_based_data(values):
     """Process sheet data in row-based format"""
     posts_created = 0
-    today = datetime.now().strftime("%-m/%-d/%Y")  # Format: 8/4/2025
-    today_alt = datetime.now().strftime("%m/%d/%Y")  # Format: 08/04/2025
+    
+    # Get the last 7 days worth of dates
+    from datetime import timedelta
+    dates_to_sync = []
+    for days_ago in range(8):  # Today plus last 7 days
+        date = datetime.now() - timedelta(days=days_ago)
+        dates_to_sync.append(date.strftime("%-m/%-d/%Y"))  # Format: 8/4/2025
+        dates_to_sync.append(date.strftime("%m/%d/%Y"))  # Format: 08/04/2025
     
     # Debug: Look for blog data
-    print(f"Looking for blog posts dated {today} or {today_alt} in {len(values)} rows...")
+    print(f"Looking for blog posts from the last 7 days...")
+    print(f"Dates to sync: {dates_to_sync[:4]}...")  # Show first few dates
     
     # Find which row contains the dates
     date_row_idx = None
@@ -183,18 +190,21 @@ def process_row_based_data(values):
     
     # Process columns starting from B (index 1) up to column 300
     for col_idx in range(1, min(len(values[date_row_idx]), 301)):
-        # Check if this column has today's date
+        # Check if this column has a date we want to sync
         date_value = values[date_row_idx][col_idx] if len(values[date_row_idx]) > col_idx else ""
         
         if not date_value:
             continue
             
-        # Check if this date matches today
+        # Check if this date is in our sync range
         parsed_date = parse_date(date_value)
-        if parsed_date.strftime("%-m/%-d/%Y") != today and parsed_date.strftime("%m/%d/%Y") != today_alt:
+        date_str1 = parsed_date.strftime("%-m/%-d/%Y")
+        date_str2 = parsed_date.strftime("%m/%d/%Y")
+        
+        if date_str1 not in dates_to_sync and date_str2 not in dates_to_sync:
             continue
             
-        print(f"Found today's post in column {col_idx} (column {chr(65 + col_idx)})")
+        print(f"Found post dated {date_value} in column {col_idx} (column {chr(65 + col_idx)})")
         
         # Collect the post data for this column
         current_post = {'date': date_value}

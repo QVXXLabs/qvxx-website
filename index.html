@@ -8,7 +8,7 @@
     function gtag(){dataLayer.push(arguments);}
     
     // Set default consent state - MUST be denied by default for GDPR
-    const savedConsent = localStorage.getItem('cookieConsent');
+    const savedPreferences = localStorage.getItem('cookiePreferences');
     
     // Always start with denied state
     gtag('consent', 'default', {
@@ -19,13 +19,14 @@
         'wait_for_update': 500 // Wait up to 500ms for user consent
     });
     
-    // If user previously accepted, update immediately
-    if (savedConsent === 'accepted') {
+    // If user has saved preferences, apply them immediately
+    if (savedPreferences) {
+        const prefs = JSON.parse(savedPreferences);
         gtag('consent', 'update', {
-            'analytics_storage': 'granted',
-            'ad_storage': 'granted',
-            'ad_user_data': 'granted',
-            'ad_personalization': 'granted'
+            'analytics_storage': prefs.analytics ? 'granted' : 'denied',
+            'ad_storage': prefs.marketing ? 'granted' : 'denied',
+            'ad_user_data': prefs.marketing ? 'granted' : 'denied',
+            'ad_personalization': prefs.marketing ? 'granted' : 'denied'
         });
     }
     </script>
@@ -460,93 +461,6 @@
             }
         }
         
-        /* Cookie Banner */
-        .cookie-banner {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: #1a1a1a;
-            color: #fff;
-            padding: 1.5rem;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            z-index: 1000;
-            display: none;
-        }
-        
-        .cookie-banner.show {
-            display: block;
-        }
-        
-        .cookie-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 2rem;
-            flex-wrap: wrap;
-        }
-        
-        .cookie-text {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .cookie-text p {
-            margin: 0;
-            color: #fff;
-            font-size: 0.95rem;
-        }
-        
-        .cookie-text a {
-            color: #60a5fa;
-            text-decoration: underline;
-        }
-        
-        .cookie-buttons {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-        }
-        
-        .cookie-button {
-            padding: 0.6rem 1.2rem;
-            border: none;
-            border-radius: 4px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: opacity 0.2s;
-        }
-        
-        .cookie-button:hover {
-            opacity: 0.9;
-        }
-        
-        .cookie-button.accept {
-            background: #2563eb;
-            color: #fff;
-        }
-        
-        .cookie-button.reject {
-            background: transparent;
-            color: #fff;
-            border: 1px solid #666;
-        }
-        
-        @media (max-width: 768px) {
-            .cookie-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 1rem;
-            }
-            
-            .cookie-buttons {
-                width: 100%;
-                justify-content: center;
-            }
-        }
     </style>
 </head>
 <body>
@@ -694,18 +608,6 @@
         </footer>
     </div>
     
-    <!-- Cookie Consent Banner -->
-    <div class="cookie-banner" id="cookieBanner">
-        <div class="cookie-content">
-            <div class="cookie-text">
-                <p>We use cookies to improve your experience and analyze site usage. By clicking "Accept", you agree to our use of cookies. Learn more in our <a href="/cookies">Cookie Policy</a>.</p>
-            </div>
-            <div class="cookie-buttons">
-                <button class="cookie-button reject" onclick="rejectCookies()">Reject All</button>
-                <button class="cookie-button accept" onclick="acceptCookies()">Accept All</button>
-            </div>
-        </div>
-    </div>
     
     
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8067b9176d8540d4acf12007444be941"}'></script><!-- End Cloudflare Web Analytics -->
@@ -747,99 +649,6 @@
             });
     </script>
     
-    <!-- Cookie Consent Script -->
-    <script>
-        // Check if user has already made a cookie choice
-        function checkCookieConsent() {
-            const consent = localStorage.getItem('cookieConsent');
-            if (!consent) {
-                // Show banner if no choice has been made
-                document.getElementById('cookieBanner').classList.add('show');
-            } else if (consent === 'accepted') {
-                // Enable analytics if previously accepted
-                enableAnalytics();
-            }
-        }
-        
-        // Accept cookies
-        function acceptCookies() {
-            localStorage.setItem('cookieConsent', 'accepted');
-            localStorage.setItem('cookieConsentDate', new Date().toISOString());
-            document.getElementById('cookieBanner').classList.remove('show');
-            enableAnalytics();
-        }
-        
-        // Reject cookies
-        function rejectCookies() {
-            localStorage.setItem('cookieConsent', 'rejected');
-            localStorage.setItem('cookieConsentDate', new Date().toISOString());
-            document.getElementById('cookieBanner').classList.remove('show');
-            disableAnalytics();
-        }
-        
-        // Enable analytics
-        function enableAnalytics() {
-            // Update consent state
-            gtag('consent', 'update', {
-                'analytics_storage': 'granted',
-                'ad_storage': 'granted',
-                'ad_user_data': 'granted',
-                'ad_personalization': 'granted'
-            });
-            
-            // Send custom event for tracking
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'cookieConsentUpdate',
-                'consentStatus': 'accepted'
-            });
-        }
-        
-        // Disable analytics
-        function disableAnalytics() {
-            // Ensure gtag is available
-            if (typeof gtag !== 'function') {
-                console.error('gtag not available');
-                return;
-            }
-            
-            // Update consent state
-            gtag('consent', 'update', {
-                'analytics_storage': 'denied',
-                'ad_storage': 'denied',
-                'ad_user_data': 'denied',
-                'ad_personalization': 'denied'
-            });
-            
-            // Log for debugging
-            console.log('Consent updated to denied');
-            
-            // Clear all Google Analytics and GTM cookies
-            const cookiesToClear = ['_ga', '_gid', '_gat', '_ga_6JWP8EQYNW', '_gcl_au', '_gcl_aw', '_gcl_dc'];
-            cookiesToClear.forEach(cookieName => {
-                // Clear for current domain
-                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-                // Clear for current domain with dot prefix
-                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + window.location.hostname + ';';
-                // Clear for parent domain
-                document.cookie = cookieName + '=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + window.location.hostname + ';';
-            });
-            
-            // Send custom event for tracking
-            window.dataLayer = window.dataLayer || [];
-            window.dataLayer.push({
-                'event': 'cookieConsentUpdate',
-                'consentStatus': 'rejected'
-            });
-        }
-        
-        // Define gtag function if not already defined
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        
-        // Check consent on page load
-        document.addEventListener('DOMContentLoaded', checkCookieConsent);
-    </script>
     
     <script>
         // Dark mode toggle functionality

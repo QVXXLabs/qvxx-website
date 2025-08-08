@@ -96,7 +96,7 @@ Consider AI tools as business infrastructure. You wouldn't run your business fro
 
 The real cost of "free" AI tools isn't just hidden—it compounds over time. Make informed choices that prioritise your business's long-term success over short-term savings. In London's competitive landscape, the right tools at the right price beat free tools with hidden costs every time.
 
-Ready to discuss your AI strategy? [Book a consultation](https://calendly.com) to explore how the right AI investments can transform your London SMB without the hidden costs.
+Ready to discuss your AI strategy? [Book a consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to explore how the right AI investments can transform your London SMB without the hidden costs.
 
 ---
 

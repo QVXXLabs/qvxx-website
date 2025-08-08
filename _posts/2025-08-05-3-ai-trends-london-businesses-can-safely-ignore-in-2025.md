@@ -106,6 +106,12 @@ Instead, focus on boring, practical AI applications that solve real problems. Yo
 
 The permission to ignore trends isn't about falling behind; it's about moving forward strategically. In the attention economy, knowing what to ignore is just as valuable as knowing what to pursue. For London SMBs in 2025, that means saying no to the speculative and yes to the practical.
 
+## Ready to Focus on What Matters?
+
+While others chase every AI trend, you can build competitive advantage with practical solutions that actually work. Let's identify the AI opportunities worth pursuing for your specific business.
+
+[Book a free 20-minute consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to discuss your AI strategy and cut through the hype together.
+
 ---
 
 *QVXX helps London SMBs make practical AI decisions. We focus on what actually works for your business.*
