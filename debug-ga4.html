@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>GA4 Debug Test</title>
+</head>
+<body>
+    <h1>GA4 Debug Test Page</h1>
+    <p>Open browser console to see debug information</p>
+    
+    <button id="testEvent">Test Custom Event</button>
+    <button id="checkDataLayer">Check DataLayer</button>
+    <button id="checkGtag">Check gtag</button>
+    
+    <div id="output" style="margin-top: 20px; padding: 10px; background: #f0f0f0; font-family: monospace; white-space: pre-wrap;"></div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message) {
+            output.textContent += message + '\n';
+            console.log(message);
+        }
+        
+        // Check 1: DataLayer exists
+        if (window.dataLayer) {
+            log('✅ dataLayer exists');
+            log('DataLayer length: ' + window.dataLayer.length);
+        } else {
+            log('❌ dataLayer NOT found');
+        }
+        
+        // Check 2: gtag function exists
+        if (typeof gtag === 'function') {
+            log('✅ gtag function exists');
+        } else {
+            log('❌ gtag function NOT found');
+        }
+        
+        // Check 3: Look for GTM
+        if (window.google_tag_manager) {
+            log('✅ Google Tag Manager loaded');
+            log('GTM containers: ' + Object.keys(window.google_tag_manager).join(', '));
+        } else {
+            log('❌ Google Tag Manager NOT loaded');
+        }
+        
+        // Test event button
+        document.getElementById('testEvent').addEventListener('click', function() {
+            log('\n--- Testing Custom Event ---');
+            
+            // Method 1: dataLayer.push
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'test_custom_event',
+                'event_category': 'Test',
+                'event_label': 'Debug Test',
+                'value': 123
+            });
+            log('Pushed test_custom_event to dataLayer');
+            
+            // Method 2: gtag (if available)
+            if (typeof gtag === 'function') {
+                gtag('event', 'test_gtag_event', {
+                    'event_category': 'Test',
+                    'event_label': 'Gtag Test'
+                });
+                log('Sent test_gtag_event via gtag');
+            }
+        });
+        
+        // Check DataLayer button
+        document.getElementById('checkDataLayer').addEventListener('click', function() {
+            log('\n--- DataLayer Contents ---');
+            if (window.dataLayer) {
+                log('Total items: ' + window.dataLayer.length);
+                log('Last 5 items:');
+                const last5 = window.dataLayer.slice(-5);
+                last5.forEach((item, index) => {
+                    log(`Item ${window.dataLayer.length - 5 + index}: ${JSON.stringify(item, null, 2)}`);
+                });
+            }
+        });
+        
+        // Check gtag button
+        document.getElementById('checkGtag').addEventListener('click', function() {
+            log('\n--- Checking GA4 Configuration ---');
+            
+            // Look for GA4 measurement ID in dataLayer
+            let ga4Found = false;
+            if (window.dataLayer) {
+                window.dataLayer.forEach((item) => {
+                    if (JSON.stringify(item).includes('G-')) {
+                        ga4Found = true;
+                        log('Found GA4 reference: ' + JSON.stringify(item).match(/G-[\w]+/));
+                    }
+                });
+            }
+            
+            if (!ga4Found) {
+                log('⚠️  No GA4 measurement ID found in dataLayer');
+            }
+            
+            // Check for gtag.js script
+            const scripts = document.getElementsByTagName('script');
+            let gtagScriptFound = false;
+            for (let script of scripts) {
+                if (script.src && script.src.includes('gtag/js')) {
+                    gtagScriptFound = true;
+                    log('✅ gtag.js script found: ' + script.src);
+                }
+            }
+            
+            if (!gtagScriptFound) {
+                log('⚠️  gtag.js script NOT found');
+            }
+        });
+        
+        // Monitor dataLayer pushes
+        if (window.dataLayer) {
+            const originalPush = window.dataLayer.push;
+            window.dataLayer.push = function(...args) {
+                log('📊 DataLayer push detected: ' + JSON.stringify(args[0]));
+                return originalPush.apply(window.dataLayer, args);
+            };
+        }
+    </script>
+</body>
+</html>

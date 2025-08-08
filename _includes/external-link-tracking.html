@@ -1,0 +1,69 @@
+<script>
+// External Link Click Tracking for GA4
+(function() {
+    'use strict';
+    
+    document.addEventListener('click', function(e) {
+        // Find the closest anchor tag
+        const link = e.target.closest('a');
+        if (!link || !link.href) return;
+        
+        // Parse the URL
+        let linkUrl;
+        try {
+            linkUrl = new URL(link.href);
+        } catch (err) {
+            return; // Invalid URL
+        }
+        
+        // Check if it's an external link
+        const currentDomain = window.location.hostname;
+        const linkDomain = linkUrl.hostname;
+        
+        // Skip if:
+        // - Same domain
+        // - Subdomain of current site
+        // - Internal link (starts with # or /)
+        // - JavaScript link
+        // - Tel or mailto link
+        if (linkDomain === currentDomain || 
+            linkDomain.endsWith('.' + currentDomain) ||
+            currentDomain.endsWith('.' + linkDomain) ||
+            link.href.startsWith('#') ||
+            link.href.startsWith('/') ||
+            link.href.startsWith('javascript:') ||
+            link.href.startsWith('tel:') ||
+            link.href.startsWith('mailto:')) {
+            return;
+        }
+        
+        // It's an external link - track it
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'external_link_click',
+            'event_category': 'Outbound Links',
+            'link_domain': linkDomain,
+            'link_url': link.href,
+            'link_text': (link.textContent || link.innerText || '').trim().substring(0, 100),
+            'link_classes': link.className || undefined,
+            'link_id': link.id || undefined,
+            'page_path': window.location.pathname,
+            'click_location': getClickLocation(link)
+        });
+        
+        console.log('External link tracked:', linkDomain);
+    });
+    
+    // Helper function to determine where on the page the link was clicked
+    function getClickLocation(element) {
+        // Check common page sections
+        if (element.closest('header, nav')) return 'header';
+        if (element.closest('footer')) return 'footer';
+        if (element.closest('aside, .sidebar')) return 'sidebar';
+        if (element.closest('article, .blog-post')) return 'article';
+        if (element.closest('.testimonial')) return 'testimonial';
+        if (element.closest('.cta')) return 'cta_section';
+        return 'main_content';
+    }
+})();
+</script>

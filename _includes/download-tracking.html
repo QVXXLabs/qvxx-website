@@ -1,0 +1,36 @@
+<script>
+// Download Tracking for GA4
+(function() {
+    'use strict';
+    
+    // File extensions to track
+    const DOWNLOAD_EXTENSIONS = /\.(pdf|xlsx?|docx?|pptx?|zip|rar|csv|txt|mp3|mp4|mov|avi)$/i;
+    
+    document.addEventListener('click', function(e) {
+        // Find the closest anchor tag
+        const link = e.target.closest('a');
+        if (!link || !link.href) return;
+        
+        // Check if it's a download link
+        const match = link.href.match(DOWNLOAD_EXTENSIONS);
+        if (match) {
+            const extension = match[1].toLowerCase();
+            const filename = link.href.split('/').pop().split('?')[0];
+            
+            // Push to dataLayer
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                'event': 'file_download',
+                'event_category': 'Downloads',
+                'file_name': filename,
+                'file_extension': extension,
+                'link_url': link.href,
+                'link_text': link.textContent || link.innerText || filename,
+                'page_path': window.location.pathname
+            });
+            
+            console.log('Download tracked:', filename);
+        }
+    });
+})();
+</script>

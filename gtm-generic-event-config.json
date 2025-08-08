@@ -1,0 +1,55 @@
+{
+  "generic_event_tag": {
+    "name": "GA4 - All Custom Events",
+    "type": "GA4 Event",
+    "configuration": {
+      "measurement_id": "{{GA4 Configuration}}",
+      "event_name": "{{Event}}",
+      "event_parameters": [
+        {
+          "name": "event_category",
+          "value": "{{Data Layer Variable - event_category}}"
+        },
+        {
+          "name": "event_label", 
+          "value": "{{Data Layer Variable - event_label}}"
+        },
+        {
+          "name": "value",
+          "value": "{{Data Layer Variable - value}}"
+        },
+        {
+          "name": "page_path",
+          "value": "{{Page Path}}"
+        },
+        {
+          "name": "custom_parameter_1",
+          "value": "{{Data Layer Variable - Custom Parameter 1}}"
+        }
+      ]
+    },
+    "trigger": {
+      "name": "All Custom Events",
+      "type": "Custom Event",
+      "event_name_regex": ".*",
+      "exceptions": ["gtm.js", "gtm.dom", "gtm.load"]
+    }
+  },
+  "required_variables": [
+    {
+      "name": "Data Layer Variable - event_category",
+      "type": "Data Layer Variable",
+      "dataLayerVariableName": "event_category"
+    },
+    {
+      "name": "Data Layer Variable - event_label",
+      "type": "Data Layer Variable", 
+      "dataLayerVariableName": "event_label"
+    },
+    {
+      "name": "Data Layer Variable - value",
+      "type": "Data Layer Variable",
+      "dataLayerVariableName": "value"
+    }
+  ]
+}

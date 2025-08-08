@@ -619,11 +619,11 @@
                 <p>We invite you to explore whether our approach aligns with your business goals.</p>
                 <p>Schedule a 20-minute consultation to discuss your operational challenges and strategic goals.</p>
                 
-                <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="cta-button primary">Schedule Consultation</a>
-                
-                <div class="contact-info">
-                    <a href="mailto:hello@qvxx.ai">hello@qvxx.ai</a>
+                <div class="contact-info" style="margin: 2rem 0;">
+                    <a href="mailto:contact@qvxx.ai">contact@qvxx.ai</a>
                 </div>
+                
+                {% include calendar-embed.html %}
                 
                 <div class="location">
                     Serving London businesses in Pimlico, Westminster, and Central London
@@ -719,6 +719,16 @@
                 html.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
                 updateIcon(newTheme);
+                
+                // Track theme toggle
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'theme_toggle',
+                    'event_category': 'UI Preferences',
+                    'theme_from': currentTheme,
+                    'theme_to': newTheme,
+                    'page_path': window.location.pathname
+                });
             });
             
             function updateIcon(theme) {
@@ -759,5 +769,7 @@
     {% include gtm-datalayer.html %}
     {% include modern-analytics-gtm.html %}
     {% include advanced-features-gtm.html %}
+    {% include download-tracking.html %}
+    {% include external-link-tracking.html %}
 </body>
 </html>

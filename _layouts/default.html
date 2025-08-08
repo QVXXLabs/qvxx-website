@@ -479,6 +479,8 @@
     {% include gtm-datalayer.html %}
     {% include modern-analytics-gtm.html %}
     {% include advanced-features-gtm.html %}
+    {% include download-tracking.html %}
+    {% include external-link-tracking.html %}
     
     <script>
         // Dark mode toggle functionality
@@ -500,6 +502,16 @@
                 html.setAttribute('data-theme', newTheme);
                 localStorage.setItem('theme', newTheme);
                 updateIcon(newTheme);
+                
+                // Track theme toggle
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    'event': 'theme_toggle',
+                    'event_category': 'UI Preferences',
+                    'theme_from': currentTheme,
+                    'theme_to': newTheme,
+                    'page_path': window.location.pathname
+                });
             });
             
             function updateIcon(theme) {
