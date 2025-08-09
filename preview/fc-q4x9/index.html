@@ -163,13 +163,17 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     .challenge-list {
         list-style: none;
+        margin: 0;
+        padding: 0;
     }
 
     .challenge-list li {
-        padding: 12px 0 12px 24px;
+        padding: 8px 0 8px 24px;
         position: relative;
         color: var(--text-secondary);
         font-size: 0.95rem;
+        display: flex;
+        align-items: baseline;
     }
 
     .challenge-list li::before {
@@ -179,14 +183,14 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         color: var(--danger-color);
         font-weight: bold;
         font-size: 1.25rem;
+        line-height: 1;
     }
 
     .root-causes {
         background: white;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid var(--danger-color);
-        border-opacity: 0.2;
+        border: 1px solid rgba(239, 68, 68, 0.3);
     }
 
     .root-causes h4 {
@@ -376,7 +380,6 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         <p class="subheadline">Your GenAI chatbot set the UK fintech standard. Now extend that edge to credit decisioning and fraud prevention — before competitors catch up.</p>
         <div class="cta-buttons">
             <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="btn btn-primary">Book 20-Min Strategy Call</a>
-            <a href="#services" class="btn btn-secondary">See Our Framework</a>
         </div>
     </section>
 
@@ -491,9 +494,14 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     <div class="container">
         <h2>The UK credit card race is accelerating</h2>
         <p>Your competitors are building beyond service AI. The window is closing.</p>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 24px; border-radius: 8px; margin: 32px auto; max-width: 600px;">
+            <p style="margin: 0 0 16px 0; font-size: 1rem; opacity: 0.95;">QVXX specializes in fintech AI advisory — from initial scoping through implementation support. We've helped UK financial services accelerate their AI roadmaps while maintaining regulatory compliance.</p>
+        </div>
+        
         <div class="cta-buttons">
             <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="btn btn-primary">Book Strategy Call</a>
-            <a href="#services" class="btn btn-secondary">Review Framework</a>
+            <a href="mailto:partnerships@qvxx.ai" class="btn btn-secondary">Email Partnership Team</a>
         </div>
     </div>
 </section>
