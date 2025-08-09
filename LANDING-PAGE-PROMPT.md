@@ -1,0 +1,135 @@
+# Landing Page Generation Prompt Template
+
+## Overview
+This prompt template helps generate compelling, conversion-focused landing pages similar to the Jaja Finance example at `/lets-talk/fc-q4x9/`. The page uses a password-protected layout with streamlined content, visual data comparisons, and clear CTAs.
+
+## Prompt Template
+
+```
+Create a password-protected landing page for [COMPANY NAME] in the [INDUSTRY] sector. The company's main challenge is [PRIMARY CHALLENGE] and they need help with [SPECIFIC NEED].
+
+Page Structure Requirements:
+
+1. **Hero Section**
+   - Headline: Transform [CURRENT STATE] into [DESIRED OUTCOME]
+   - Subheadline: One sentence explaining the opportunity window
+   - Single primary CTA button
+
+2. **Current Problems Section**
+   - Title: "Your [TARGET AUDIENCE] deserve [POSITIVE OUTCOME]"
+   - 4 pain points, each 3-4 words max with red ✗ symbols:
+     * [PAIN 1]. [CONSEQUENCE].
+     * [PAIN 2]. [CONSEQUENCE].
+     * [PAIN 3]. [CONSEQUENCE].
+     * [PAIN 4]. [CONSEQUENCE].
+   - Opportunities section with green ✓ symbols:
+     * Bold header: "These are the opportunities:"
+     * 3 positive outcomes, action-oriented
+
+3. **Competition Section**
+   - Title: "Who's Moving Fast"
+   - 3 competitor cards showing:
+     * Competitor names
+     * Their key advantage
+   - Urgency banner with lightning emoji
+
+4. **Solution Section**
+   - Title: "Accelerate Your [SPECIFIC ROLE/INITIATIVE] with QVXX"
+   - SVG line chart showing:
+     * Red line: Progress without support (slower, plateaus)
+     * Green line: Progress with QVXX (faster, higher impact)
+     * X-axis: Time period (0-100 days typical)
+     * Y-axis: Impact/Progress
+     * Key milestones labeled on each line
+
+5. **Final CTA Section**
+   - Compelling headline about urgency
+   - Brief company credibility statement
+   - Two CTAs: Book call (primary) and Email team (secondary)
+
+Design Requirements:
+- Centered layout, max-width 900px
+- Clean typography, no unnecessary images
+- Muted color palette with strategic use of red/green
+- Mobile responsive
+- Subtle fade-in animations
+- No background colors on problem/opportunity sections
+- Large, readable text (1.25rem for key points)
+
+Technical Setup:
+- Use Jekyll layout: protected
+- Password hash: Generate SHA-256 hash of chosen password
+- Include cookie consent banner
+- Add favicon and company footer
+- URL structure: /lets-talk/[client-code]/
+- Update robots.txt to exclude directory
+```
+
+## Example Usage
+
+### For a FinTech Credit Card Company:
+```
+Create a password-protected landing page for Jaja Finance in the UK fintech sector. The company's main challenge is customer friction in credit decisions and they need help with AI-powered underwriting.
+
+Current pain points:
+- Account closures. No warning.
+- 72-hour lockouts. Lost trust.
+- Credit denials. No explanation.
+- Ombudsman cases. Rising fast.
+
+Opportunities:
+- Balance risk with experience
+- 10x faster resolution
+- Explainable AI decisions
+```
+
+### For a Healthcare SaaS:
+```
+Create a password-protected landing page for MedFlow in the healthcare SaaS sector. The company's main challenge is clinician burnout from documentation and they need help with AI-assisted clinical notes.
+
+Current pain points:
+- 3-hour documentation. Daily burden.
+- Missed details. Compliance risk.
+- Physician turnover. 40% annually.
+- Patient time. Cut short.
+
+Opportunities:
+- 70% faster documentation
+- Real-time compliance checks
+- Focus on patient care
+```
+
+## Key Success Factors
+
+1. **Specificity**: Use exact metrics and timeframes
+2. **Urgency**: Show competitive pressure and closing windows
+3. **Contrast**: Clear before/after visualization
+4. **Simplicity**: Short, punchy copy that gets to the point
+5. **Proof**: Concrete milestones and outcomes
+
+## Implementation Steps
+
+1. Copy `/lets-talk/fc-q4x9/index.html` as template
+2. Update all content placeholders
+3. Generate new password hash: `echo -n "yourpassword" | shasum -a 256`
+4. Customize the line chart data and milestones
+5. Update competitor information
+6. Test on mobile devices
+7. Add to robots.txt exclusion
+
+## Visual Data Best Practices
+
+The line chart should show:
+- Realistic progression curves (not straight lines)
+- Clear differentiation between paths
+- Specific milestone achievements
+- Time period relevant to the industry
+- Labels that don't overlap or get cut off
+
+## Copy Guidelines
+
+- Headlines: 8-12 words, benefit-focused
+- Pain points: 3-4 words + consequence
+- Opportunities: Action verbs, measurable outcomes
+- CTAs: Direct and urgent ("Book Strategy Call" not "Learn More")
+- Avoid jargon, focus on business impact
