@@ -172,11 +172,19 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     /* Challenges */
+    .customer-pain-header {
+        margin-bottom: 20px;
+        font-size: 1.125rem;
+        color: var(--text-primary);
+        font-weight: 500;
+    }
+
     .challenges {
         background: #fef2f2;
         border-radius: 12px;
-        padding: 20px;
-        margin-bottom: 16px;
+        padding: 24px;
+        margin-bottom: 20px;
+        border: 2px solid #fecaca;
     }
 
     .challenge-list {
@@ -186,16 +194,22 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     .challenge-list li {
-        padding: 8px 0 8px 24px;
+        padding: 12px 0 12px 32px;
         position: relative;
         color: var(--text-secondary);
-        font-size: 0.95rem;
+        font-size: 1rem;
         display: flex;
         align-items: baseline;
+        line-height: 1.5;
+    }
+
+    .challenge-list li strong {
+        color: var(--text-primary);
+        margin-right: 8px;
     }
 
     .challenge-list li::before {
-        content: "×";
+        content: "⚠";
         position: absolute;
         left: 0;
         color: var(--danger-color);
@@ -204,19 +218,42 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         line-height: 1;
     }
 
+    .differentiator-box {
+        background: linear-gradient(135deg, #dbeafe 0%, #e0f2fe 100%);
+        border: 2px solid var(--primary-color);
+        border-radius: 12px;
+        padding: 24px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .differentiator-box h4 {
+        font-size: 1.25rem;
+        color: var(--primary-color);
+        margin: 0 0 12px 0;
+        font-weight: 700;
+    }
+
+    .differentiator-box p {
+        margin: 0;
+        color: var(--text-primary);
+        font-size: 1.05rem;
+        line-height: 1.6;
+        font-weight: 500;
+    }
+
     .root-causes {
         background: white;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        border: 1px solid var(--border-color);
     }
 
     .root-causes h4 {
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--danger-color);
+        font-size: 1rem;
+        color: var(--text-muted);
         margin-bottom: 12px;
+        font-weight: 600;
     }
 
     /* Competitors */
@@ -420,21 +457,32 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     <!-- Challenges -->
     <section class="section" id="section-challenges">
-        <h2 class="section-title">The Hidden Cost of Success <span class="scroll-arrow" onclick="scrollToNext('section-challenges')">↓</span></h2>
+        <h2 class="section-title">Customer Trust Crisis: The Real Cost <span class="scroll-arrow" onclick="scrollToNext('section-challenges')">↓</span></h2>
+        
+        <div class="customer-pain-header">
+            <p>Your customers are publicly frustrated. These aren't edge cases — they're systemic issues damaging your brand daily:</p>
+        </div>
+        
         <div class="challenges">
             <ul class="challenge-list">
-                <li>Sudden account closures eroding customer trust</li>
-                <li>Customers locked out with delayed support</li>
-                <li>Unclear credit decisions causing complaints</li>
-                <li>Rising ombudsman cases</li>
+                <li><strong>"Account closed with no warning"</strong> — Trust destroyed instantly</li>
+                <li><strong>"Locked out for days"</strong> — While competitors offer instant access</li>
+                <li><strong>"No explanation for credit denial"</strong> — Pushing customers to transparent rivals</li>
+                <li><strong>"Had to go to ombudsman"</strong> — Public record of failure</li>
             </ul>
         </div>
+        
+        <div class="differentiator-box">
+            <h4>🚀 The QVXX Differentiator</h4>
+            <p>While competitors struggle with the same issues, you can leapfrog them by deploying AI that balances risk management WITH customer experience — turning your biggest weakness into your strongest competitive advantage.</p>
+        </div>
+        
         <div class="root-causes">
-            <h4>Root Causes</h4>
+            <h4>Why This Happens</h4>
             <ul class="challenge-list">
-                <li>Systems optimized for risk, not experience</li>
-                <li>Fragmented ops slowing resolution</li>
-                <li>Opaque compliance processes</li>
+                <li>Legacy systems built for risk avoidance, not customer satisfaction</li>
+                <li>Siloed processes creating resolution delays</li>
+                <li>Black-box decisions customers can't understand</li>
             </ul>
         </div>
     </section>
