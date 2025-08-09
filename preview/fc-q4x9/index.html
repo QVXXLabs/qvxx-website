@@ -278,146 +278,34 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         line-height: 1.5;
     }
 
-    /* Timeline Comparison */
-    .timeline-comparison {
+    /* Line Chart */
+    .line-chart-container {
         margin: 40px 0;
         background: var(--bg-secondary);
         padding: 32px;
         border-radius: 16px;
         border: 1px solid var(--border-color);
-    }
-
-    .timeline-labels {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-        margin-bottom: 40px;
-    }
-
-    .label-row {
-        font-weight: 600;
-        font-size: 1rem;
-        padding-left: 120px;
-    }
-
-    .label-row.without {
-        color: var(--text-muted);
-    }
-
-    .label-row.with {
-        color: var(--success-color);
-    }
-
-    .timeline-chart {
-        position: relative;
-        padding-left: 120px;
-    }
-
-    .day-markers {
-        position: relative;
-        height: 30px;
-        margin-bottom: 20px;
-        color: var(--text-muted);
-        font-size: 0.75rem;
-        font-weight: 500;
-    }
-
-    .day-markers span {
-        position: absolute;
-        transform: translateX(-50%);
-    }
-
-    .timeline-row {
-        position: relative;
-        height: 40px;
-        background: #e5e7eb;
-        border-radius: 20px;
-        margin-bottom: 24px;
         overflow: hidden;
     }
 
-    .timeline-row:last-child {
-        margin-bottom: 0;
+    .progress-chart {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
     }
 
-    .progress-bar {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 100%;
-        border-radius: 20px;
-        width: 0;
-    }
-
-    .without-bar {
-        background: linear-gradient(90deg, #fecaca 0%, #f87171 100%);
-    }
-
-    .with-bar {
-        background: linear-gradient(90deg, #86efac 0%, #10b981 100%);
-    }
-
-    .milestone {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        opacity: 0;
-    }
-
-    .milestone .dot {
-        width: 16px;
-        height: 16px;
-        background: white;
-        border: 4px solid;
-        border-radius: 50%;
-        position: relative;
-        z-index: 2;
-        transform: translateX(-50%);
-    }
-
-    .without-support .dot {
-        border-color: #f87171;
-    }
-
-    .with-support .dot {
-        border-color: #10b981;
-    }
-
-    .milestone .label {
-        position: absolute;
-        bottom: 28px;
-        left: 50%;
-        transform: translateX(-50%);
-        font-size: 0.75rem;
-        font-weight: 600;
-        white-space: nowrap;
-        background: white;
-        padding: 4px 8px;
-        border-radius: 4px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    .without-support .label {
-        color: var(--text-muted);
-    }
-
-    .with-support .label {
-        color: var(--success-color);
+    .progress-line {
+        stroke-linecap: round;
+        stroke-linejoin: round;
     }
 
     @media (max-width: 768px) {
-        .timeline-labels, .timeline-chart {
-            padding-left: 0;
+        .line-chart-container {
+            padding: 16px;
         }
         
-        .label-row {
-            padding-left: 0;
-            font-size: 0.875rem;
-        }
-        
-        .milestone .label {
-            font-size: 0.625rem;
-            padding: 2px 6px;
+        .progress-chart text {
+            font-size: 10px;
         }
     }
 
@@ -578,56 +466,79 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     <section class="section">
         <h2 class="section-title">Your New Data Scientist's First 100 Days</h2>
         
-        <!-- Animated Comparison -->
-        <div class="timeline-comparison">
-            <div class="timeline-labels">
-                <div class="label-row without">Without Support</div>
-                <div class="label-row with">With QVXX</div>
-            </div>
-            
-            <div class="timeline-chart">
-                <!-- Day markers -->
-                <div class="day-markers">
-                    <span style="left: 0%">Day 0</span>
-                    <span style="left: 30%">Day 30</span>
-                    <span style="left: 60%">Day 60</span>
-                    <span style="left: 100%">Day 100</span>
-                </div>
+        <!-- Animated Line Chart -->
+        <div class="line-chart-container">
+            <svg class="progress-chart" viewBox="0 0 800 400" preserveAspectRatio="xMidYMid meet">
+                <!-- Grid lines -->
+                <g class="grid-lines">
+                    <line x1="100" y1="50" x2="100" y2="350" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="300" y1="50" x2="300" y2="350" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="500" y1="50" x2="500" y2="350" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="700" y1="50" x2="700" y2="350" stroke="#e5e7eb" stroke-width="1"/>
+                </g>
                 
-                <!-- Without Support Timeline -->
-                <div class="timeline-row without-support">
-                    <div class="progress-bar without-bar"></div>
-                    <div class="milestone" style="left: 30%">
-                        <span class="dot"></span>
-                        <span class="label">Still onboarding</span>
-                    </div>
-                    <div class="milestone" style="left: 60%">
-                        <span class="dot"></span>
-                        <span class="label">Exploring options</span>
-                    </div>
-                    <div class="milestone" style="left: 100%">
-                        <span class="dot"></span>
-                        <span class="label">First POC</span>
-                    </div>
-                </div>
+                <!-- X-axis labels -->
+                <g class="x-labels">
+                    <text x="100" y="380" text-anchor="middle" fill="#718096" font-size="14">Day 0</text>
+                    <text x="300" y="380" text-anchor="middle" fill="#718096" font-size="14">Day 30</text>
+                    <text x="500" y="380" text-anchor="middle" fill="#718096" font-size="14">Day 60</text>
+                    <text x="700" y="380" text-anchor="middle" fill="#718096" font-size="14">Day 100</text>
+                </g>
                 
-                <!-- With QVXX Timeline -->
-                <div class="timeline-row with-support">
-                    <div class="progress-bar with-bar"></div>
-                    <div class="milestone" style="left: 14%">
-                        <span class="dot"></span>
-                        <span class="label">Roadmap ready</span>
-                    </div>
-                    <div class="milestone" style="left: 45%">
-                        <span class="dot"></span>
-                        <span class="label">First model live</span>
-                    </div>
-                    <div class="milestone" style="left: 90%">
-                        <span class="dot"></span>
-                        <span class="label">3 use cases deployed</span>
-                    </div>
-                </div>
-            </div>
+                <!-- Y-axis labels -->
+                <g class="y-labels">
+                    <text x="80" y="55" text-anchor="end" fill="#718096" font-size="12">High Impact</text>
+                    <text x="80" y="355" text-anchor="end" fill="#718096" font-size="12">Low Impact</text>
+                </g>
+                
+                <!-- Without Support Line -->
+                <g class="without-line">
+                    <path class="progress-line" d="M100,300 L300,280 L500,240 L700,200" 
+                          stroke="#ef4444" stroke-width="3" fill="none" 
+                          stroke-dasharray="1000" stroke-dashoffset="1000"/>
+                    
+                    <!-- Milestones -->
+                    <g class="milestone-group">
+                        <circle cx="300" cy="280" r="6" fill="white" stroke="#ef4444" stroke-width="3" opacity="0"/>
+                        <text x="300" y="265" text-anchor="middle" fill="#475569" font-size="12" font-weight="600" opacity="0">Still onboarding</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="500" cy="240" r="6" fill="white" stroke="#ef4444" stroke-width="3" opacity="0"/>
+                        <text x="500" y="225" text-anchor="middle" fill="#475569" font-size="12" font-weight="600" opacity="0">Exploring options</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="700" cy="200" r="6" fill="white" stroke="#ef4444" stroke-width="3" opacity="0"/>
+                        <text x="700" y="185" text-anchor="middle" fill="#475569" font-size="12" font-weight="600" opacity="0">First POC</text>
+                    </g>
+                    
+                    <!-- Line label -->
+                    <text x="720" y="205" fill="#ef4444" font-size="14" font-weight="600" opacity="0">Without Support</text>
+                </g>
+                
+                <!-- With QVXX Line -->
+                <g class="with-line">
+                    <path class="progress-line" d="M100,300 L200,200 L400,120 L700,80" 
+                          stroke="#10b981" stroke-width="3" fill="none"
+                          stroke-dasharray="1000" stroke-dashoffset="1000"/>
+                    
+                    <!-- Milestones -->
+                    <g class="milestone-group">
+                        <circle cx="200" cy="200" r="6" fill="white" stroke="#10b981" stroke-width="3" opacity="0"/>
+                        <text x="200" y="185" text-anchor="middle" fill="#10b981" font-size="12" font-weight="600" opacity="0">Roadmap ready</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="400" cy="120" r="6" fill="white" stroke="#10b981" stroke-width="3" opacity="0"/>
+                        <text x="400" y="105" text-anchor="middle" fill="#10b981" font-size="12" font-weight="600" opacity="0">First model live</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="650" cy="85" r="6" fill="white" stroke="#10b981" stroke-width="3" opacity="0"/>
+                        <text x="650" y="70" text-anchor="middle" fill="#10b981" font-size="12" font-weight="600" opacity="0">3 use cases deployed</text>
+                    </g>
+                    
+                    <!-- Line label -->
+                    <text x="720" y="85" fill="#10b981" font-size="14" font-weight="600" opacity="0">With QVXX</text>
+                </g>
+            </svg>
         </div>
     </section>
 </div>
@@ -657,61 +568,63 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         // Create Intersection Observer to trigger animation when in view
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting && entry.target.classList.contains('timeline-comparison')) {
+                if (entry.isIntersecting && entry.target.classList.contains('line-chart-container')) {
                     // Start animations
-                    startTimelineAnimation();
+                    startLineChartAnimation();
                     observer.unobserve(entry.target);
                 }
             });
         }, { threshold: 0.3 });
 
-        // Observe the timeline comparison
-        const timeline = document.querySelector('.timeline-comparison');
-        if (timeline) {
-            observer.observe(timeline);
+        // Observe the line chart
+        const chart = document.querySelector('.line-chart-container');
+        if (chart) {
+            observer.observe(chart);
         }
     });
 
-    function startTimelineAnimation() {
-        // Animate progress bars
+    function startLineChartAnimation() {
+        // Animate the lines drawing
         anime({
-            targets: '.without-bar',
-            width: '100%',
-            duration: 3000,
-            easing: 'easeInOutQuad'
-        });
-
-        anime({
-            targets: '.with-bar',
-            width: '90%',
+            targets: '.without-line .progress-line',
+            strokeDashoffset: [1000, 0],
             duration: 2000,
             easing: 'easeInOutQuad'
         });
 
-        // Animate milestones - without support
         anime({
-            targets: '.without-support .milestone',
+            targets: '.with-line .progress-line',
+            strokeDashoffset: [1000, 0],
+            duration: 2000,
+            delay: 300,
+            easing: 'easeInOutQuad'
+        });
+
+        // Animate milestones for without support
+        anime({
+            targets: '.without-line .milestone-group circle, .without-line .milestone-group text',
             opacity: [0, 1],
             scale: [0, 1],
-            delay: anime.stagger(1000, {start: 500}),
+            delay: anime.stagger(600, {start: 500}),
             easing: 'spring(1, 80, 10, 0)'
         });
 
-        // Animate milestones - with support
+        // Animate milestones for with QVXX
         anime({
-            targets: '.with-support .milestone',
+            targets: '.with-line .milestone-group circle, .with-line .milestone-group text',
             opacity: [0, 1],
             scale: [0, 1],
-            delay: anime.stagger(700, {start: 300}),
+            delay: anime.stagger(500, {start: 800}),
             easing: 'spring(1, 80, 10, 0)'
         });
 
-        // Animate labels
+        // Animate line labels
         anime({
-            targets: '.milestone .label',
+            targets: '.without-line > text, .with-line > text',
             opacity: [0, 1],
-            translateY: [10, 0],
-            delay: anime.stagger(200, {start: 800}),
+            translateX: [-10, 0],
+            delay: 2500,
+            duration: 500,
             easing: 'easeOutQuad'
         });
     }
