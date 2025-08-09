@@ -186,30 +186,18 @@ Hi [Name],
 
 I've prepared a brief analysis of how [Company] could [specific AI opportunity]:
 
-https://qvxx.ai/lets-talk/[client-code]/ (password: [companyname]qvxx)
+[landing page URL] (password: [password])
 
 Brief conversation about [Company]'s AI roadmap?
 
-Nat
-QVXX AI Consulting
-qvxx.ai
-WhatsApp: https://wa.me/447946849227
+[Your name]
+[Company name]
+[website]
+[Contact method]
 ```
 
-**Example for Monite:**
-```
-Subject: Extending Monite's embedded finance leadership with AI
-
-Hi Alex,
-
-I've prepared a brief analysis of how Monite could enhance your invoice processing and payment intelligence with AI:
-
-https://qvxx.ai/lets-talk/mn-8k2x/ (password: moniteqvxx)
-
-Brief conversation about Monite's AI roadmap?
-
-Nat
-QVXX AI Consulting
-qvxx.ai
-WhatsApp: https://wa.me/447946849227
-```
+**Template Structure:**
+- Subject line references their current success + AI opportunity
+- Brief 4-line body with personalized analysis link
+- Simple call-to-action question
+- Professional signature with preferred contact method
