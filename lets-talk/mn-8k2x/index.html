@@ -1,0 +1,662 @@
+---
+layout: protected
+title: "QVXX AI Consulting – Landing Page for Monite"
+password_hash: "06dd925157aab22a94616a4a093b6bb111b3b0ffa816fc8e8c14b4117842d46e"
+---
+
+<style>
+    :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8fafc;
+        --text-primary: #0f172a;
+        --text-secondary: #475569;
+        --text-muted: #94a3b8;
+        --border-color: #e2e8f0;
+        --primary-color: #3b82f6;
+        --primary-hover: #2563eb;
+        --success-color: #10b981;
+        --warning-color: #f59e0b;
+        --danger-color: #ef4444;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.5;
+        font-family: -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
+    }
+
+    .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    /* Hero Section */
+    .hero {
+        padding: 80px 0 30px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 20px;
+        letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+        background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .hero .subheadline {
+        font-size: 1.125rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto 30px;
+        line-height: 1.6;
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .btn {
+        padding: 12px 24px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s;
+        font-size: 0.95rem;
+        border: 2px solid transparent;
+    }
+
+    .btn-primary {
+        background: var(--primary-color);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+    }
+
+    .btn-secondary {
+        background: white;
+        color: var(--primary-color);
+        border-color: var(--border-color);
+    }
+
+    .btn-secondary:hover {
+        border-color: var(--primary-color);
+        background: var(--bg-secondary);
+    }
+
+    /* Section Base */
+    .section {
+        padding: 20px 0;
+        position: relative;
+    }
+
+    .section-title {
+        font-size: 1.875rem;
+        font-weight: 800;
+        margin-bottom: 24px;
+        letter-spacing: -0.01em;
+        text-align: center;
+    }
+
+    /* Wins Section */
+    .wins {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 12px;
+    }
+
+    .win {
+        background: var(--bg-secondary);
+        padding: 20px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        position: relative;
+        padding-left: 40px;
+    }
+
+    .win::before {
+        content: "✓";
+        position: absolute;
+        left: 16px;
+        top: 20px;
+        color: var(--success-color);
+        font-weight: bold;
+    }
+
+    .win strong {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--text-primary);
+    }
+
+    .win span {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    /* Challenges */
+    .challenges-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .challenges {
+        padding: 20px;
+        margin-bottom: 24px;
+        text-align: center;
+    }
+
+    .challenge-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .challenge-list li {
+        padding: 10px 0;
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: 500;
+    }
+    
+    .challenge-list li::before {
+        content: "✗ ";
+        color: var(--danger-color);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+    
+    .challenge-list li strong {
+        color: var(--text-primary);
+        margin-right: 4px;
+    }
+
+
+    .opportunities {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .opportunities h4 {
+        font-size: 1.25rem;
+        color: var(--text-primary);
+        margin-bottom: 16px;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .opportunity-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .opportunity-list li {
+        padding: 10px 0;
+        color: var(--text-secondary);
+        font-size: 1.25rem;
+        text-align: center;
+        font-weight: 500;
+    }
+
+    .opportunity-list li::before {
+        content: "✓ ";
+        color: var(--success-color);
+        font-weight: bold;
+        font-size: 1.5rem;
+    }
+
+    /* Competitors */
+    .competition-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    .competitors {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+        margin-top: 32px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .competitor {
+        background: white;
+        padding: 24px;
+        border-radius: 8px;
+        border: 2px solid var(--border-color);
+        flex: 1;
+        min-width: 200px;
+        transition: all 0.2s;
+    }
+
+    .competitor:hover {
+        border-color: var(--warning-color);
+        transform: translateY(-2px);
+    }
+
+    .competitor strong {
+        display: block;
+        font-size: 0.95rem;
+        margin-bottom: 4px;
+    }
+
+    .competitor span {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+    }
+
+    .urgency-banner {
+        background: linear-gradient(135deg, #fef3c7 0%, #fed7aa 100%);
+        border: 2px solid var(--warning-color);
+        padding: 20px 24px;
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 600;
+        color: #92400e;
+        margin-top: 24px;
+    }
+
+    /* Services */
+    .services {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+    }
+
+    .service {
+        background: white;
+        padding: 24px;
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+        transition: all 0.2s;
+    }
+
+    .service:hover {
+        border-color: var(--primary-color);
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.08);
+    }
+
+    .service h3 {
+        font-size: 1.125rem;
+        font-weight: 700;
+        margin-bottom: 8px;
+        color: var(--primary-color);
+    }
+
+    .service p {
+        font-size: 0.875rem;
+        color: var(--text-secondary);
+        line-height: 1.5;
+    }
+
+    /* Line Chart */
+    .line-chart-container {
+        margin: 20px 0;
+        background: var(--bg-secondary);
+        padding: 24px;
+        border-radius: 16px;
+        border: 1px solid var(--border-color);
+        overflow: hidden;
+    }
+
+    .progress-chart {
+        width: 100%;
+        height: auto;
+        max-height: 400px;
+    }
+
+    .progress-line {
+        stroke-linecap: round;
+        stroke-linejoin: round;
+    }
+
+    @media (max-width: 768px) {
+        .line-chart-container {
+            padding: 16px;
+        }
+        
+        .progress-chart text {
+            font-size: 10px;
+        }
+    }
+
+    /* Final CTA */
+    .final-cta {
+        background: linear-gradient(135deg, #3b82f6 0%, #6366f1 100%);
+        color: white;
+        padding: 40px 20px;
+        margin: 30px -40px 0;
+        text-align: center;
+    }
+
+    .final-cta h2 {
+        font-size: 2rem;
+        font-weight: 800;
+        margin-bottom: 8px;
+    }
+
+    .final-cta p {
+        font-size: 1.125rem;
+        margin-bottom: 24px;
+        opacity: 0.9;
+    }
+
+    .final-cta .btn-primary {
+        background: white;
+        color: var(--primary-color);
+    }
+
+    .final-cta .btn-primary:hover {
+        background: var(--bg-secondary);
+    }
+
+    .final-cta .btn-secondary {
+        background: transparent;
+        color: white;
+        border-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 20px;
+        }
+        
+        .hero {
+            padding: 60px 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 2rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 100%;
+            max-width: 280px;
+        }
+        
+        .competitors {
+            flex-direction: column;
+        }
+    }
+</style>
+
+<div class="container">
+    <!-- Hero -->
+    <section class="hero">
+        <h1>From Manual Invoice Processing to <span>AI-Powered Financial Automation</span></h1>
+        <p class="subheadline">Your embedded finance platform leads Europe. Now extend that dominance with AI-driven invoice intelligence and predictive payment analytics — before competitors close the gap.</p>
+        <div class="cta-buttons">
+            <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="btn btn-primary">Book 20-Min Strategy Call</a>
+        </div>
+    </section>
+
+
+    <!-- Challenges -->
+    <section class="section" id="section-challenges">
+        <h2 class="section-title">Your B2B platforms deserve intelligent automation</h2>
+        <div class="challenges-wrapper">
+            <div class="challenges">
+                <ul class="challenge-list">
+                    <li>Manual invoice review. Hours wasted.</li>
+                    <li>Payment delays. Cash flow crisis.</li>
+                    <li>Fraud detection. Too many false positives.</li>
+                    <li>Customer churn. Platform switching.</li>
+                </ul>
+            </div>
+            <div class="opportunities">
+                <h4><strong>These are the opportunities:</strong></h4>
+                <ul class="opportunity-list">
+                    <li>90% faster invoice processing</li>
+                    <li>Predict payment delays before they happen</li>
+                    <li>Smart fraud detection with context</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Competition -->
+    <section class="section" id="section-competition">
+        <h2 class="section-title">Who's Moving Fast</h2>
+        <div class="competition-wrapper">
+            <div class="competitors">
+            <div class="competitor">
+                <strong>Stripe, Adyen</strong>
+                <span>Adding AI to invoice workflows</span>
+            </div>
+            <div class="competitor">
+                <strong>Codat, Rutter</strong>
+                <span>Building predictive payment models</span>
+            </div>
+            <div class="competitor">
+                <strong>Bill.com</strong>
+                <span>Enterprise AI automation push</span>
+            </div>
+        </div>
+            <div class="urgency-banner">
+                ⚡ They're adding AI intelligence to embedded finance — and they're moving fast
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="section-services">
+        <h2 class="section-title">Accelerate Your AI-Powered Finance Automation Roadmap with QVXX</h2>
+        
+        <!-- Animated Line Chart -->
+        <div class="line-chart-container">
+            <svg class="progress-chart" viewBox="0 0 800 300" preserveAspectRatio="xMidYMid meet">
+                <!-- Grid lines -->
+                <g class="grid-lines">
+                    <line x1="100" y1="40" x2="100" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="300" y1="40" x2="300" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="500" y1="40" x2="500" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+                    <line x1="700" y1="40" x2="700" y2="250" stroke="#e5e7eb" stroke-width="1"/>
+                </g>
+                
+                <!-- X-axis labels -->
+                <g class="x-labels">
+                    <text x="100" y="280" text-anchor="middle" fill="#718096" font-size="12">Day 0</text>
+                    <text x="300" y="280" text-anchor="middle" fill="#718096" font-size="12">Day 30</text>
+                    <text x="500" y="280" text-anchor="middle" fill="#718096" font-size="12">Day 60</text>
+                    <text x="700" y="280" text-anchor="middle" fill="#718096" font-size="12">Day 100</text>
+                </g>
+                
+                <!-- Y-axis labels -->
+                <g class="y-labels">
+                    <text x="80" y="45" text-anchor="end" fill="#718096" font-size="11">High Impact</text>
+                    <text x="80" y="245" text-anchor="end" fill="#718096" font-size="11">Low Impact</text>
+                </g>
+                
+                <!-- Without Support Line -->
+                <g class="without-line">
+                    <path class="progress-line" d="M100,220 L300,200 L500,170 L700,150" 
+                          stroke="#ef4444" stroke-width="3" fill="none" 
+                          stroke-dasharray="1000" stroke-dashoffset="1000"/>
+                    
+                    <!-- Milestones -->
+                    <g class="milestone-group">
+                        <circle cx="300" cy="200" r="5" fill="white" stroke="#ef4444" stroke-width="2" opacity="0"/>
+                        <text x="300" y="185" text-anchor="middle" fill="#475569" font-size="11" font-weight="600" opacity="0">Still researching</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="500" cy="170" r="5" fill="white" stroke="#ef4444" stroke-width="2" opacity="0"/>
+                        <text x="500" y="155" text-anchor="middle" fill="#475569" font-size="11" font-weight="600" opacity="0">Basic rules engine</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="700" cy="150" r="5" fill="white" stroke="#ef4444" stroke-width="2" opacity="0"/>
+                        <text x="700" y="135" text-anchor="middle" fill="#475569" font-size="11" font-weight="600" opacity="0">Manual workflows</text>
+                    </g>
+                    
+                    <!-- Line label -->
+                    <text x="720" y="150" fill="#ef4444" font-size="12" font-weight="600" opacity="0" text-anchor="start">
+                        <tspan x="720" dy="0">Without</tspan>
+                        <tspan x="720" dy="14">Support</tspan>
+                    </text>
+                </g>
+                
+                <!-- With QVXX Line -->
+                <g class="with-line">
+                    <path class="progress-line" d="M100,220 L200,140 L400,90 L700,60" 
+                          stroke="#10b981" stroke-width="3" fill="none"
+                          stroke-dasharray="1000" stroke-dashoffset="1000"/>
+                    
+                    <!-- Milestones -->
+                    <g class="milestone-group">
+                        <circle cx="200" cy="140" r="5" fill="white" stroke="#10b981" stroke-width="2" opacity="0"/>
+                        <text x="200" y="125" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" opacity="0">AI strategy defined</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="400" cy="90" r="5" fill="white" stroke="#10b981" stroke-width="2" opacity="0"/>
+                        <text x="400" y="75" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" opacity="0">Smart OCR deployed</text>
+                    </g>
+                    <g class="milestone-group">
+                        <circle cx="650" cy="65" r="5" fill="white" stroke="#10b981" stroke-width="2" opacity="0"/>
+                        <text x="650" y="50" text-anchor="middle" fill="#10b981" font-size="11" font-weight="600" opacity="0">Predictive analytics live</text>
+                    </g>
+                    
+                    <!-- Line label -->
+                    <text x="720" y="60" fill="#10b981" font-size="12" font-weight="600" opacity="0" text-anchor="start">
+                        <tspan x="720" dy="0">With</tspan>
+                        <tspan x="720" dy="14">QVXX</tspan>
+                    </text>
+                </g>
+            </svg>
+        </div>
+    </section>
+</div>
+
+<!-- Final CTA -->
+<section class="final-cta">
+    <div class="container">
+        <h2>The embedded finance AI race is accelerating</h2>
+        <p>Your competitors are adding predictive intelligence. The technology gap is widening.</p>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 24px; border-radius: 8px; margin: 32px auto; max-width: 600px;">
+            <p style="margin: 0 0 16px 0; font-size: 1rem; opacity: 0.95;">QVXX specializes in embedded finance AI transformation — from OCR enhancement to predictive payment models. We've helped B2B platforms reduce manual processing by 90% while improving accuracy.</p>
+        </div>
+        
+        <div class="cta-buttons">
+            <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="btn btn-primary">Book Strategy Call</a>
+            <a href="mailto:contact@qvxx.ai" class="btn btn-secondary">Email Team</a>
+        </div>
+    </div>
+</section>
+
+<!-- Anime.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+<script>
+    // Wait for page load
+    window.addEventListener('load', function() {
+        // Create Intersection Observer to trigger animation when in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && entry.target.classList.contains('line-chart-container')) {
+                    // Start animations
+                    startLineChartAnimation();
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3 });
+
+        // Observe the line chart
+        const chart = document.querySelector('.line-chart-container');
+        if (chart) {
+            observer.observe(chart);
+        }
+    });
+
+    function startLineChartAnimation() {
+        // Animate the lines drawing
+        anime({
+            targets: '.without-line .progress-line',
+            strokeDashoffset: [1000, 0],
+            duration: 2000,
+            easing: 'easeInOutQuad'
+        });
+
+        anime({
+            targets: '.with-line .progress-line',
+            strokeDashoffset: [1000, 0],
+            duration: 2000,
+            delay: 300,
+            easing: 'easeInOutQuad'
+        });
+
+        // Animate milestones for without support - fade in only
+        anime({
+            targets: '.without-line .milestone-group circle',
+            opacity: [0, 1],
+            delay: anime.stagger(600, {start: 500}),
+            duration: 800,
+            easing: 'easeOutQuad'
+        });
+        
+        anime({
+            targets: '.without-line .milestone-group text',
+            opacity: [0, 1],
+            translateY: [-5, 0],
+            delay: anime.stagger(600, {start: 700}),
+            duration: 800,
+            easing: 'easeOutQuad'
+        });
+
+        // Animate milestones for with QVXX - fade in only
+        anime({
+            targets: '.with-line .milestone-group circle',
+            opacity: [0, 1],
+            delay: anime.stagger(500, {start: 800}),
+            duration: 800,
+            easing: 'easeOutQuad'
+        });
+        
+        anime({
+            targets: '.with-line .milestone-group text',
+            opacity: [0, 1],
+            translateY: [-5, 0],
+            delay: anime.stagger(500, {start: 1000}),
+            duration: 800,
+            easing: 'easeOutQuad'
+        });
+
+        // Animate line labels - simple fade
+        anime({
+            targets: '.without-line > text, .with-line > text',
+            opacity: [0, 1],
+            delay: 2500,
+            duration: 800,
+            easing: 'easeOutQuad'
+        });
+    }
+</script>
+
+{% include cookie-consent-enhanced.html %}
