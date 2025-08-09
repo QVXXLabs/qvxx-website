@@ -174,3 +174,42 @@ The line chart should show:
 
 - ❌ "Our clients see 10x faster processing"  
 - ✅ "AI automation can significantly accelerate processing times"
+
+## Email Template
+
+After creating the landing page, use this concise email template to reach out:
+
+```
+Subject: Extending [Company]'s [current strength] with AI
+
+Hi [Name],
+
+I've prepared a brief analysis of how [Company] could [specific AI opportunity]:
+
+https://qvxx.ai/lets-talk/[client-code]/ (password: [companyname]qvxx)
+
+Brief conversation about [Company]'s AI roadmap?
+
+Nat
+QVXX AI Consulting
+qvxx.ai
+WhatsApp: https://wa.me/447946849227
+```
+
+**Example for Monite:**
+```
+Subject: Extending Monite's embedded finance leadership with AI
+
+Hi Alex,
+
+I've prepared a brief analysis of how Monite could enhance your invoice processing and payment intelligence with AI:
+
+https://qvxx.ai/lets-talk/mn-8k2x/ (password: moniteqvxx)
+
+Brief conversation about Monite's AI roadmap?
+
+Nat
+QVXX AI Consulting
+qvxx.ai
+WhatsApp: https://wa.me/447946849227
+```
