@@ -116,25 +116,7 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         font-weight: 800;
         margin-bottom: 24px;
         letter-spacing: -0.01em;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
         text-align: center;
-    }
-
-    .scroll-arrow {
-        color: var(--text-muted);
-        font-size: 1.25rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        padding: 4px 8px;
-        border-radius: 4px;
-    }
-
-    .scroll-arrow:hover {
-        color: var(--primary-color);
-        background: var(--bg-secondary);
     }
 
     /* Wins Section */
@@ -175,15 +157,13 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     /* Challenges */
     .challenges-wrapper {
-        max-width: 600px;
+        max-width: 700px;
         margin: 0 auto;
     }
 
     .challenges {
-        background: #fef2f2;
-        border-radius: 12px;
         padding: 20px;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
         text-align: center;
     }
 
@@ -194,17 +174,18 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     .challenge-list li {
-        padding: 8px 0;
+        padding: 10px 0;
         color: var(--text-secondary);
-        font-size: 0.95rem;
+        font-size: 1.25rem;
         text-align: center;
+        font-weight: 500;
     }
     
     .challenge-list li::before {
         content: "✗ ";
         color: var(--danger-color);
         font-weight: bold;
-        font-size: 1.125rem;
+        font-size: 1.5rem;
     }
     
     .challenge-list li strong {
@@ -214,18 +195,16 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
 
     .opportunities {
-        background: #f0fdf4;
         padding: 20px;
-        border-radius: 8px;
-        border: 1px solid #86efac;
         text-align: center;
     }
 
     .opportunities h4 {
-        font-size: 1rem;
-        color: var(--success-color);
-        margin-bottom: 12px;
+        font-size: 1.25rem;
+        color: var(--text-primary);
+        margin-bottom: 16px;
         text-align: center;
+        font-weight: 600;
     }
 
     .opportunity-list {
@@ -235,17 +214,18 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     .opportunity-list li {
-        padding: 8px 0;
+        padding: 10px 0;
         color: var(--text-secondary);
-        font-size: 0.95rem;
+        font-size: 1.25rem;
         text-align: center;
+        font-weight: 500;
     }
 
     .opportunity-list li::before {
         content: "✓ ";
         color: var(--success-color);
         font-weight: bold;
-        font-size: 1.125rem;
+        font-size: 1.5rem;
     }
 
     /* Competitors */
@@ -441,7 +421,7 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     <!-- Challenges -->
     <section class="section" id="section-challenges">
-        <h2 class="section-title">Your customers deserve delightful onboarding <span class="scroll-arrow" onclick="scrollToNext('section-challenges')">↓</span></h2>
+        <h2 class="section-title">Your customers deserve delightful onboarding</h2>
         <div class="challenges-wrapper">
             <div class="challenges">
                 <ul class="challenge-list">
@@ -464,7 +444,7 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     <!-- Competition -->
     <section class="section" id="section-competition">
-        <h2 class="section-title">Who's Moving Fast <span class="scroll-arrow" onclick="scrollToNext('section-competition')">↓</span></h2>
+        <h2 class="section-title">Who's Moving Fast</h2>
         <div class="competition-wrapper">
             <div class="competitors">
             <div class="competitor">
@@ -488,7 +468,7 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 
     <!-- Services -->
     <section class="section" id="section-services">
-        <h2 class="section-title">Accelerate Your New Underwriting and Fraud Data Scientist's First 100 Days with QVXX <span class="scroll-arrow" onclick="scrollToNext('section-services')">↓</span></h2>
+        <h2 class="section-title">Accelerate Your New Underwriting and Fraud Data Scientist's First 100 Days with QVXX</h2>
         
         <!-- Animated Line Chart -->
         <div class="line-chart-container">
@@ -593,30 +573,6 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 <!-- Anime.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 <script>
-    // Smooth scroll functions
-    function scrollToNext(currentSectionId) {
-        const sections = ['section-challenges', 'section-competition', 'section-services'];
-        const currentIndex = sections.indexOf(currentSectionId);
-        
-        if (currentIndex < sections.length - 1) {
-            const nextSection = document.getElementById(sections[currentIndex + 1]);
-            if (nextSection) {
-                nextSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        } else {
-            // If at the last section, scroll to CTA
-            const cta = document.querySelector('.final-cta');
-            if (cta) {
-                cta.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-    }
-    
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
-<script>
     // Wait for page load
     window.addEventListener('load', function() {
         // Create Intersection Observer to trigger animation when in view
@@ -700,3 +656,5 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         });
     }
 </script>
+
+{% include cookie-consent-enhanced.html %}
