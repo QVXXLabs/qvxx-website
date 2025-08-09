@@ -209,19 +209,42 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         line-height: 1;
     }
 
-    .root-causes {
-        background: white;
+    .opportunities {
+        background: #f0fdf4;
         padding: 20px;
         border-radius: 8px;
-        border: 1px solid rgba(239, 68, 68, 0.3);
+        border: 1px solid #86efac;
     }
 
-    .root-causes h4 {
-        font-size: 0.875rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-        color: var(--danger-color);
+    .opportunities h4 {
+        font-size: 1rem;
+        color: var(--success-color);
         margin-bottom: 12px;
+    }
+
+    .opportunity-list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .opportunity-list li {
+        padding: 8px 0 8px 24px;
+        position: relative;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        display: flex;
+        align-items: baseline;
+    }
+
+    .opportunity-list li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--success-color);
+        font-weight: bold;
+        font-size: 1.125rem;
+        line-height: 1;
     }
 
     /* Competitors */
@@ -420,9 +443,9 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
                 <li>Ombudsman cases. Rising fast.</li>
             </ul>
         </div>
-        <div class="root-causes">
+        <div class="opportunities">
             <h4><strong>These are the opportunities:</strong></h4>
-            <ul class="challenge-list">
+            <ul class="opportunity-list">
                 <li>Balance risk with experience</li>
                 <li>10x faster resolution</li>
                 <li>Explainable AI decisions</li>
@@ -455,11 +478,6 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     <!-- Services -->
     <section class="section" id="section-services">
         <h2 class="section-title">Accelerate Your Data Scientist's First 100 Days with QVXX <span class="scroll-arrow" onclick="scrollToNext('section-services')">↓</span></h2>
-    </section>
-
-    <!-- Outcomes -->
-    <section class="section" id="section-outcomes">
-        <h2 class="section-title">Your New Data Scientist's First 100 Days <span class="scroll-arrow" onclick="scrollToNext('section-outcomes')">↓</span></h2>
         
         <!-- Animated Line Chart -->
         <div class="line-chart-container">
@@ -560,7 +578,7 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
 <script>
     // Smooth scroll functions
     function scrollToNext(currentSectionId) {
-        const sections = ['section-challenges', 'section-competition', 'section-services', 'section-outcomes'];
+        const sections = ['section-challenges', 'section-competition', 'section-services'];
         const currentIndex = sections.indexOf(currentSectionId);
         
         if (currentIndex < sections.length - 1) {
