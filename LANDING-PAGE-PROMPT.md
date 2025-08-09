@@ -69,7 +69,8 @@ Design Requirements:
 
 Technical Setup:
 - Use Jekyll layout: protected
-- Password hash: Generate SHA-256 hash of chosen password
+- Password: Use standard format "[companyname]qvxx" (e.g., "moniteqvxx", "jajaqvxx")
+- Password hash: Generate SHA-256 hash of password
 - Include cookie consent banner
 - Add favicon and company footer
 - URL structure: /lets-talk/[client-code]/
@@ -122,11 +123,14 @@ Opportunities:
 
 1. Copy `/lets-talk/fc-q4x9/index.html` as template
 2. Update all content placeholders
-3. Generate new password hash: `echo -n "yourpassword" | shasum -a 256`
+3. Generate password hash using standard format:
+   - Password format: `[companyname]qvxx`
+   - Generate hash: `echo -n "companynameqvxx" | shasum -a 256`
+   - Example: `echo -n "moniteqvxx" | shasum -a 256`
 4. Customize the line chart data and milestones
 5. Update competitor information
 6. Test on mobile devices
-7. Add to robots.txt exclusion
+7. Verify robots.txt already excludes /lets-talk/ directory
 
 ## Visual Data Best Practices
 
