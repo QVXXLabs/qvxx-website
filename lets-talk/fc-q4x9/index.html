@@ -118,7 +118,9 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         letter-spacing: -0.01em;
         display: flex;
         align-items: center;
+        justify-content: center;
         gap: 12px;
+        text-align: center;
     }
 
     .scroll-arrow {
@@ -172,11 +174,17 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     /* Challenges */
+    .challenges-wrapper {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
     .challenges {
         background: #fef2f2;
         border-radius: 12px;
         padding: 20px;
         margin-bottom: 16px;
+        text-align: center;
     }
 
     .challenge-list {
@@ -186,12 +194,10 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     .challenge-list li {
-        padding: 8px 0 8px 24px;
-        position: relative;
+        padding: 8px 0;
         color: var(--text-secondary);
         font-size: 0.95rem;
-        display: flex;
-        align-items: baseline;
+        text-align: center;
     }
     
     .challenge-list li strong {
@@ -199,27 +205,20 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
         margin-right: 4px;
     }
 
-    .challenge-list li::before {
-        content: "×";
-        position: absolute;
-        left: 0;
-        color: var(--danger-color);
-        font-weight: bold;
-        font-size: 1.25rem;
-        line-height: 1;
-    }
 
     .opportunities {
         background: #f0fdf4;
         padding: 20px;
         border-radius: 8px;
         border: 1px solid #86efac;
+        text-align: center;
     }
 
     .opportunities h4 {
         font-size: 1rem;
         color: var(--success-color);
         margin-bottom: 12px;
+        text-align: center;
     }
 
     .opportunity-list {
@@ -229,30 +228,31 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     }
 
     .opportunity-list li {
-        padding: 8px 0 8px 24px;
-        position: relative;
+        padding: 8px 0;
         color: var(--text-secondary);
         font-size: 0.95rem;
-        display: flex;
-        align-items: baseline;
+        text-align: center;
     }
 
     .opportunity-list li::before {
-        content: "✓";
-        position: absolute;
-        left: 0;
+        content: "✓ ";
         color: var(--success-color);
         font-weight: bold;
         font-size: 1.125rem;
-        line-height: 1;
     }
 
     /* Competitors */
+    .competition-wrapper {
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
     .competitors {
         display: flex;
         gap: 12px;
         margin-bottom: 20px;
         flex-wrap: wrap;
+        justify-content: center;
     }
 
     .competitor {
@@ -435,28 +435,31 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
     <!-- Challenges -->
     <section class="section" id="section-challenges">
         <h2 class="section-title">Your customers deserve delightful onboarding <span class="scroll-arrow" onclick="scrollToNext('section-challenges')">↓</span></h2>
-        <div class="challenges">
-            <ul class="challenge-list">
-                <li>Account closures. No warning.</li>
-                <li>72-hour lockouts. Lost trust.</li>
-                <li>Credit denials. No explanation.</li>
-                <li>Ombudsman cases. Rising fast.</li>
-            </ul>
-        </div>
-        <div class="opportunities">
-            <h4><strong>These are the opportunities:</strong></h4>
-            <ul class="opportunity-list">
-                <li>Balance risk with experience</li>
-                <li>10x faster resolution</li>
-                <li>Explainable AI decisions</li>
-            </ul>
+        <div class="challenges-wrapper">
+            <div class="challenges">
+                <ul class="challenge-list">
+                    <li>Account closures. No warning.</li>
+                    <li>72-hour lockouts. Lost trust.</li>
+                    <li>Credit denials. No explanation.</li>
+                    <li>Ombudsman cases. Rising fast.</li>
+                </ul>
+            </div>
+            <div class="opportunities">
+                <h4><strong>These are the opportunities:</strong></h4>
+                <ul class="opportunity-list">
+                    <li>Balance risk with experience</li>
+                    <li>10x faster resolution</li>
+                    <li>Explainable AI decisions</li>
+                </ul>
+            </div>
         </div>
     </section>
 
     <!-- Competition -->
     <section class="section" id="section-competition">
         <h2 class="section-title">Who's Moving Fast <span class="scroll-arrow" onclick="scrollToNext('section-competition')">↓</span></h2>
-        <div class="competitors">
+        <div class="competition-wrapper">
+            <div class="competitors">
             <div class="competitor">
                 <strong>Tymit, Tandem, Monzo</strong>
                 <span>Real-time decisions, flexible credit</span>
@@ -470,8 +473,9 @@ password_hash: "26a9893426292794a827d3a7b6a6f5c1628a1fb26e0d3b83260891a5d5014d8c
                 <span>Scale + brand entering credit</span>
             </div>
         </div>
-        <div class="urgency-banner">
-            ⚡ They're combining credit innovation with trust — and they're not waiting
+            <div class="urgency-banner">
+                ⚡ They're combining credit innovation with trust — and they're not waiting
+            </div>
         </div>
     </section>
 
