@@ -72,13 +72,7 @@ Most importantly, stop throwing money at AI tools hoping something will stick. S
 
 The businesses succeeding with AI aren't using more sophisticated tools - they're using appropriate tools effectively. While [your competitors might already be using AI](/blog/2025/08/03/is-your-london-competitor-already-using-ai/), success comes from strategic implementation, not rushed adoption.
 
-If you're spending significant money on AI tools without clear results, you need an honest assessment of what's working, what isn't, and why.
-
-<div style="text-align: center; margin: 2rem 0;">
-    <a href="https://calendar.app.google/FEpevxQTJxqaTzTPA" class="cta-button primary" style="display: inline-block; background: #2563eb; color: #fff; padding: 14px 28px; border-radius: 6px; text-decoration: none; font-weight: 600; font-size: 1.1rem;">Book a free AI audit</a>
-</div>
-
-No sales pitch - just a realistic evaluation of where your AI investment makes sense and where it's probably wasting money.
+If you're spending significant money on AI tools without clear results, you need an honest assessment of what's working, what isn't, and why. [Book a free AI audit](https://calendar.app.google/FEpevxQTJxqaTzTPA) - no sales pitch - just a realistic evaluation of where your AI investment makes sense and where it's probably wasting money.
 
 ---
 

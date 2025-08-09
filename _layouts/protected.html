@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: "Protected Content" }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <meta name="robots" content="noindex, nofollow">
+    <style>
+        .password-container {
+            max-width: 400px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        .password-container h1 {
+            color: #333;
+            margin-bottom: 1.5rem;
+        }
+        .password-container input {
+            width: 100%;
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+        .password-container button {
+            width: 100%;
+            padding: 0.75rem;
+            background: #2563eb;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .password-container button:hover {
+            background: #1d4ed8;
+        }
+        .error-message {
+            color: #dc2626;
+            margin-top: 1rem;
+            display: none;
+        }
+        #protected-content {
+            display: none;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-sha256/0.9.0/sha256.min.js"></script>
+</head>
+<body>
+    <div id="password-form" class="password-container">
+        <h1>Protected Content</h1>
+        <p>Please enter the password to continue</p>
+        <input type="password" id="password-input" placeholder="Enter password" autofocus>
+        <button onclick="checkPassword()">Submit</button>
+        <div id="error-message" class="error-message">Incorrect password. Please try again.</div>
+    </div>
+
+    <div id="protected-content">
+        {{ content }}
+    </div>
+
+    <script>
+        const PASSWORD_HASH = '{{ page.password_hash | default: "2a97516c354b68848cdbd8f54a226a0a55b21ed138e207ad6c5cbb9c00aa5aea" }}';
+        
+        function checkPassword() {
+            const input = document.getElementById('password-input').value;
+            const hashedInput = sha256(input);
+            
+            if (hashedInput === PASSWORD_HASH) {
+                document.getElementById('password-form').style.display = 'none';
+                document.getElementById('protected-content').style.display = 'block';
+                sessionStorage.setItem('authenticated_' + window.location.pathname, 'true');
+            } else {
+                document.getElementById('error-message').style.display = 'block';
+                document.getElementById('password-input').value = '';
+            }
+        }
+
+        document.getElementById('password-input').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkPassword();
+            }
+        });
+
+        // Check if already authenticated
+        if (sessionStorage.getItem('authenticated_' + window.location.pathname) === 'true') {
+            document.getElementById('password-form').style.display = 'none';
+            document.getElementById('protected-content').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
