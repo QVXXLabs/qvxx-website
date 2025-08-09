@@ -118,6 +118,11 @@ Opportunities:
 3. **Contrast**: Clear before/after visualization
 4. **Simplicity**: Short, punchy copy that gets to the point
 5. **Proof**: Concrete milestones and outcomes
+6. **Factual Accuracy**: 
+   - Only include claims that can be verified
+   - Avoid specific performance metrics unless documented
+   - Focus on capabilities rather than past results
+   - Use aspirational language ("can achieve") not past tense claims
 
 ## Implementation Steps
 
@@ -148,3 +153,24 @@ The line chart should show:
 - Opportunities: Action verbs, measurable outcomes
 - CTAs: Direct and urgent ("Book Strategy Call" not "Learn More")
 - Avoid jargon, focus on business impact
+
+## Factual Accuracy Requirements
+
+**DO:**
+- State QVXX's areas of expertise and focus
+- Describe general industry trends and challenges
+- Use conditional language for potential outcomes ("can help achieve")
+- Focus on the client's known pain points from research
+
+**DON'T:**
+- Make specific claims about past client results without evidence
+- Include percentage improvements unless documented
+- State number of clients helped without verification
+- Promise specific outcomes or guarantees
+
+**Example Corrections:**
+- ❌ "We've helped 50+ companies reduce costs by 80%"
+- ✅ "We help companies optimize their AI implementation costs"
+
+- ❌ "Our clients see 10x faster processing"  
+- ✅ "AI automation can significantly accelerate processing times"
