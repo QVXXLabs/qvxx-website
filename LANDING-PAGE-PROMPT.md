@@ -28,10 +28,16 @@ Page Structure Requirements:
 
 3. **Competition Section**
    - Title: "Who's Moving Fast"
-   - 3 competitor cards showing:
-     * Competitor names
-     * Their key advantage
+   - Add generous vertical spacing (32px margins) for breathing room
+   - 3 competitor cards with:
+     * Competitor names (bold)
+     * Their key advantage (secondary text)
+     * 24px padding inside each card
+     * 20px gap between cards
    - Urgency banner with lightning emoji
+     * Additional 24px top margin
+     * Warmer gradient background
+     * Clear warning about competitive pressure
 
 4. **Solution Section**
    - Title: "Accelerate Your [SPECIFIC ROLE/INITIATIVE] with QVXX"
@@ -55,6 +61,11 @@ Design Requirements:
 - Subtle fade-in animations
 - No background colors on problem/opportunity sections
 - Large, readable text (1.25rem for key points)
+- Generous spacing:
+  * 32px margins between major sections
+  * 24px padding in cards and containers
+  * 20px gaps between related elements
+  * Allow content to "breathe" with whitespace
 
 Technical Setup:
 - Use Jekyll layout: protected
