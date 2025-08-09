@@ -6,6 +6,8 @@
     <title>{{ page.title | default: "Protected Content" }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
     <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="alternate icon" href="/favicon.ico">
     <style>
         .password-container {
             max-width: 400px;
@@ -64,6 +66,21 @@
 
     <div id="protected-content">
         {{ content }}
+        
+        <footer style="margin-top: 60px; padding: 40px 20px; border-top: 1px solid #e5e5e5; text-align: center; color: #666; font-size: 0.875rem;">
+            <div class="company-info">
+                <p><strong>QVXX Ltd</strong> | Company No: 16612070 | Registered in England and Wales</p>
+                <p>Registered Office: Flat 3 Misterton Court, Westbridge Road, London, England, SW11 3NL</p>
+            </div>
+            <div class="legal-links" style="margin: 20px 0;">
+                <a href="/privacy" style="color: #666; text-decoration: none;">Privacy Policy</a> | 
+                <a href="/terms" style="color: #666; text-decoration: none;">Terms of Service</a> | 
+                <a href="/cookies" style="color: #666; text-decoration: none;">Cookie Policy</a>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 QVXX Ltd. All rights reserved.</p>
+            </div>
+        </footer>
     </div>
 
     <script>

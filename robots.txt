@@ -3,7 +3,7 @@
 
 User-agent: *
 Allow: /
-Disallow: /preview/
+Disallow: /lets-talk/
 
 # Sitemap location
 Sitemap: https://qvxx.ai/sitemap.xml
