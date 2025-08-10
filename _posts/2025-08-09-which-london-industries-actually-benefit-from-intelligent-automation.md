@@ -152,7 +152,7 @@ Know your industry's automation reality. If you're in a high-impact sector, the 
 
 The smartest London businesses match their automation investments to their industry's proven use cases, not vendor promises or competitor press releases.
 
-Ready to assess your industry's automation potential? [Book a consultation](https://calendly.com) to explore sector-specific automation strategies that deliver real ROI.
+Ready to assess your industry's automation potential? [Book a consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to explore sector-specific automation strategies that deliver real ROI.
 
 ---
 
