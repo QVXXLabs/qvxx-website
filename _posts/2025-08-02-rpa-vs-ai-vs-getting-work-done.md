@@ -108,7 +108,7 @@ These are part of the [essential questions you should ask before buying any AI t
 
 Most London SMBs get better results from improving their processes first, then selectively adding technology where it genuinely helps. Meanwhile, [your competitors might be getting this balance right](/blog/2025/08/03/is-your-london-competitor-already-using-ai/) - but that doesn't mean you should rush into the wrong solution.
 
-If you're unsure whether your business needs RPA, AI, or just better organization, **[book a practical automation assessment](https://calendar.app.google/FEpevxQTJxqaTzTPA)**. We'll cut through the buzzwords and focus on what actually improves your operations.
+If you're unsure whether your business needs RPA, AI, or just better organization, **[book a practical automation assessment](https://calendar.app.google/F1CUZCKJCNZGN6oh8)**. We'll cut through the buzzwords and focus on what actually improves your operations.
 
 ---
 

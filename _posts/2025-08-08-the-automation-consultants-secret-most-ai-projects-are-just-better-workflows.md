@@ -125,7 +125,7 @@ The automation consultant's secret—that most AI projects are just better workf
 
 Your bottom line will thank you for focusing on boring solutions to real problems rather than exciting solutions to imagined ones.
 
-Ready to distinguish between genuine AI needs and workflow improvements? [Book a consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to explore practical automation strategies that deliver results without the hype.
+Ready to distinguish between genuine AI needs and workflow improvements? [Book a consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8) to explore practical automation strategies that deliver results without the hype.
 
 ---
 

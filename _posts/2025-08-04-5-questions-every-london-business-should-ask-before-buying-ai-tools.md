@@ -92,4 +92,4 @@ Remember: the best AI tool is the one that solves your specific problem, fits yo
 
 If you're considering AI tools for your business but want to avoid costly mistakes, let's talk. We'll help you evaluate options based on your specific needs, not vendor promises.
 
-[Book a free 20-minute consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to discuss your AI strategy and get practical, unbiased guidance on the right tools for your London business.
+[Book a free 20-minute consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8) to discuss your AI strategy and get practical, unbiased guidance on the right tools for your London business.

@@ -123,7 +123,7 @@ The businesses succeeding with AI aren't those building the most sophisticated c
 
 Before considering building your own AI infrastructure, ask yourself: would this time and money be better spent on core business activities that actually generate revenue?
 
-If you're unsure whether existing AI services meet your needs, or if building your own genuinely makes sense for your situation, **[book a free consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA)** to review your specific requirements.
+If you're unsure whether existing AI services meet your needs, or if building your own genuinely makes sense for your situation, **[book a free consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8)** to review your specific requirements.
 
 We'll give you an honest assessment based on real implementation experience—including when building your own might actually be the right choice.
 

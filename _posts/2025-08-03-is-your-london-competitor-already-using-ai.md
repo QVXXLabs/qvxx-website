@@ -59,7 +59,7 @@ Remember, in London's competitive market, standing still is moving backward. But
 
 Ready to explore how AI can give your business a competitive edge? Don't let another day pass while your competitors pull ahead. 
 
-**[Book a free 20-minute consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA)** to discuss your specific challenges and opportunities. We'll cut through the hype and focus on practical AI solutions that can deliver real results for your London business.
+**[Book a free 20-minute consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8)** to discuss your specific challenges and opportunities. We'll cut through the hype and focus on practical AI solutions that can deliver real results for your London business.
 
 ---
 

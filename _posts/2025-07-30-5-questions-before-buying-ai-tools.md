@@ -92,7 +92,7 @@ The businesses succeeding with AI aren't using the most sophisticated tools. The
 
 Before spending money on AI subscriptions, invest 30 minutes in honestly answering these five questions. Most AI failures can be traced back to skipping this basic preparation.
 
-If you're still unsure whether AI makes sense for your specific situation, [book a free AI readiness assessment](https://calendar.app.google/FEpevxQTJxqaTzTPA). We'll work through these questions together and give you a realistic view of where AI could help your business - and where it probably won't.
+If you're still unsure whether AI makes sense for your specific situation, [book a free AI readiness assessment](https://calendar.app.google/F1CUZCKJCNZGN6oh8). We'll work through these questions together and give you a realistic view of where AI could help your business - and where it probably won't.
 
 No sales pitch, no complex proposals. Just honest advice based on real implementation experience.
 

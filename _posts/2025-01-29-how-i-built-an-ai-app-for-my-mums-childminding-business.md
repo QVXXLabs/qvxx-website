@@ -70,7 +70,7 @@ I'm offering free 20-minute AI opportunity assessments for London businesses. We
 * A realistic implementation approach for your budget and team
 * Honest assessment of where AI makes sense (and where it doesn't)
 
-No sales pitch. No complex proposals. Just a practical evaluation based on real implementation experience. [Book your free assessment here](https://calendar.app.google/FEpevxQTJxqaTzTPA).
+No sales pitch. No complex proposals. Just a practical evaluation based on real implementation experience. [Book your free assessment here](https://calendar.app.google/F1CUZCKJCNZGN6oh8).
 
 The question is whether your business will be among those gaining competitive advantages through tactical AI implementation, or watching from the sidelines.
 

@@ -110,7 +110,7 @@ The permission to ignore trends isn't about falling behind; it's about moving fo
 
 While others chase every AI trend, you can build competitive advantage with practical solutions that actually work. Let's identify the AI opportunities worth pursuing for your specific business.
 
-[Book a free 20-minute consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to discuss your AI strategy and cut through the hype together.
+[Book a free 20-minute consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8) to discuss your AI strategy and cut through the hype together.
 
 ---
 

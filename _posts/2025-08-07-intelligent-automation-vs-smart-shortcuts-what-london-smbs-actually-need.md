@@ -110,7 +110,7 @@ Remember: the goal isn't to have the most advanced automation. It's to have auto
 
 Start with shortcuts. Add intelligence where it earns its complexity. Build gradually. This approach might not win innovation awards, but it will win customers, save money, and preserve sanity.
 
-Ready to design the right automation strategy for your London SMB? [Book a consultation](https://calendar.app.google/FEpevxQTJxqaTzTPA) to explore whether smart shortcuts or intelligent automation best serve your specific needs.
+Ready to design the right automation strategy for your London SMB? [Book a consultation](https://calendar.app.google/F1CUZCKJCNZGN6oh8) to explore whether smart shortcuts or intelligent automation best serve your specific needs.
 
 ---
 
