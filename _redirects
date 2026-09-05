@@ -1,0 +1,4 @@
+# Publish only after the matching Vortex routes return 200 in production.
+/terms   https://vortexfiles.qvxx.ai/legal/wix/terms   301
+/privacy https://vortexfiles.qvxx.ai/legal/wix/privacy 301
+/cookies https://vortexfiles.qvxx.ai/legal/wix/cookies 301
