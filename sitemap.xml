@@ -11,13 +11,6 @@ layout: null
   </url>
   
   <url>
-    <loc>{{ site.url }}/blog</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-  
-  <url>
     <loc>{{ site.url }}/experts</loc>
     <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
     <changefreq>weekly</changefreq>
@@ -45,14 +38,4 @@ layout: null
     <priority>0.5</priority>
   </url>
   
-  {% for post in site.posts %}
-    {% unless post.draft %}
-    <url>
-      <loc>{{ site.url }}{{ post.url }}</loc>
-      <lastmod>{% if post.last_modified_at %}{{ post.last_modified_at | date_to_xmlschema }}{% else %}{{ post.date | date_to_xmlschema }}{% endif %}</lastmod>
-      <changefreq>monthly</changefreq>
-      <priority>0.7</priority>
-    </url>
-    {% endunless %}
-  {% endfor %}
 </urlset>

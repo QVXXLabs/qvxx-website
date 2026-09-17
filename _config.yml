@@ -6,26 +6,9 @@ baseurl: ""
 
 # Build settings
 markdown: kramdown
-permalink: /blog/:year/:month/:day/:title/
-
-# Collections
-collections:
-  posts:
-    output: true
-    permalink: /blog/:year/:month/:day/:title/
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
-      author: "Natanael"
 
 # Plugins
 plugins:
-  - jekyll-feed
   - jekyll-seo-tag
 
 # Exclude files
@@ -33,6 +16,5 @@ exclude:
   - README.md
   - .gitignore
   - CNAME
-
-# Future posts
-future: false
+  - _posts
+  - scripts

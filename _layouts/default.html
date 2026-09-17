@@ -51,7 +51,6 @@
     <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
     <meta name="description" content="{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}">
     <link rel="canonical" href="{{ site.url }}{{ page.url | remove: 'index.html' }}">
-    <link rel="alternate" type="application/rss+xml" title="{{ site.title }} RSS Feed" href="{{ site.url }}/feed.xml">
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" href="/favicon.ico">
     <!-- Preconnect to improve performance -->
@@ -435,17 +434,9 @@
             <nav>
                 <ul>
                     <li><a href="/">Home</a></li>
-                    <li><a href="/blog">Blog</a></li>
                     <li><a href="/experts">Expert Network</a></li>
-                    <li><a href="/#projects">Projects</a></li>
+                    <li><a href="/#experience">Vortex Files</a></li>
                 </ul>
-                <a href="/feed.xml" class="rss-button" aria-label="RSS Feed" title="Subscribe to RSS Feed">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M4 11a9 9 0 0 1 9 9"/>
-                        <path d="M4 4a16 16 0 0 1 16 16"/>
-                        <circle cx="5" cy="19" r="1"/>
-                    </svg>
-                </a>
                 <button class="theme-toggle" id="theme-toggle" aria-label="Toggle dark mode">
                     <span class="theme-icon">🌙</span>
                 </button>
