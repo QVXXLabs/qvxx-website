@@ -1,113 +1,91 @@
 ---
-layout: default
-title: Expert Network
 ---
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expert Network | QVXX</title>
+    <meta name="description" content="When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.">
+    <link rel="canonical" href="https://qvxx.ai/experts">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Expert Network | QVXX">
+    <meta property="og:description" content="When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.">
+    <meta property="og:url" content="https://qvxx.ai/experts">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="preload" href="/assets/fonts/inter-bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="stylesheet" href="/assets/home.css">
+    <style>
+        .network-hero { border-bottom: 1px solid var(--border-color); }
+        .network-hero .intro { max-width: none; padding-top: 8px; }
+        .expert-name { font-size: 28px; line-height: 1.25; letter-spacing: -.025em; color: var(--text-primary); }
+        .expert-name a { text-decoration: none; }
+        .expert-name a:hover { text-decoration: underline; }
+        .expert-profile .expert-title { margin-top: 10px; color: var(--text-tertiary); }
+        .expert-profile h4 { margin: 28px 0 12px; color: var(--text-primary); font-size: 16px; font-weight: 500; }
+        .expert-profile ul { margin: 0; padding-left: 20px; }
+        .expert-profile li + li { margin-top: 8px; }
+        .expert-links { display: flex; flex-wrap: wrap; gap: 16px 28px; margin-top: 28px; }
+        @media (max-width: 720px) {
+            .network-hero .intro { padding-top: 0; }
+            .expert-name { font-size: 25px; }
+        }
+    </style>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('consent', 'default', {
+        analytics_storage: 'denied', ad_storage: 'denied',
+        ad_user_data: 'denied', ad_personalization: 'denied', wait_for_update: 500
+    });
+    try {
+        const prefs = JSON.parse(localStorage.getItem('cookiePreferences') || 'null');
+        if (prefs) {
+            gtag('consent', 'update', {
+                analytics_storage: prefs.analytics ? 'granted' : 'denied',
+                ad_storage: prefs.marketing ? 'granted' : 'denied',
+                ad_user_data: prefs.marketing ? 'granted' : 'denied',
+                ad_personalization: prefs.marketing ? 'granted' : 'denied'
+            });
+        }
+    } catch (_) { /* Keep the default denied state if saved preferences cannot be read. */ }
+    window.addEventListener('load', function() {
+        setTimeout(function() {
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','GTM-TT935KM3');
+        }, 50);
+    });
+    </script>
+</head>
+<body class="qvxx-home qvxx-network">
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TT935KM3" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header wrap">
+        <a class="brand" href="/" aria-label="QVXX home">QVXX</a>
+        <nav aria-label="Main navigation">
+            <a class="nav-detail" href="/#how-i-help">What’s included</a>
+            <a class="nav-detail" href="/#about">About Nat</a>
+            <a class="button button-small" href="https://calendar.app.google/F1CUZCKJCNZGN6oh8" data-booking="header">Book a free review <span aria-hidden="true">↗</span></a>
+        </nav>
+    </header>
 
-<style>
-    .expert-card {
-        background: var(--bg-secondary);
-        padding: 2rem;
-        border-radius: 8px;
-        margin-bottom: 2rem;
-        border: 1px solid var(--border-color);
-    }
-    
-    .expert-name {
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-    }
-    
-    .expert-name a {
-        color: var(--text-primary);
-        text-decoration: none;
-    }
-    
-    .expert-name a:hover {
-        text-decoration: underline;
-    }
-    
-    .expert-title {
-        font-weight: 600;
-        color: var(--link-color);
-        margin-bottom: 1rem;
-    }
-    
-    .expert-links {
-        margin-bottom: 0;
-    }
-    
-    .expert-links span {
-        color: var(--text-muted);
-        margin: 0 0.5rem;
-    }
-    
-    .cta-section {
-        margin-top: 3rem;
-        padding: 2rem;
-        background: var(--cta-bg);
-        color: #fff;
-        border-radius: 8px;
-    }
-    
-    .cta-section h2 {
-        color: #fff;
-        margin-top: 0;
-    }
-    
-    .cta-section p {
-        color: #ccc;
-    }
-    
-    .page-intro {
-        font-size: 1.2rem;
-        color: var(--text-tertiary);
-        margin-bottom: 3rem;
-    }
-    
-    .cta-button {
-        display: inline-block;
-        background: var(--link-color);
-        color: #fff;
-        padding: 12px 24px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-weight: 600;
-        margin-top: 1rem;
-        transition: background-color 0.2s;
-    }
-    
-    .cta-button:hover {
-        background: var(--link-hover);
-        color: #fff;
-        text-decoration: none;
-    }
-    
-    .cta-button.primary {
-        font-size: 1.1rem;
-        padding: 14px 28px;
-    }
-</style>
+    <main id="main" tabindex="-1">
+        <section class="hero wrap content-grid network-hero" aria-labelledby="network-title">
+            <h1 id="network-title">Expert <span>Network</span></h1>
+            <p class="intro">When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.</p>
+        </section>
 
-<div style="max-width: 800px; margin: 0 auto;">
-    <h1>Expert Network</h1>
-    <p class="page-intro">When selecting comprehensive consulting packages, you will have access to my expert network for advisory and support.</p>
-
-
-    <section>
-        <h2>Featured Experts</h2>
-        
-        <!-- Nikita Sarychev -->
-        <div class="expert-card">
-            <h3 class="expert-name">
-                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener">
-                    Nikita Sarychev
-                </a>
-            </h3>
-            <p class="expert-title">Technical Leadership Specialist</p>
-            
-            <div style="margin-bottom: 1rem;">
-                <strong>Areas of Expertise:</strong>
-                <ul style="margin-top: 0.5rem; margin-left: 2rem;">
+        <section class="section wrap content-grid offer-section" aria-labelledby="experts-title">
+            <h2 id="experts-title">Featured Experts</h2>
+            <article class="section-copy expert-profile" aria-labelledby="nikita-name">
+                <h3 class="expert-name" id="nikita-name"><a href="https://www.niksarychev.com/" target="_blank" rel="noopener noreferrer">Nikita Sarychev</a></h3>
+                <p class="expert-title">Technical Leadership Specialist</p>
+                <h4>Areas of Expertise:</h4>
+                <ul>
                     <li>Technical product vision and leadership</li>
                     <li>AI transition strategy</li>
                     <li>Legacy system modernization</li>
@@ -115,27 +93,50 @@ title: Expert Network
                     <li>Tech stack due diligence</li>
                     <li>Security auditing</li>
                 </ul>
-            </div>
-            
-            <p class="expert-links">
-                <a href="https://www.linkedin.com/in/nik-sarychev/" target="_blank" rel="noopener">
-                    LinkedIn
-                </a>
-                <span>|</span>
-                <a href="https://www.niksarychev.com/" target="_blank" rel="noopener">
-                    Website
-                </a>
-            </p>
-        </div>
-    </section>
+                <p class="expert-links">
+                    <a href="https://www.linkedin.com/in/nik-sarychev/" target="_blank" rel="noopener noreferrer">LinkedIn <span aria-hidden="true">↗</span></a>
+                    <a href="https://www.niksarychev.com/" target="_blank" rel="noopener noreferrer">Website <span aria-hidden="true">↗</span></a>
+                </p>
+            </article>
+        </section>
 
-    <section class="cta-section">
-        <h2>Work with Our Network</h2>
-        <p>When your project requires specialized expertise beyond AI integration, I can connect you with the right expert from our network. We'll work together to ensure seamless delivery and consistent quality.</p>
-        <p style="margin-bottom: 0;">
-            <a href="https://calendar.app.google/F1CUZCKJCNZGN6oh8" class="cta-button primary">
-                Discuss Your Project Needs
-            </a>
-        </p>
-    </section>
-</div>
+        <section class="contact-section wrap content-grid" aria-labelledby="contact-title">
+            <h2 id="contact-title">Work with Our Network</h2>
+            <div class="section-copy">
+                <p>When your project requires specialized expertise beyond AI integration, I can connect you with the right expert from our network. We'll work together to ensure seamless delivery and consistent quality.</p>
+                <a href="https://calendar.app.google/F1CUZCKJCNZGN6oh8" class="button" data-booking="network">Discuss Your Project Needs <span aria-hidden="true">↗</span></a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap footer-top">
+            <a class="brand" href="/">QVXX</a>
+            <nav aria-label="Further information"><a href="/experts" aria-current="page">Expert network</a></nav>
+        </div>
+        <div class="wrap footer-bottom">
+            <div><p>© 2026 QVXX Ltd · Company No. 16612070</p><p>Registered in England and Wales.<br>Registered office: Flat 3 Misterton Court, Westbridge Road, London, England, SW11 3NL</p></div>
+            <nav aria-label="Legal"><a href="/consulting/privacy">Privacy</a><a href="/consulting/terms">Terms</a><a href="/consulting/cookies">Cookies</a><button type="button" onclick="showCookieSettings()">Cookie settings</button></nav>
+        </div>
+    </footer>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "8067b9176d8540d4acf12007444be941"}'></script>
+    <script>
+    document.querySelectorAll('[data-booking]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            window.dataLayer.push({
+                event: 'book_consultation', event_category: 'engagement',
+                event_label: link.textContent.trim(), placement: link.dataset.booking,
+                page_path: window.location.pathname
+            });
+        });
+    });
+    </script>
+    {% include cookie-consent-enhanced.html %}
+    {% include gtm-datalayer.html %}
+    {% include modern-analytics-gtm.html %}
+    {% include advanced-features-gtm.html %}
+    {% include download-tracking.html %}
+    {% include external-link-tracking.html %}
+</body>
+</html>
