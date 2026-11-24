@@ -24,12 +24,6 @@ layout: null
     <priority>0.5</priority>
   </url>
 
-  <url>
-    <loc>{{ site.url }}/ai-policy/</loc>
-    <lastmod>{{ site.time | date_to_xmlschema }}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
   
   <url>
     <loc>{{ site.url }}/terms</loc>
