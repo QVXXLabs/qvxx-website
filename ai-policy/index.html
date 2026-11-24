@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>AI and client information policy, draft | QVXX</title>
+  <meta name="description" content="QVXX's proposed approach to using AI with client information, including agreed tools, access, human review and retention.">
+  <link rel="canonical" href="https://qvxx.ai/ai-policy/">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="stylesheet" href="/assets/home.css">
+  <style>
+    .policy { max-width: 780px; padding-block: 56px 72px; }
+    .policy h1 { font-size: clamp(38px, 6vw, 60px); }
+    .policy h2 { font-size: 26px; margin: 38px 0 14px; letter-spacing: -.025em; }
+    .policy p, .policy ul { margin: 0 0 18px; }
+    .policy li { margin-bottom: 10px; }
+    .policy ul { padding-left: 24px; }
+    .policy a { color: var(--link-color); }
+    .policy .status { border-left: 3px solid var(--link-color); padding: 16px 20px; margin: 28px 0; background: var(--bg-secondary); }
+    .policy .meta { color: var(--text-tertiary); margin-top: 18px; }
+    .policy .intro { font-size: 20px; line-height: 1.6; margin-top: 28px; }
+    .policy details { border-top: 1px solid var(--border-color); margin-top: 40px; padding-top: 24px; }
+    .policy summary { cursor: pointer; font-weight: 600; margin-bottom: 18px; }
+    .policy .source-list { font-size: 16px; }
+    .policy-footer { border-top: 1px solid var(--border-color); padding-block: 28px; font-size: 16px; }
+    .policy-footer p { margin: 0 0 10px; }
+    .site-header nav a { font-size: 16px; }
+    @media print { .site-header, .policy-footer { display: none; } .policy { width: 100%; padding: 0; } .policy h2 { break-after: avoid; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header wrap">
+    <a class="brand" href="/" aria-label="QVXX home">QVXX</a>
+    <nav aria-label="Main navigation"><a href="/">Consulting</a><a href="mailto:nat@qvxx.ai">Contact Nat</a></nav>
+  </header>
+  <main id="main" class="policy wrap" tabindex="-1">
+    <h1>AI and client information</h1>
+    <p class="meta">Draft for discussion · Version 0.1 · 24 November 2026</p>
+    <div class="status"><strong>Draft policy.</strong> This sets out the approach QVXX proposes for consulting engagements. It is not yet an adopted policy or a statement that every control below has been implemented. Each engagement needs its own agreed arrangements before confidential information is processed.</div>
+    <p class="intro">QVXX uses AI to research, analyse information, develop software and prepare recommendations. Client information can be used in QVXX-operated systems when the purpose, tools and safeguards have been agreed with the client.</p>
+
+    <h2>Agreeing the work</h2>
+    <p>Before using confidential client information with AI, we will record what we need, why we need it, which services will process it and any restrictions. We will check the arrangements against the engagement terms, confidentiality obligations and applicable data protection requirements. This policy does not itself authorise disclosure or replace an NDA, engagement agreement or data processing agreement.</p>
+    <p>Approval applies to the agreed use. A material change to the purpose, information, provider or access requires a further check and any approval required by the agreement.</p>
+
+    <h2>How AI may support the work</h2>
+    <ul>
+      <li>Researching markets, competitors and potential opportunities using public sources.</li>
+      <li>Analysing agreed business information, such as process notes, project records and financial assumptions.</li>
+      <li>Building and testing models, software, assistants and automations.</li>
+      <li>Organising findings and preparing documents, diagrams and recommendations.</li>
+    </ul>
+    <p>Services may include OpenAI's ChatGPT or API, Anthropic's Claude or API, and Miro for organising and presenting work. These are examples, not blanket approval for any product or subscription. We will identify the actual service, account type, relevant features and permitted information for the engagement. Storing information in Miro and using Miro AI are separate uses to assess.</p>
+
+    <h2>Using the information needed</h2>
+    <p>We will use the minimum information needed for the agreed task. Public research, synthetic examples and aggregate figures can support early exploration. Where the analysis needs real client records, we will agree those records rather than assume access to a whole mailbox, CRM or shared drive.</p>
+    <p>We will remove unnecessary identifiers where practical. Removing a name does not necessarily make a record anonymous: its context may still identify a person or company. Special category personal data, criminal offence data, credentials and particularly sensitive third-party material require a separate assessment and explicit agreement before use.</p>
+    <p>The client must identify restrictions it is aware of on information it supplies, including obligations to its own customers. Client approval does not override third-party rights or data protection law.</p>
+
+    <h2>Tools, accounts and model training</h2>
+    <p>For confidential information, we will select services with contractual confidentiality and data protection terms appropriate to the task, and verify the account's training, retention, access and processing arrangements before use. A paid subscription alone does not establish those protections.</p>
+    <p>We will not use client confidential information to train or fine-tune a model, allow provider model-improvement use, or submit it through feedback features that permit such use, unless that distinct use has been expressly agreed and is lawful. We will check how files, chat history, memory, retrieval indexes and logs are retained even when model training is disabled.</p>
+    <p>Where a supplier processes personal data on our behalf, the required processing terms and authorisation must be in place. We will assess overseas processing and any required UK transfer mechanism before a restricted transfer. UK-only storage or processing is an engagement-specific requirement to verify, rather than a default promise.</p>
+
+    <h2>Access and separation</h2>
+    <p>The engagement arrangements will specify working storage, devices, cloud services, backups and authorised users. Controls will be proportionate to the information and include individual accounts, multi-factor authentication where supported, appropriate encryption and access limited to the task.</p>
+    <p>Client work will be separated from other engagements. Client confidential material must not enter another client's prompts, shared memory, reusable examples or demonstrations. QVXX may reuse general methods, software and know-how subject to the engagement's ownership and confidentiality terms.</p>
+    <p>AI assistants and connectors will be limited to agreed files and systems. A separate folder is insufficient if an assistant can still search unrelated client information. Publishing, external messages, production changes and other consequential actions need an agreed authority and review process.</p>
+    <p>We can also work in a client-managed environment where agreed. A separate virtual machine may support isolation, but does not change the permissions needed to send information to an external service.</p>
+
+    <h2>Personal data and responsibility</h2>
+    <p>Our data protection role depends on the work. Where QVXX acts as a processor, we will process personal data only on documented lawful client instructions and under a written data processing agreement. That agreement will address security, authorised subprocessors, assistance with individual rights, incidents, audits and return or deletion of data.</p>
+    <p>Where QVXX acts as a controller, we are responsible for the applicable lawful basis, transparency and other obligations. The client's permission to use a tool is separate from any lawful basis needed to process individuals' information. We will assess whether a data protection impact assessment is required before high-risk processing.</p>
+
+    <h2>Checking the work</h2>
+    <p>QVXX remains responsible for work delivered to the client and will apply reasonable care and skill. We will review material AI-assisted outputs, verify important claims and calculations, and distinguish evidence from assumptions. Recommendations and ROI scenarios are not guarantees of commercial results.</p>
+    <p>We will agree any automated operation, its limits, monitoring and when a person must intervene. Meeting recording or transcription will be discussed in advance, with the necessary notices and permissions. We will not introduce solely automated decisions with legal or similarly significant effects on individuals through a general consulting engagement.</p>
+
+    <h2>Retention and handover</h2>
+    <p>We will agree how long working material is needed and what happens at the end of the engagement. This will include local copies, provider-held conversations and files, indexes, logs and backups. Return or deletion will follow the engagement and applicable legal requirements. Provider deletion windows and any limited records retained for legal or claims purposes will be identified; instant deletion from every backup is not assumed.</p>
+    <p>Client access and credentials will be handed over or revoked as appropriate. Where QVXX is a processor, end-of-contract handling will follow the client's choice of return or deletion, except where law requires retention.</p>
+
+    <h2>If something goes wrong</h2>
+    <p>We will agree an incident contact, contain suspected unauthorised access or disclosure, preserve relevant evidence and assess what happened. Where we act as a processor, we will notify the client of a personal data breach without undue delay after becoming aware of it, and assist with its response. Other notifications will follow applicable law and the engagement terms.</p>
+
+    <h2>Questions and project arrangements</h2>
+    <p>Contact <a href="mailto:nat@qvxx.ai">nat@qvxx.ai</a> to discuss permitted tools, excluded information, retention or working in your own environment. Before confidential processing begins, we will record the agreed data flow, safeguards and any outstanding requirements. If those requirements cannot be met, we will agree a different method or pause that part of the work.</p>
+    <p>Client-specific terms and applicable law govern the engagement. Updates to this page do not change an existing agreement or expand permission to use client information.</p>
+
+    <details>
+      <summary>Legal sources used for this draft</summary>
+      <p>This draft was researched against the following sources on 24 November 2026. It has not been reviewed by a solicitor. The sources do not certify QVXX's systems or establish compliance for a particular engagement.</p>
+      <ul class="source-list">
+        <li><a href="https://ico.org.uk/for-organisations/uk-gdpr-guidance-and-resources/accountability-and-governance/guide-to-accountability-and-governance/contracts">ICO: contracts between controllers and processors</a>, including documented instructions, confidentiality, subprocessors and end-of-contract obligations.</li>
+        <li><a href="https://www.legislation.gov.uk/eur/2016/679/article/32">UK GDPR, Article 32</a>: security appropriate to the risk.</li>
+        <li><a href="https://www.legislation.gov.uk/eur/2016/679/chapter/V">UK GDPR, Chapter V</a>: international transfers.</li>
+        <li><a href="https://ico.org.uk/for-organisations/report-a-breach/personal-data-breach/personal-data-breaches-a-guide/">ICO: personal data breaches</a>, including processor notification to the controller.</li>
+        <li><a href="https://www.legislation.gov.uk/ukpga/1982/29/section/13">Supply of Goods and Services Act 1982, section 13</a>: reasonable care and skill in relevant business service contracts.</li>
+      </ul>
+    </details>
+  </main>
+  <footer class="policy-footer wrap">
+    <p>QVXX LTD · Company number 16612070 · Registered in England and Wales</p>
+    <p><a href="/consulting/privacy">Privacy</a> · <a href="/consulting/terms">Terms</a> · <a href="/">QVXX consulting</a></p>
+  </footer>
+</body>
+</html>
